@@ -539,11 +539,15 @@
     .others-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
 
     .other-card {
+      display: block;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 22px;
       transition: border-color .2s, transform .2s;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
     }
     .other-card:hover { border-color: rgba(0,212,255,.28); transform: translateY(-3px); }
 
@@ -966,7 +970,7 @@
       </div>
 
       <div class="others-grid">
-        <div class="other-card reveal">
+        <a href="asap.html" class="other-card reveal">
           <div class="other-title">"ASAP" – Warranty Management App</div>
           <div class="other-tags">
             <span class="ot">Branding</span>
@@ -975,22 +979,22 @@
             <span class="ot">Research</span>
             <span class="ot">UIUX</span>
           </div>
-        </div>
-        <div class="other-card reveal" style="transition-delay:.1s">
+        </a>
+        <a href="logo-design.html" class="other-card reveal" style="transition-delay:.1s">
           <div class="other-title">Logo Design</div>
           <div class="other-tags">
             <span class="ot">Branding</span>
             <span class="ot">Graphic Design</span>
             <span class="ot">Logo</span>
           </div>
-        </div>
-        <div class="other-card reveal" style="transition-delay:.2s">
+        </a>
+        <a href="print.html" class="other-card reveal" style="transition-delay:.2s">
           <div class="other-title">Print</div>
           <div class="other-tags">
             <span class="ot">Graphic Design</span>
             <span class="ot">Print</span>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>

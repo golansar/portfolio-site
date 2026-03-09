@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logo Design — Golan Sarig</title>
+  <meta name="description" content="A collection of logo and brand identity work — built on strategy, refined through craft.">
+  <meta property="og:title" content="Logo Design — Golan Sarig">
+  <meta property="og:description" content="Brand identity and logo design across commercial and personal projects.">
+  <meta property="og:image" content="/images/SocialMediaPreviewImage_Portfolio.png">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#08081a; --surface:#0f0f26; --surface-2:#161638; --border:rgba(255,255,255,0.07);
+      --text:#eeeef8; --muted:#7878a0;
+      --yellow:#ffe000; --pink:#ff2d6b; --cyan:#00d4ff; --orange:#ff6b35; --purple:#b06cff;
+      --glow-y:0 0 24px rgba(255,224,0,.45); --glow-p:0 0 24px rgba(255,45,107,.45);
+      --glow-c:0 0 24px rgba(0,212,255,.45); --glow-o:0 0 24px rgba(255,107,53,.45);
+      --font-px:'Press Start 2P',monospace; --font:'Space Grotesk',sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh;
+           background-image: radial-gradient(ellipse at 20% 50%, rgba(255,45,107,.04) 0%, transparent 60%),
+                             radial-gradient(ellipse at 80% 20%, rgba(255,224,0,.04) 0%, transparent 60%); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+          display: flex; justify-content: space-between; align-items: center;
+          padding: 20px 40px; background: rgba(8,8,26,.85); backdrop-filter: blur(12px);
+          border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-px); font-size: 14px; color: var(--yellow); text-shadow: var(--glow-y); text-decoration: none; }
+    .nav-back  { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .nav-back:hover { color: var(--text); }
+
+    .case-hero-band { margin-top: 65px; background: var(--surface); border-bottom: 1px solid var(--border);
+                      padding: 80px 40px 60px; position: relative; overflow: hidden; }
+    .case-hero-band::before { content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(255,224,0,.07) 0%, transparent 60%); pointer-events: none; }
+    .case-hero-band .container { max-width: 900px; margin: 0 auto; position: relative; }
+    .case-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 18px; }
+    .case-client { font-family: var(--font-px); font-size: 9px; color: var(--yellow); text-shadow: var(--glow-y); }
+    .case-year   { font-size: 13px; color: var(--muted); }
+    .case-title  { font-size: clamp(28px, 5vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 24px; }
+    .case-tags   { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: .5px; }
+    .t-br { background: rgba(255,107,53,.10); color: var(--orange); border: 1px solid rgba(255,107,53,.2); }
+    .t-gd { background: rgba(255,224,0,.10); color: var(--yellow); border: 1px solid rgba(255,224,0,.2); }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+    section { padding: 72px 0; }
+    .sec-head { display: flex; align-items: center; gap: 16px; margin-bottom: 40px; }
+    .sec-tag  { font-family: var(--font-px); font-size: 9px; letter-spacing: 1px; white-space: nowrap; }
+    .sec-rule { flex: 1; height: 1px; background: linear-gradient(to right, rgba(255,255,255,.08), transparent); }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .about-block h3 { font-family: var(--font-px); font-size: 8px; color: var(--muted); margin-bottom: 10px; letter-spacing: 1px; }
+    .about-block p  { font-size: 15px; line-height: 1.7; color: var(--text); }
+
+    /* LOGO PRINCIPLES */
+    .principles-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .principle-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px; }
+    .principle-icon { font-family: var(--font-px); font-size: 18px; color: var(--yellow); margin-bottom: 16px; }
+    .principle-name { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+    .principle-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    .request-banner {
+      background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--yellow);
+      border-radius: 12px; padding: 32px 36px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    }
+    .request-banner p { font-size: 15px; line-height: 1.6; color: var(--muted); max-width: 560px; }
+    .request-banner p strong { color: var(--text); }
+
+    .case-footer { padding: 64px 0; border-top: 1px solid var(--border); text-align: center; }
+    .case-footer p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+    .footer-nav { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    .neon-div { display: flex; align-items: center; gap: 12px; margin: 64px 0; }
+    .neon-node { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--yellow); box-shadow: 0 0 10px var(--yellow); }
+    .neon-line { flex: 1; height: 1px; }
+
+    .btn { display: inline-block; padding: 14px 28px; border-radius: 8px; font-weight: 600;
+           font-size: 14px; text-decoration: none; transition: all .2s; font-family: var(--font); }
+    .btn-primary { background: var(--yellow); color: #08081a; box-shadow: var(--glow-y); }
+    .btn-primary:hover { box-shadow: 0 0 40px rgba(255,224,0,.7); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.25); transform: translateY(-2px); }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .case-hero-band { padding: 60px 20px 40px; }
+      .container { padding: 0 20px; }
+      .about-grid, .principles-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">GS</a>
+    <a href="index.html" class="nav-back">← Back to Work</a>
+  </nav>
+
+  <div class="case-hero-band">
+    <div class="container">
+      <div class="case-meta">
+        <span class="case-client">VARIOUS</span>
+        <span class="case-year">· Brand & Identity</span>
+      </div>
+      <h1 class="case-title">Logo Design</h1>
+      <div class="case-tags">
+        <span class="tag t-br">Branding</span>
+        <span class="tag t-gd">Graphic Design</span>
+        <span class="tag t-gd">Logo</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <section>
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--yellow);text-shadow:var(--glow-y)">ABOUT</span>
+        <div class="sec-rule"></div>
+      </div>
+
+      <div class="about-grid reveal">
+        <div class="about-block">
+          <h3>THE WORK</h3>
+          <p>A curated collection of logo and brand identity projects spanning commercial clients, personal ventures, and speculative work — each rooted in strategic intent and typographic precision.</p>
+        </div>
+        <div class="about-block">
+          <h3>APPROACH</h3>
+          <p>Every mark begins with understanding the audience, context, and values of the brand. Form follows strategy — then craft takes over.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="neon-div reveal">
+      <div class="neon-node"></div>
+      <div class="neon-line" style="background:linear-gradient(to right,rgba(255,224,0,.3),transparent)"></div>
+      <div class="neon-node" style="width:6px;height:6px;border-color:var(--pink);box-shadow:0 0 8px var(--pink)"></div>
+      <div class="neon-line" style="background:linear-gradient(to right,rgba(255,45,107,.2),transparent)"></div>
+    </div>
+
+    <section>
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--cyan);text-shadow:var(--glow-c)">PRINCIPLES</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(0,212,255,.2),transparent)"></div>
+      </div>
+
+      <div class="principles-grid reveal">
+        <div class="principle-card">
+          <div class="principle-icon">◈</div>
+          <div class="principle-name">Timeless over Trendy</div>
+          <div class="principle-desc">Marks designed to last 10+ years — not tied to a design trend cycle.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">◇</div>
+          <div class="principle-name">Concept-First</div>
+          <div class="principle-desc">Every form has meaning. Cleverness is earned, not forced.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">◉</div>
+          <div class="principle-name">System Thinking</div>
+          <div class="principle-desc">Logos as part of a system — not isolated marks.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="neon-div reveal">
+      <div class="neon-node" style="border-color:var(--purple);box-shadow:0 0 10px var(--purple)"></div>
+      <div class="neon-line" style="background:linear-gradient(to right,rgba(176,108,255,.3),transparent)"></div>
+      <div class="neon-node" style="width:6px;height:6px;border-color:var(--orange);box-shadow:0 0 8px var(--orange)"></div>
+      <div class="neon-line" style="background:linear-gradient(to right,rgba(255,107,53,.2),transparent)"></div>
+    </div>
+
+    <section>
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--orange);text-shadow:var(--glow-o)">VIEW WORK</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,107,53,.2),transparent)"></div>
+      </div>
+
+      <div class="request-banner reveal">
+        <p><strong>Full logo portfolio available on request.</strong> Includes wordmarks, lettermarks, icon systems, and full brand identity deliverables across multiple sectors. Get in touch to see selected projects.</p>
+        <a href="mailto:oshki2001@gmail.com" class="btn btn-primary">Get in Touch</a>
+      </div>
+    </section>
+
+    <div class="case-footer reveal">
+      <p>Continue exploring</p>
+      <div class="footer-nav">
+        <a href="print.html" class="btn btn-primary">Print →</a>
+        <a href="index.html" class="btn btn-ghost">← All Work</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
