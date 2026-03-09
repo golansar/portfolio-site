@@ -212,6 +212,23 @@
       font-size: 15px;
     }
 
+    .journals-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 16px;
+      padding: 8px 16px;
+      border: 1px solid rgba(255,107,53,.35);
+      border-radius: 20px;
+      font-size: 12px; font-weight: 600; letter-spacing: .04em;
+      color: var(--orange);
+      text-decoration: none;
+      transition: border-color .2s, background .2s, box-shadow .2s;
+    }
+    .journals-btn:hover {
+      border-color: rgba(255,107,53,.7);
+      background: rgba(255,107,53,.08);
+      box-shadow: 0 0 14px rgba(255,107,53,.2);
+    }
+
     .process-list {
       display: flex;
       flex-direction: column;
@@ -496,6 +513,7 @@
         <div class="about-col">
           <h3>THE PROJECT</h3>
           <p>Genesis is an internal platform integrating HR workforce data with project management across DBS's technology division. The goal: surface the right information to the right people, reduce operational overhead, and create a single source of truth for resource planning and delivery tracking.</p>
+          <a href="journals.html" class="journals-btn">📚 View Project Journals ↗</a>
         </div>
       </div>
 
@@ -652,9 +670,6 @@
         <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
           <a href="lifestyle-rewards.html" class="btn btn-primary">Lifestyle & Rewards — UOB →</a>
           <a href="index.html" class="btn btn-ghost">← All Work</a>
-        </div>
-        <div style="margin-top:16px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-          <a href="journals.html" class="btn btn-ghost">📚 Project Journals →</a>
         </div>
         <div style="margin-top:20px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap">
           <a href="mailto:oshki2001@gmail.com" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">oshki2001@gmail.com</a>
