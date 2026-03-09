@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Converse Experience — Golan Sarig</title>
+  <meta name="description" content="Audience engagement platform for Refinitiv conferences across APAC — real-time sentiment, QR check-in, and personalized session feeds.">
+  <meta property="og:title" content="Converse Experience — Golan Sarig">
+  <meta property="og:description" content="Audience engagement platform for Refinitiv conferences across APAC.">
+  <meta property="og:image" content="/images/SocialMediaPreviewImage_Converse.png">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #08081a;
+      --surface:   #0f0f26;
+      --surface-2: #161638;
+      --border:    rgba(255,255,255,0.07);
+      --text:      #eeeef8;
+      --muted:     #7878a0;
+      --yellow:  #ffe000;
+      --pink:    #ff2d6b;
+      --cyan:    #00d4ff;
+      --orange:  #ff6b35;
+      --purple:  #b06cff;
+      --glow-y: 0 0 24px rgba(255,224,0,.45);
+      --glow-p: 0 0 24px rgba(255,45,107,.45);
+      --glow-c: 0 0 24px rgba(0,212,255,.45);
+      --glow-o: 0 0 24px rgba(255,107,53,.45);
+      --radius: 10px;
+      --font-px: 'Press Start 2P', monospace;
+      --font:    'Space Grotesk', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.07) 3px, rgba(0,0,0,.07) 4px);
+      pointer-events: none;
+    }
+
+    section { position: relative; z-index: 1; }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(8,8,26,.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-px);
+      font-size: 9px;
+      color: var(--yellow);
+      text-shadow: var(--glow-y);
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-family: var(--font-px);
+      font-size: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color .2s;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-back:hover { color: var(--cyan); text-shadow: var(--glow-c); }
+    .nav-back::before { content: '←'; }
+
+    /* HERO */
+    .case-hero {
+      margin-top: 64px;
+      position: relative;
+      overflow: hidden;
+      max-height: 520px;
+    }
+
+    .case-hero img {
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(.75);
+    }
+
+    .case-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, var(--bg) 100%);
+    }
+
+    .case-hero-info {
+      position: absolute;
+      bottom: 48px; left: 0; right: 0;
+      padding: 0 48px;
+      max-width: 1000px; margin: 0 auto;
+    }
+
+    .case-meta {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .case-client {
+      font-family: var(--font-px);
+      font-size: 9px;
+      color: var(--cyan);
+      text-shadow: var(--glow-c);
+      letter-spacing: 1px;
+    }
+
+    .case-year {
+      font-family: var(--font-px);
+      font-size: 8px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .case-title {
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 700px;
+      color: var(--text);
+    }
+
+    /* TAGS */
+    .case-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      font-family: var(--font-px);
+      font-size: 7px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      letter-spacing: .5px;
+    }
+
+    .t-mob  { background: rgba(176,108,255,.15); color: var(--purple); border: 1px solid rgba(176,108,255,.3); }
+    .t-uxd  { background: rgba(0,212,255,.12);   color: var(--cyan);   border: 1px solid rgba(0,212,255,.3); }
+    .t-ui   { background: rgba(255,45,107,.12);  color: var(--pink);   border: 1px solid rgba(255,45,107,.3); }
+    .t-uxr  { background: rgba(255,224,0,.12);   color: var(--yellow); border: 1px solid rgba(255,224,0,.3); }
+    .t-dsk  { background: rgba(255,107,53,.12);  color: var(--orange); border: 1px solid rgba(255,107,53,.3); }
+
+    /* CONTENT */
+    .case-body {
+      padding: 80px 0;
+    }
+
+    /* Section header */
+    .sec-head {
+      display: flex; align-items: center; gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .sec-tag {
+      font-family: var(--font-px);
+      font-size: 9px;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .sec-rule {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(0,212,255,.35), transparent);
+    }
+
+    /* Two-column about */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 80px;
+    }
+
+    @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-col h3 {
+      font-family: var(--font-px);
+      font-size: 8px;
+      color: var(--cyan);
+      text-shadow: var(--glow-c);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .about-col p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    /* Process toggles */
+    .process-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 80px;
+    }
+
+    .process-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .process-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px;
+      cursor: pointer;
+      user-select: none;
+      transition: background .2s;
+    }
+
+    .process-header:hover { background: var(--surface-2); }
+
+    .process-header-left {
+      display: flex; align-items: center; gap: 16px;
+    }
+
+    .process-num {
+      font-family: var(--font-px);
+      font-size: 8px;
+      color: var(--cyan);
+      text-shadow: var(--glow-c);
+      min-width: 24px;
+    }
+
+    .process-name {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .process-arrow {
+      font-size: 12px;
+      color: var(--muted);
+      transition: transform .25s;
+    }
+
+    .process-item.open .process-arrow { transform: rotate(180deg); }
+
+    .process-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease;
+    }
+
+    .process-item.open .process-body { max-height: 600px; }
+
+    .process-body-inner {
+      padding: 0 24px 24px 64px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    /* Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(0,212,255,.35);
+      transform: translateY(-3px);
+    }
+
+    .feature-num {
+      font-family: var(--font-px);
+      font-size: 8px;
+      color: var(--cyan);
+      text-shadow: var(--glow-c);
+      margin-bottom: 12px;
+    }
+
+    .feature-name {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* Image gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 80px;
+    }
+
+    @media (max-width: 640px) { .gallery { grid-template-columns: 1fr; } }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform .4s;
+    }
+
+    .gallery-item:hover img { transform: scale(1.03); }
+
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 12px 16px;
+      background: linear-gradient(to top, rgba(8,8,26,.95), transparent);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Full-width image */
+    .full-img {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 48px;
+      display: block;
+    }
+
+    /* Video */
+    .video-wrap {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 80px;
+      background: var(--surface);
+      aspect-ratio: 16/9;
+    }
+
+    .video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Summary */
+    .summary-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      margin-bottom: 80px;
+    }
+
+    .summary-block p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    /* Contributions */
+    .contrib-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 80px;
+    }
+
+    .contrib-chip {
+      background: var(--surface);
+      border: 1px solid rgba(255,45,107,.25);
+      border-radius: 8px;
+      padding: 20px 20px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+
+    .contrib-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--pink);
+      box-shadow: 0 0 8px rgba(255,45,107,.7);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .contrib-label {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    /* Neon divider */
+    .neon-div {
+      display: flex; align-items: center; gap: 16px;
+      margin: 64px 0;
+    }
+
+    .neon-node {
+      width: 10px; height: 10px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .neon-line {
+      flex: 1; height: 1px;
+    }
+
+    /* Footer */
+    .case-footer {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .case-footer p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--yellow);
+      color: #08081a;
+      box-shadow: var(--glow-y);
+    }
+    .btn-primary:hover { box-shadow: 0 0 40px rgba(255,224,0,.7); transform: translateY(-2px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.25); transform: translateY(-2px); }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">GS</a>
+    <a href="index.html" class="nav-back">Back to Work</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="case-hero">
+    <img src="/images/converse01-min.png" alt="Converse Experience cover">
+    <div class="case-hero-overlay"></div>
+    <div class="case-hero-info">
+      <div class="case-meta">
+        <span class="case-client">Refinitiv</span>
+        <span class="case-year">· 2019</span>
+      </div>
+      <h1 class="case-title">Converse Experience: Audience Engagement in Real-Time</h1>
+      <div class="case-tags">
+        <span class="tag t-mob">Mobile</span>
+        <span class="tag t-uxd">UX Design</span>
+        <span class="tag t-ui">User Interface</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="case-body">
+    <div class="container">
+
+      <!-- ABOUT -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--cyan);text-shadow:var(--glow-c)">ABOUT</span>
+        <div class="sec-rule"></div>
+      </div>
+
+      <div class="about-grid reveal">
+        <div class="about-col">
+          <h3>THE CLIENT</h3>
+          <p>Refinitiv hosted 4 major annual conferences across APAC, each bringing together thousands of finance professionals. The challenge: offline events offered limited measurable value — lead generation was manual, audience sentiment invisible, and engagement purely passive.</p>
+        </div>
+        <div class="about-col">
+          <h3>THE PROJECT</h3>
+          <p>A platform to measure offline audience sentiment in real-time and deliver personalized actions — connecting front-end conference experience with backstage service operations. Designed to transform passive attendance into active, data-driven engagement.</p>
+        </div>
+      </div>
+
+      <div class="neon-div reveal">
+        <div class="neon-node" style="background:var(--cyan);box-shadow:0 0 10px var(--cyan)"></div>
+        <div class="neon-line" style="background:linear-gradient(to right,rgba(0,212,255,.4),transparent)"></div>
+        <div class="neon-node" style="width:6px;height:6px;background:var(--purple);box-shadow:0 0 8px var(--purple)"></div>
+        <div class="neon-line" style="background:linear-gradient(to right,rgba(176,108,255,.2),transparent)"></div>
+      </div>
+
+      <!-- Hero image -->
+      <img class="full-img reveal" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/936744a4-78cc-4765-b41a-5ec39caab16f/88372602-f236-4f47-8ab2-a74e0f2470e6/converse2.png" alt="Converse Experience overview">
+
+      <!-- PROCESS -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--purple);text-shadow:0 0 24px rgba(176,108,255,.45)">PROCESS</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(176,108,255,.35),transparent)"></div>
+      </div>
+
+      <div class="process-list reveal" style="margin-bottom:80px">
+
+        <div class="process-item">
+          <div class="process-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="process-header-left">
+              <span class="process-num">01</span>
+              <span class="process-name">Discovery & Research</span>
+            </div>
+            <span class="process-arrow">▾</span>
+          </div>
+          <div class="process-body">
+            <div class="process-body-inner">
+              Conducted stakeholder interviews and on-site observation at Refinitiv conference events to map existing pain points — manual check-in flows, zero real-time feedback loops, and disconnected backstage operations. Synthesized findings into opportunity areas and design principles.
+            </div>
+          </div>
+        </div>
+
+        <div class="process-item">
+          <div class="process-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="process-header-left">
+              <span class="process-num">02</span>
+              <span class="process-name">Concept & Wireframing</span>
+            </div>
+            <span class="process-arrow">▾</span>
+          </div>
+          <div class="process-body">
+            <div class="process-body-inner">
+              Explored interaction models for real-time engagement — from session polling to live Q&A and sentiment capture. Wireframes were iterated rapidly, tested with event stakeholders, and refined to balance ease-of-use for attendees with operational utility for event managers.
+            </div>
+          </div>
+        </div>
+
+        <div class="process-item">
+          <div class="process-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="process-header-left">
+              <span class="process-num">03</span>
+              <span class="process-name">Design & Iteration</span>
+            </div>
+            <span class="process-arrow">▾</span>
+          </div>
+          <div class="process-body">
+            <div class="process-body-inner">
+              Developed high-fidelity UI across attendee app and operations dashboard. Designed a seamless QR-based check-in flow, real-time audience sentiment views, and personalized session feeds. Iterated through multiple rounds of feedback with conference team and Refinitiv stakeholders.
+            </div>
+          </div>
+        </div>
+
+        <div class="process-item">
+          <div class="process-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="process-header-left">
+              <span class="process-num">04</span>
+              <span class="process-name">Onsite Deployment & Support</span>
+            </div>
+            <span class="process-arrow">▾</span>
+          </div>
+          <div class="process-body">
+            <div class="process-body-inner">
+              Provided hands-on support during live Refinitiv conferences across APAC. Served as onsite advisor — coordinating real-time design decisions, troubleshooting UX issues in the field, and capturing learnings to feed into post-event iterations.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- System diagram -->
+      <img class="full-img reveal" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/936744a4-78cc-4765-b41a-5ec39caab16f/ce75434f-740b-46d9-b6b3-d931f20e0c01/conv_rse.001.jpeg" alt="Front end experience to backstage service operation">
+      <p class="reveal" style="text-align:center;color:var(--muted);font-size:13px;margin-top:-36px;margin-bottom:72px;">Front end experience to backstage service operation</p>
+
+      <!-- FEATURES -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--yellow);text-shadow:var(--glow-y)">KEY FEATURES</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,224,0,.35),transparent)"></div>
+      </div>
+
+      <div class="features-grid reveal">
+        <div class="feature-card">
+          <div class="feature-num">01</div>
+          <div class="feature-name">Real-Time Engagement</div>
+          <div class="feature-desc">Live session polling, Q&A, and sentiment capture — giving organizers instant visibility into audience response.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">02</div>
+          <div class="feature-name">Seamless Online–Offline Integration</div>
+          <div class="feature-desc">Bridging physical event touchpoints with digital data capture — unified experience from arrival to session end.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">03</div>
+          <div class="feature-name">Enhanced Data Capture</div>
+          <div class="feature-desc">Structured lead generation and engagement tracking at scale — replacing manual processes with automated, reliable data pipelines.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">04</div>
+          <div class="feature-name">Smart Conference Check-In</div>
+          <div class="feature-desc">QR-based iPad scanning for instant, frictionless attendee check-in — reducing queue time and operational load.</div>
+        </div>
+      </div>
+
+      <!-- Video demo -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--orange);text-shadow:var(--glow-o)">DEMO</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,107,53,.35),transparent)"></div>
+      </div>
+
+      <div class="video-wrap reveal" style="margin-bottom:80px">
+        <video controls preload="none">
+          <source src="https://prod-files-secure.s3.us-west-2.amazonaws.com/936744a4-78cc-4765-b41a-5ec39caab16f/407f4e84-691a-41e5-a384-d3500ab108eb/7867ea6b-8c43-027f-8eaa-026c69bbb93f_custom.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- Screens gallery -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--pink);text-shadow:var(--glow-p)">SCREENS</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,45,107,.35),transparent)"></div>
+      </div>
+
+      <div class="gallery reveal">
+        <div class="gallery-item">
+          <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/936744a4-78cc-4765-b41a-5ec39caab16f/661f82ec-5c57-480b-b18a-f1a8da8aa66b/7d1d5ed3-4476-4fd9-be5a-78e528a7b4e2.png" alt="Event day registration">
+          <div class="gallery-caption">Event day registration</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/936744a4-78cc-4765-b41a-5ec39caab16f/dff20f90-f2fa-4c3c-a125-84dbd10ce01a/89f37e7a-b7be-4d88-811f-553ba096a1e6.png" alt="Live event login">
+          <div class="gallery-caption">Live event login</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/936744a4-78cc-4765-b41a-5ec39caab16f/7e6de7ce-7410-40f7-9df1-f82e8f39ad0c/892791b8-cd28-4516-98c4-3378fe42d8c1.png" alt="Event session details">
+          <div class="gallery-caption">Event session details</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/936744a4-78cc-4765-b41a-5ec39caab16f/70801699-d580-4475-9f5a-0c07366c38ca/15f68dd0-6210-4a04-ac1d-f26e69fd902c.png" alt="In-session Interactions">
+          <div class="gallery-caption">In-session Interactions</div>
+        </div>
+      </div>
+
+      <img class="full-img reveal" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/936744a4-78cc-4765-b41a-5ec39caab16f/430271d8-cb20-4102-a92e-f76e90355244/Screenshot_2024-09-18_at_4.52.25_PM.png" alt="Converse Experience screens overview">
+
+      <div class="neon-div reveal">
+        <div class="neon-node" style="background:var(--pink);box-shadow:0 0 10px var(--pink)"></div>
+        <div class="neon-line" style="background:linear-gradient(to right,rgba(255,45,107,.4),transparent)"></div>
+        <div class="neon-node" style="width:6px;height:6px;background:var(--cyan);box-shadow:0 0 8px var(--cyan)"></div>
+        <div class="neon-line" style="background:linear-gradient(to right,rgba(0,212,255,.2),transparent)"></div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--cyan);text-shadow:var(--glow-c)">SUMMARY</span>
+        <div class="sec-rule"></div>
+      </div>
+
+      <div class="summary-block reveal">
+        <p>Delivered a full-stack conference engagement platform that transformed Refinitiv's offline events from passive attendance into measurable, personalized experiences. The system captured real-time sentiment, automated lead data collection, and gave event managers unprecedented visibility into audience behaviour — all from a mobile-first interface deployed live across APAC conferences.</p>
+      </div>
+
+      <!-- CONTRIBUTIONS -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--pink);text-shadow:var(--glow-p)">KEY CONTRIBUTIONS</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,45,107,.35),transparent)"></div>
+      </div>
+
+      <div class="contrib-grid reveal">
+        <div class="contrib-chip">
+          <div class="contrib-dot"></div>
+          <div class="contrib-label">UX/UI Designer</div>
+        </div>
+        <div class="contrib-chip">
+          <div class="contrib-dot"></div>
+          <div class="contrib-label">User Researcher</div>
+        </div>
+        <div class="contrib-chip">
+          <div class="contrib-dot"></div>
+          <div class="contrib-label">Onsite Advisor</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <section>
+    <div class="case-footer">
+      <div class="container">
+        <p>Next case study</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <a href="genesis.html" class="btn btn-primary">Genesis — DBS →</a>
+          <a href="index.html" class="btn btn-ghost">← All Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Reveal on scroll
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
