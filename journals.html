@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Journals — Golan Sarig</title>
+  <meta name="description" content="Weekly design journals prepared for client stakeholders — capturing progress, visual updates, and design thinking across the project.">
+  <meta property="og:title" content="Project Journals — Golan Sarig">
+  <meta property="og:description" content="Weekly journals capturing design progress, visual updates, and spotlight topics across a multi-week engagement.">
+  <meta property="og:image" content="/images/SocialMediaPreviewImage_Portfolio.png">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#08081a; --surface:#0f0f26; --surface-2:#161638; --border:rgba(255,255,255,0.07);
+      --text:#eeeef8; --muted:#7878a0;
+      --yellow:#ffe000; --pink:#ff2d6b; --cyan:#00d4ff; --orange:#ff6b35; --purple:#b06cff;
+      --glow-y:0 0 24px rgba(255,224,0,.45); --glow-p:0 0 24px rgba(255,45,107,.45);
+      --glow-c:0 0 24px rgba(0,212,255,.45); --glow-o:0 0 24px rgba(255,107,53,.45);
+      --font-px:'Press Start 2P',monospace; --font:'Space Grotesk',sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh;
+           background-image: radial-gradient(ellipse at 20% 50%, rgba(0,212,255,.04) 0%, transparent 60%),
+                             radial-gradient(ellipse at 80% 20%, rgba(176,108,255,.04) 0%, transparent 60%); }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+          display: flex; justify-content: space-between; align-items: center;
+          padding: 20px 40px; background: rgba(8,8,26,.85); backdrop-filter: blur(12px);
+          border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-px); font-size: 14px; color: var(--yellow); text-shadow: var(--glow-y); text-decoration: none; }
+    .nav-back  { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .nav-back:hover { color: var(--text); }
+
+    /* HERO */
+    .case-hero { margin-top: 64px; position: relative; overflow: hidden; max-height: 520px; }
+    .case-hero img { width: 100%; object-fit: cover; display: block; filter: brightness(.6); }
+    .case-hero-overlay { position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 30%, var(--bg) 100%); }
+    .case-hero-info { position: absolute; bottom: 48px; left: 0; right: 0;
+      padding: 0 48px; max-width: 1000px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+    .case-client { font-family: var(--font-px); font-size: 9px; color: var(--cyan);
+                   text-shadow: var(--glow-c); letter-spacing: 1px; }
+    .case-year   { font-size: 13px; color: var(--muted); }
+    .case-title  { font-size: clamp(28px, 5vw, 48px); font-weight: 700; line-height: 1.15;
+                   letter-spacing: -0.5px; margin-bottom: 24px; }
+    .case-tags   { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: .5px; }
+    .t-cy { background: rgba(0,212,255,.10); color: var(--cyan); border: 1px solid rgba(0,212,255,.2); }
+    .t-pu { background: rgba(176,108,255,.10); color: var(--purple); border: 1px solid rgba(176,108,255,.2); }
+
+    /* LAYOUT */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+    section { padding: 72px 0; }
+    .sec-head { display: flex; align-items: center; gap: 16px; margin-bottom: 40px; }
+    .sec-tag  { font-family: var(--font-px); font-size: 9px; letter-spacing: 1px; white-space: nowrap; }
+    .sec-rule { flex: 1; height: 1px; background: linear-gradient(to right, rgba(255,255,255,.08), transparent); }
+
+    /* ABOUT */
+    .about-desc { font-size: 16px; line-height: 1.8; color: var(--text); margin-bottom: 32px; }
+    .journal-parts { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .journal-parts li {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 16px 20px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    }
+    .part-num {
+      font-family: var(--font-px); font-size: 8px; color: var(--cyan);
+      text-shadow: var(--glow-c); min-width: 24px; padding-top: 2px;
+    }
+    .part-text { font-size: 14px; line-height: 1.6; color: var(--text); }
+
+    /* NEON DIVIDER */
+    .neon-div { display: flex; align-items: center; gap: 12px; margin: 64px 0; }
+    .neon-node { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+    .neon-line { flex: 1; height: 1px; }
+
+    /* JOURNALS GRID */
+    .journals-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .journal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color .2s, transform .2s;
+    }
+    .journal-card:hover { border-color: rgba(0,212,255,.3); transform: translateY(-3px); }
+    .journal-embed {
+      width: 100%; height: 440px;
+      border: none; display: block;
+      background: var(--surface-2);
+    }
+    .journal-footer {
+      padding: 14px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid var(--border);
+    }
+    .journal-label {
+      font-family: var(--font-px); font-size: 8px;
+      color: var(--cyan); letter-spacing: .5px;
+    }
+    .journal-open {
+      font-size: 12px; color: var(--muted); text-decoration: none;
+      transition: color .2s; letter-spacing: .03em;
+    }
+    .journal-open:hover { color: var(--text); }
+
+    /* FOOTER */
+    .case-footer { padding: 64px 0; border-top: 1px solid var(--border); text-align: center; }
+    .case-footer p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+    .footer-nav { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 14px 28px; border-radius: 8px; font-weight: 600;
+           font-size: 14px; text-decoration: none; transition: all .2s; font-family: var(--font); }
+    .btn-primary { background: var(--yellow); color: #08081a; box-shadow: var(--glow-y); }
+    .btn-primary:hover { box-shadow: 0 0 40px rgba(255,224,0,.7); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.25); transform: translateY(-2px); }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .case-hero-info { padding: 0 20px; }
+      .container { padding: 0 20px; }
+      .journals-grid { grid-template-columns: 1fr; }
+      .journal-embed { height: 360px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">GS</a>
+    <a href="index.html" class="nav-back">← Back to Work</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="case-hero">
+    <img src="/images/journals-cover.jpg" alt="Project Journals">
+    <div class="case-hero-overlay"></div>
+    <div class="case-hero-info">
+      <div class="case-meta">
+        <span class="case-client">📚 UOB · ALEPH-LABS</span>
+        <span class="case-year">· Client Communication</span>
+      </div>
+      <h1 class="case-title">Project's Journals</h1>
+      <div class="case-tags">
+        <span class="tag t-cy">Documentation</span>
+        <span class="tag t-pu">Stakeholder Comms</span>
+        <span class="tag t-cy">Design Process</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- ABOUT -->
+    <section>
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--cyan);text-shadow:var(--glow-c)">ABOUT</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(0,212,255,.2),transparent)"></div>
+      </div>
+
+      <p class="about-desc reveal">
+        The weekly journals served as a report prepared on behalf of the team for the client. With key stakeholders spanning various departments and management levels, it was essential to use an additional communication channel to keep everyone informed and engaged with progress and plans.
+      </p>
+
+      <ol class="journal-parts reveal">
+        <li>
+          <span class="part-num">01</span>
+          <span class="part-text">A review of the past week's work and a preview of the week ahead</span>
+        </li>
+        <li>
+          <span class="part-num">02</span>
+          <span class="part-text">Visual updates showcasing the latest design work</span>
+        </li>
+        <li>
+          <span class="part-num">03</span>
+          <span class="part-text">A spotlight on a relevant topic around design work or related mindset</span>
+        </li>
+      </ol>
+    </section>
+
+    <div class="neon-div reveal">
+      <div class="neon-node"></div>
+      <div class="neon-line" style="background:linear-gradient(to right,rgba(0,212,255,.3),transparent)"></div>
+      <div class="neon-node" style="width:6px;height:6px;border-color:var(--purple);box-shadow:0 0 8px var(--purple)"></div>
+      <div class="neon-line" style="background:linear-gradient(to right,rgba(176,108,255,.2),transparent)"></div>
+    </div>
+
+    <!-- JOURNALS -->
+    <section>
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--purple);text-shadow:0 0 24px rgba(176,108,255,.45)">SELECTED JOURNALS</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(176,108,255,.2),transparent)"></div>
+      </div>
+
+      <div class="journals-grid reveal">
+
+        <div class="journal-card">
+          <iframe class="journal-embed"
+            src="https://drive.google.com/file/d/1eQo_8bOPsZ2wtC46IOqEXab6P9lWfX1q/preview"
+            allow="autoplay" loading="lazy" title="Journal Week 04"></iframe>
+          <div class="journal-footer">
+            <span class="journal-label">WEEK 04</span>
+            <a href="https://drive.google.com/file/d/1eQo_8bOPsZ2wtC46IOqEXab6P9lWfX1q/view" target="_blank" rel="noopener" class="journal-open">Open ↗</a>
+          </div>
+        </div>
+
+        <div class="journal-card">
+          <iframe class="journal-embed"
+            src="https://drive.google.com/file/d/1XxPY4szJnnddlMmTzL-luS9nLamh0D-h/preview"
+            allow="autoplay" loading="lazy" title="Journal Week 07"></iframe>
+          <div class="journal-footer">
+            <span class="journal-label">WEEK 07</span>
+            <a href="https://drive.google.com/file/d/1XxPY4szJnnddlMmTzL-luS9nLamh0D-h/view" target="_blank" rel="noopener" class="journal-open">Open ↗</a>
+          </div>
+        </div>
+
+        <div class="journal-card">
+          <iframe class="journal-embed"
+            src="https://drive.google.com/file/d/1hXv_8p1uJD9hHEJCWlLR4h4qpHj6fhmq/preview"
+            allow="autoplay" loading="lazy" title="Journal Week 20"></iframe>
+          <div class="journal-footer">
+            <span class="journal-label">WEEK 20</span>
+            <a href="https://drive.google.com/file/d/1hXv_8p1uJD9hHEJCWlLR4h4qpHj6fhmq/view" target="_blank" rel="noopener" class="journal-open">Open ↗</a>
+          </div>
+        </div>
+
+        <div class="journal-card">
+          <iframe class="journal-embed"
+            src="https://drive.google.com/file/d/1Ga0s7wjkQebipB5UTcvg-bg75Kh4cC2p/preview"
+            allow="autoplay" loading="lazy" title="Journal Week 22"></iframe>
+          <div class="journal-footer">
+            <span class="journal-label">WEEK 22</span>
+            <a href="https://drive.google.com/file/d/1Ga0s7wjkQebipB5UTcvg-bg75Kh4cC2p/view" target="_blank" rel="noopener" class="journal-open">Open ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="case-footer reveal">
+      <p>Continue exploring</p>
+      <div class="footer-nav">
+        <a href="index.html" class="btn btn-primary">← All Work</a>
+      </div>
+      <div style="margin-top:20px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap">
+        <a href="mailto:oshki2001@gmail.com" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">oshki2001@gmail.com</a>
+        <a href="https://www.linkedin.com/in/golansa" target="_blank" rel="noopener" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">LinkedIn ↗</a>
+        <a href="https://www.instagram.com/golansarig" target="_blank" rel="noopener" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">Instagram ↗</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+  <script src="/lightbox.js"></script>
+</body>
+</html>
