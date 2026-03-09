@@ -35,15 +35,19 @@
     .nav-back  { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .2s; }
     .nav-back:hover { color: var(--text); }
 
-    .case-hero-band { margin-top: 65px; background: var(--surface); border-bottom: 1px solid var(--border);
-                      padding: 80px 40px 60px; position: relative; overflow: hidden; }
-    .case-hero-band::before { content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 30% 50%, rgba(176,108,255,.08) 0%, transparent 60%); pointer-events: none; }
-    .case-hero-band .container { max-width: 900px; margin: 0 auto; position: relative; }
-    .case-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 18px; }
-    .case-client { font-family: var(--font-px); font-size: 9px; color: var(--purple); text-shadow: 0 0 24px rgba(176,108,255,.45); }
+    /* HERO */
+    .case-hero { margin-top: 64px; position: relative; overflow: hidden; max-height: 520px; }
+    .case-hero img { width: 100%; object-fit: cover; display: block; filter: brightness(.75); }
+    .case-hero-overlay { position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, var(--bg) 100%); }
+    .case-hero-info { position: absolute; bottom: 48px; left: 0; right: 0;
+      padding: 0 48px; max-width: 1000px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+    .case-client { font-family: var(--font-px); font-size: 9px; color: var(--purple);
+                   text-shadow: 0 0 24px rgba(176,108,255,.45); letter-spacing: 1px; }
     .case-year   { font-size: 13px; color: var(--muted); }
-    .case-title  { font-size: clamp(28px, 5vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 24px; }
+    .case-title  { font-size: clamp(28px, 5vw, 48px); font-weight: 700; line-height: 1.15;
+                   letter-spacing: -0.5px; margin-bottom: 24px; }
     .case-tags   { display: flex; flex-wrap: wrap; gap: 8px; }
     .tag { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: .5px; }
     .t-gd { background: rgba(255,224,0,.10); color: var(--yellow); border: 1px solid rgba(255,224,0,.2); }
@@ -94,10 +98,6 @@
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
-    /* COVER IMAGE */
-    .case-cover { width: 100%; max-height: 480px; overflow: hidden; }
-    .case-cover-img { width: 100%; height: 480px; object-fit: cover; display: block; }
-
     /* GALLERY */
     .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .gallery-img  { width: 100%; height: auto; border-radius: 4px; display: block; background: var(--surface); }
@@ -118,8 +118,10 @@
     <a href="index.html" class="nav-back">← Back to Work</a>
   </nav>
 
-  <div class="case-hero-band">
-    <div class="container">
+  <div class="case-hero">
+    <img src="/images/print-cover.jpg" alt="Print Design">
+    <div class="case-hero-overlay"></div>
+    <div class="case-hero-info">
       <div class="case-meta">
         <span class="case-client">PRINT &amp; EDITORIAL</span>
         <span class="case-year">· Graphic Design</span>
@@ -130,10 +132,6 @@
         <span class="tag t-pr">Print</span>
       </div>
     </div>
-  </div>
-
-  <div class="case-cover">
-    <img src="/images/print-cover.jpg" alt="Print Design" class="case-cover-img">
   </div>
 
   <div class="container">
