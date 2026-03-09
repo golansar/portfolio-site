@@ -145,12 +145,17 @@
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
+    /* GALLERY */
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .gallery-img  { width: 100%; height: auto; border-radius: 4px; display: block; background: var(--surface); }
+
     @media (max-width: 640px) {
       nav { padding: 16px 20px; }
       .case-hero-band { padding: 60px 20px 40px; }
       .container { padding: 0 20px; }
       .about-grid { grid-template-columns: 1fr; }
       .request-banner { flex-direction: column; align-items: flex-start; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -244,6 +249,31 @@
 
     <section>
       <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--orange);text-shadow:var(--glow-o)">GALLERY</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,107,53,.2),transparent)"></div>
+      </div>
+      <div class="gallery-grid reveal">
+        <img src="/images/asap-00.png" alt="ASAP design" class="gallery-img" loading="lazy">
+        <img src="/images/asap-01.png" alt="ASAP design" class="gallery-img" loading="lazy">
+        <img src="/images/asap-02.png" alt="ASAP design" class="gallery-img" loading="lazy">
+        <img src="/images/asap-03.png" alt="ASAP design" class="gallery-img" loading="lazy">
+        <img src="/images/asap-04.png" alt="ASAP design" class="gallery-img" loading="lazy">
+        <img src="/images/asap-05.png" alt="ASAP design" class="gallery-img" loading="lazy">
+        <img src="/images/asap-06.png" alt="ASAP design" class="gallery-img" loading="lazy">
+        <img src="/images/asap-07.png" alt="ASAP design" class="gallery-img" loading="lazy">
+        <img src="/images/asap-08.png" alt="ASAP design" class="gallery-img" loading="lazy">
+      </div>
+    </section>
+
+    <div class="neon-div reveal">
+      <div class="neon-node" style="border-color:var(--cyan);box-shadow:0 0 10px var(--cyan)"></div>
+      <div class="neon-line" style="background:linear-gradient(to right,rgba(0,212,255,.3),transparent)"></div>
+      <div class="neon-node" style="width:6px;height:6px;border-color:var(--pink);box-shadow:0 0 8px var(--pink)"></div>
+      <div class="neon-line" style="background:linear-gradient(to right,rgba(255,45,107,.2),transparent)"></div>
+    </div>
+
+    <section>
+      <div class="sec-head reveal">
         <span class="sec-tag" style="color:var(--yellow);text-shadow:var(--glow-y)">DETAILS</span>
         <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,224,0,.2),transparent)"></div>
       </div>
@@ -262,7 +292,7 @@
       </div>
       <div style="margin-top:20px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap">
         <a href="mailto:oshki2001@gmail.com" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">oshki2001@gmail.com</a>
-        <a href="https://www.linkedin.com/in/golansarig" target="_blank" rel="noopener" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">LinkedIn ↗</a>
+        <a href="https://www.linkedin.com/in/golansa" target="_blank" rel="noopener" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">LinkedIn ↗</a>
         <a href="https://www.instagram.com/golansarig" target="_blank" rel="noopener" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">Instagram ↗</a>
       </div>
     </div>
