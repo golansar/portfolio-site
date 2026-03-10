@@ -269,7 +269,7 @@
       transition: max-height .3s ease;
     }
 
-    .process-item.open .process-body { max-height: 600px; }
+    .process-item.open .process-body { max-height: 5000px; }
 
     .process-body-inner {
       padding: 0 24px 24px 64px;
@@ -278,44 +278,107 @@
       line-height: 1.75;
     }
 
-    .features-grid {
+    /* Feature sections */
+    .feature-section {
+      margin-bottom: 64px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid var(--border);
+    }
+    .feature-section:last-child { border-bottom: none; }
+
+    .feature-section-head {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .feature-section-num {
+      font-family: var(--font-px);
+      font-size: 8px;
+      color: var(--cyan);
+      text-shadow: var(--glow-c);
+      min-width: 24px;
+    }
+
+    .feature-section-title {
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .feature-section-desc {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .feature-section img {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: block;
+      margin-bottom: 24px;
+    }
+
+    .callout-pair {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    @media (max-width: 640px) { .callout-pair { grid-template-columns: 1fr; } }
+
+    .callout {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+    }
+
+    .callout-label {
+      font-family: var(--font-px);
+      font-size: 7px;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .callout-problem .callout-label { color: var(--pink); }
+    .callout-solution .callout-label { color: var(--cyan); }
+
+    .callout p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* Additional requirements */
+    .req-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 24px;
       margin-bottom: 80px;
     }
+    @media (max-width: 640px) { .req-grid { grid-template-columns: 1fr; } }
 
-    .feature-card {
+    .req-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 28px 24px;
-      transition: border-color .2s, transform .2s;
     }
 
-    .feature-card:hover {
-      border-color: rgba(255,224,0,.35);
-      transform: translateY(-3px);
-    }
-
-    .feature-num {
+    .req-card h4 {
       font-family: var(--font-px);
       font-size: 8px;
       color: var(--yellow);
       text-shadow: var(--glow-y);
-      margin-bottom: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
     }
 
-    .feature-name {
-      font-weight: 600;
-      font-size: 15px;
-      margin-bottom: 10px;
-    }
-
-    .feature-desc {
+    .req-card p {
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     .full-img {
@@ -557,11 +620,11 @@
       <div class="about-grid reveal">
         <div class="about-col">
           <h3>THE CLIENT</h3>
-          <p>UOB — one of Southeast Asia's leading banks — had already launched Simple Invest in Singapore as a self-serve wealth management product. The next phase: scale to Malaysia, Thailand, and Indonesia, each with distinct regulatory requirements, languages, and investment product availability.</p>
+          <p>UOB, a major Asian bank, is transforming wealth management through digital innovation. With the UOB TMRW app, it offers self-serve investment tools that let customers across Southeast Asia manage their finances independently. By focusing on scalable, localized solutions, UOB ensures users have easy access to wealth-building tools tailored to their needs while maintaining a consistent experience across markets.</p>
         </div>
         <div class="about-col">
           <h3>THE PROJECT</h3>
-          <p>Expand UOB's Simple Invest platform from Singapore to three additional regional markets. Design localized UI experiences, adapt product flows for country-specific regulations and user behaviours, and deliver a consistent yet contextually appropriate investment experience across all four markets.</p>
+          <p>After the successful launch of Simple Invest in Singapore, the project expanded to regional markets — Malaysia, Thailand, and Indonesia. The goal was to adapt the product for local regulations and currencies while maintaining the core user experience of Simple Invest, enabling self-serve investment capabilities across South APAC.</p>
         </div>
       </div>
 
@@ -573,7 +636,7 @@
       </div>
 
       <!-- Hero image -->
-      <img class="full-img reveal" src="/images/simple-invest-overview.png" alt="Simple Invest regional expansion overview">
+      <img class="full-img reveal" src="/images/si-overview.png" alt="Simple Invest regional expansion overview">
 
       <!-- PROCESS -->
       <div class="sec-head reveal">
@@ -636,16 +699,43 @@
         <div class="sec-rule" style="background:linear-gradient(to right,rgba(0,212,255,.35),transparent)"></div>
       </div>
 
-      <div class="features-grid reveal">
-        <div class="feature-card">
-          <div class="feature-num">01</div>
-          <div class="feature-name">Self-Serve Investment Capabilities</div>
-          <div class="feature-desc">End-to-end investment flow designed for non-advised, self-directed customers — from product discovery and risk profiling to order placement and portfolio tracking.</div>
+      <!-- Feature 01: Self-Serve Investment Capabilities -->
+      <div class="feature-section reveal">
+        <div class="feature-section-head">
+          <span class="feature-section-num">01</span>
+          <h3 class="feature-section-title">Self-Serve Investment Capabilities</h3>
         </div>
-        <div class="feature-card">
-          <div class="feature-num">02</div>
-          <div class="feature-name">Localized UI Experiences</div>
-          <div class="feature-desc">Country-specific UI adaptations covering language, regulatory disclosures, product availability, and cultural UI preferences — ensuring each market felt native, not adapted.</div>
+        <p class="feature-section-desc">One of the primary goals of expanding Simple Invest to regional markets was to reduce the dependency on call centers and in-branch support. In smaller markets like Singapore, users could easily visit a branch for help, but in larger countries like Indonesia, Thailand, and Malaysia, this was not practical. Throughout the journey, users are equipped with the tools to take actions independently.</p>
+        <img src="/images/si-self-serve.png" alt="Self-serve investment flow across regional markets">
+        <div class="callout-pair">
+          <div class="callout callout-problem">
+            <div class="callout-label">PROBLEM</div>
+            <p>Users in these larger markets often faced delays and complex issues when relying on call centers for wealth management support, which added strain to customer service teams.</p>
+          </div>
+          <div class="callout callout-solution">
+            <div class="callout-label">SOLUTION</div>
+            <p>In Indonesia and Thailand, we leveraged existing chatbot technology to guide users through common issues. In Malaysia, we focused on detailed FAQs and tailored error messages, empowering users to manage their investments independently.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 02: Localized UI Experiences -->
+      <div class="feature-section reveal">
+        <div class="feature-section-head">
+          <span class="feature-section-num">02</span>
+          <h3 class="feature-section-title">Localized UI Experiences</h3>
+        </div>
+        <p class="feature-section-desc">As Simple Invest expanded across different markets, one of the biggest challenges was ensuring that the user interface could handle local currency variations and maintain clarity for users. Each region had unique financial practices and currency formats, requiring significant UI adjustments. The regional project required adaptations across different markets, impacting terminology, currency displays, regulatory features, and product lifecycles.</p>
+        <img src="/images/si-localized-ui.png" alt="Regional UI adaptations across markets">
+        <div class="callout-pair">
+          <div class="callout callout-problem">
+            <div class="callout-label">PROBLEM</div>
+            <p>In countries like Indonesia, where currency values can reach 14–16 digits, the original design led to overcrowded screens and a confusing experience. These large numbers made it difficult to maintain the clean, simple UI that worked in Singapore.</p>
+          </div>
+          <div class="callout callout-solution">
+            <div class="callout-label">SOLUTION</div>
+            <p>The UI was adapted with dynamic formatting to handle larger numbers and currency symbols. Abbreviations were used to reduce clutter (e.g., "B" for billions), and visual elements were optimized to ensure data was presented in a clear, readable way.</p>
+          </div>
         </div>
       </div>
 
@@ -654,6 +744,23 @@
         <div class="neon-line" style="background:linear-gradient(to right,rgba(0,212,255,.4),transparent)"></div>
         <div class="neon-node" style="width:6px;height:6px;background:var(--yellow);box-shadow:0 0 8px var(--yellow)"></div>
         <div class="neon-line" style="background:linear-gradient(to right,rgba(255,224,0,.2),transparent)"></div>
+      </div>
+
+      <!-- ADDITIONAL REQUIREMENTS -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--purple);text-shadow:0 0 24px rgba(176,108,255,.45)">ADDITIONAL REQUIREMENTS</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(176,108,255,.35),transparent)"></div>
+      </div>
+
+      <div class="req-grid reveal">
+        <div class="req-card">
+          <h4>SCALABILITY & FLEXIBILITY</h4>
+          <p>The project required a scalable design system that could adapt to different markets without a simple "lift and shift" approach. This meant balancing local needs with the overall feature consistency of Simple Invest — ensuring each market version felt intentional, not just translated.</p>
+        </div>
+        <div class="req-card">
+          <h4>CROSS-REGIONAL COLLABORATION</h4>
+          <p>Engaging with stakeholders from different countries was essential to understanding cultural and operational nuances. This collaboration ensured that the project met the unique regulatory and cultural needs of each region while maintaining its core features and design integrity.</p>
+        </div>
       </div>
 
       <!-- IMPACT -->
