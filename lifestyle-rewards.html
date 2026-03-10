@@ -279,7 +279,7 @@
       transition: max-height .3s ease;
     }
 
-    .process-item.open .process-body { max-height: 600px; }
+    .process-item.open .process-body { max-height: 5000px; }
 
     .process-body-inner {
       padding: 0 24px 24px 64px;
@@ -288,41 +288,109 @@
       line-height: 1.75;
     }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-      margin-bottom: 80px;
-    }
-
-    .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+    .process-body-inner img {
+      width: 100%;
       border-radius: var(--radius);
-      padding: 28px 24px;
-      transition: border-color .2s, transform .2s;
+      border: 1px solid var(--border);
+      margin-top: 20px;
+      display: block;
     }
 
-    .feature-card:hover {
-      border-color: rgba(176,108,255,.35);
-      transform: translateY(-3px);
+    .process-img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
     }
 
-    .feature-num {
+    .process-img-grid img {
+      margin-top: 0 !important;
+    }
+
+    @media (max-width: 640px) { .process-img-grid { grid-template-columns: 1fr; } }
+
+    /* Feature sections */
+    .feature-section {
+      margin-bottom: 64px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feature-section:last-child {
+      border-bottom: none;
+    }
+
+    .feature-section-head {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .feature-section-num {
       font-family: var(--font-px);
       font-size: 8px;
-      color: var(--purple);
-      text-shadow: 0 0 20px rgba(176,108,255,.5);
-      margin-bottom: 12px;
+      color: var(--yellow);
+      text-shadow: var(--glow-y);
+      min-width: 24px;
     }
 
-    .feature-name {
-      font-weight: 600;
+    .feature-section-title {
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .feature-section-desc {
+      color: var(--muted);
       font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .feature-section img {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .feature-imgs-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .feature-imgs-pair img { margin-bottom: 0; }
+
+    @media (max-width: 640px) { .feature-imgs-pair { grid-template-columns: 1fr; } }
+
+    .callout-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 640px) { .callout-pair { grid-template-columns: 1fr; } }
+
+    .callout {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+    }
+
+    .callout-label {
+      font-family: var(--font-px);
+      font-size: 7px;
+      letter-spacing: 1px;
       margin-bottom: 10px;
     }
 
-    .feature-desc {
+    .callout-problem .callout-label { color: var(--pink); }
+    .callout-solution .callout-label { color: var(--cyan); }
+
+    .callout p {
       color: var(--muted);
       font-size: 14px;
       line-height: 1.65;
@@ -502,7 +570,8 @@
           </div>
           <div class="process-body">
             <div class="process-body-inner">
-              Ran deep-dive research into TMRW user behaviour, competitive loyalty programmes across APAC, and internal stakeholder goals. Mapped user journeys around deal discovery, reward redemption, and feature engagement — identifying where existing flows created friction and where emotional engagement dropped off.
+              Conducted a comprehensive landscape analysis and app audits to understand the competitive environment and user expectations. Guerrilla interviews with users provided immediate feedback that shaped the initial design direction.
+              <img src="/images/lr-discovery.png" alt="Discovery phase — landscape analysis">
             </div>
           </div>
         </div>
@@ -517,7 +586,15 @@
           </div>
           <div class="process-body">
             <div class="process-body-inner">
-              Facilitated co-design workshops with product, marketing, and engineering teams to align on personalisation strategy, feature prioritisation, and content architecture. Translated business objectives (cost reduction, acquisition) into design principles that could guide every interaction decision.
+              A 3-day sprint workshop with stakeholders, where we defined the Customer Value Proposition (CVP) and set the scope for MVP 1. This collaborative process involved brainstorming customer pain points, gains, and product value.
+              <img src="/images/lr-workshop-main.png" alt="Workshop overview">
+              <div class="process-img-grid">
+                <img src="/images/lr-workshop-a1.png" alt="Workshop activity">
+                <img src="/images/lr-workshop-b1.png" alt="Workshop activity">
+                <img src="/images/lr-workshop-a2.png" alt="Workshop summary">
+                <img src="/images/lr-workshop-b2.jpg" alt="Workshop summary">
+                <img src="/images/lr-workshop-b3.jpg" alt="Workshop summary">
+              </div>
             </div>
           </div>
         </div>
@@ -532,7 +609,7 @@
           </div>
           <div class="process-body">
             <div class="process-body-inner">
-              Conducted usability testing with TMRW users across multiple prototype iterations — validating deal discovery flows, reward visibility, and redemption UX. Led UAT coordination with engineering, ensuring final implementation matched designed intent before release.
+              The team used concept testing and iterative feedback loops to refine the design. Adjustments were made to ensure that the final product resonated with users and met business objectives. Led UAT coordination with engineering, ensuring final implementation matched designed intent before release.
             </div>
           </div>
         </div>
@@ -545,21 +622,67 @@
         <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,224,0,.35),transparent)"></div>
       </div>
 
-      <div class="features-grid reveal">
-        <div class="feature-card">
-          <div class="feature-num">01</div>
-          <div class="feature-name">Personalized Rewards</div>
-          <div class="feature-desc">AI-curated deals and offers surfaced to each user based on spending behaviour, preferences, and lifestyle profile — making every session feel relevant.</div>
+      <!-- Feature 01: Personalized Rewards -->
+      <div class="feature-section reveal">
+        <div class="feature-section-head">
+          <span class="feature-section-num">01</span>
+          <h3 class="feature-section-title">Personalized Rewards</h3>
         </div>
-        <div class="feature-card">
-          <div class="feature-num">02</div>
-          <div class="feature-name">Enhancing Feature Visibility</div>
-          <div class="feature-desc">Redesigned information hierarchy to ensure high-value rewards and offers were immediately visible — reducing the steps between intent and discovery.</div>
+        <p class="feature-section-desc">Developed a tailored rewards experience that catered to user preferences. This feature was designed to increase engagement by making rewards more relevant and accessible.</p>
+        <div class="feature-imgs-pair">
+          <img src="/images/lr-rewards-1.png" alt="Personalized rewards screens">
+          <img src="/images/lr-rewards-2.png" alt="Personalized rewards screens">
         </div>
-        <div class="feature-card">
-          <div class="feature-num">03</div>
-          <div class="feature-name">Unified Rewards View</div>
-          <div class="feature-desc">Consolidated points, cashback, and deal history into a single, scannable rewards hub — replacing a fragmented multi-section experience with one coherent view.</div>
+        <div class="callout-pair">
+          <div class="callout callout-problem">
+            <div class="callout-label">PROBLEM</div>
+            <p>Users lacked interest in the rewards due to irrelevant offerings.</p>
+          </div>
+          <div class="callout callout-solution">
+            <div class="callout-label">SOLUTION</div>
+            <p>Partnered with Fave to personalize rewards based on users' geographical locations and spending habits, making offers more relevant and engaging.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 02: Enhancing Feature Visibility -->
+      <div class="feature-section reveal">
+        <div class="feature-section-head">
+          <span class="feature-section-num">02</span>
+          <h3 class="feature-section-title">Enhancing Feature Visibility</h3>
+        </div>
+        <p class="feature-section-desc">During the workshop, several new features were introduced that required rethinking the header layout to support improved visibility and usability. The goal was to accommodate new elements while maintaining the clean and recognizable style of the existing header.</p>
+        <img src="/images/lr-header-explorations.png" alt="Header design explorations">
+        <div class="callout-pair">
+          <div class="callout callout-problem">
+            <div class="callout-label">PROBLEM</div>
+            <p>With new features like "Rewards Wallet" and "Favourites," the old header layout no longer provided a logical structure for easy access, impacting overall engagement.</p>
+          </div>
+          <div class="callout callout-solution">
+            <div class="callout-label">SOLUTION</div>
+            <p>Through multiple iterations we explored approaches to organize the expanded feature set. The final design grouped similar actions together, making rewards, QR pay, and search easily accessible.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 03: Unified Rewards View -->
+      <div class="feature-section reveal">
+        <div class="feature-section-head">
+          <span class="feature-section-num">03</span>
+          <h3 class="feature-section-title">Unified Rewards View</h3>
+        </div>
+        <p class="feature-section-desc">Consolidated various rewards into a single, easy-to-navigate view, simplifying the user experience and enhancing accessibility.</p>
+        <img src="/images/lr-unified-1.png" alt="Rewards donut visualization concepts">
+        <img src="/images/lr-unified-2.png" alt="UI variations during exploration">
+        <div class="callout-pair">
+          <div class="callout callout-problem">
+            <div class="callout-label">PROBLEM</div>
+            <p>Users struggled with navigating multiple rewards systems and were unsure about redemption details, especially with varying expiry dates.</p>
+          </div>
+          <div class="callout callout-solution">
+            <div class="callout-label">SOLUTION</div>
+            <p>Developed a dedicated rewards wallet that aggregated all types of rewards, providing a clear and comprehensive view for users to manage their benefits.</p>
+          </div>
         </div>
       </div>
 
