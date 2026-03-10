@@ -72,6 +72,7 @@ DNS switch completed March 9, 2026. Final state:
 - **Print gallery:** `print-00.png` → `print-05.png` (6 files)
 - **Case study assets:** Genesis, Converse, Lifestyle, SimpleInvest screenshots + `converse-demo.mp4`
 - **Lifestyle & Rewards:** `lr-discovery.png`, `lr-workshop-main.png`, `lr-workshop-a1/a2.png`, `lr-workshop-b1/b2/b3.jpg`, `lr-rewards-1/2.png`, `lr-header-explorations.png`, `lr-unified-1/2.png` (12 files)
+- **Simple Invest:** `si-overview.png`, `si-self-serve.png`, `si-localized-ui.png` (3 files)
 
 ---
 
@@ -214,6 +215,17 @@ All 9 pages follow this exact pattern.
 - **Features section:** Replaced 3 plain text cards with 3 expanded sections, each with: description + image(s) + Problem/Solution callout pair (pink/cyan labels)
 - **New CSS classes:** `.feature-section`, `.feature-imgs-pair`, `.callout-pair`, `.callout`, `.callout-problem`, `.callout-solution`, `.process-body-inner img`, `.process-img-grid`
 - Testing & Iteration images: inaccessible (Notion `file://` URLs — require auth)
+
+### Commit 18 — Simple Invest: full content update
+- **Notion source:** `cerulean-outrigger-7b3.notion.site/Simple-Invest-38f56935039e426d943ff6ca26aa9173`
+- **Images downloaded (3):** `si-overview.png` (hero), `si-self-serve.png` (feature 01), `si-localized-ui.png` (feature 02)
+- **About text:** Updated both columns to match Notion source exactly
+- **Hero image:** Updated reference to `si-overview.png`
+- **Features section:** Replaced 2 plain text cards with expanded feature sections — each with description, full-width image, and Problem/Solution callout pair
+- **Additional Requirements section:** New section added (was in Notion, missing from HTML) — 2-column cards: Scalability & Flexibility + Cross-Regional Collaboration
+- **Process accordion:** `max-height` increased from 600px → 5000px
+- **New CSS:** `.feature-section`, `.feature-section-*`, `.callout-pair`, `.callout`, `.req-grid`, `.req-card` (same callout pattern as lifestyle-rewards)
+- **Notion page ID:** `38f56935-039e-426d-943f-f6ca26aa9173`
 
 ### Terminal / Claude Code setup note
 - `claude` command not found in Terminal → binary at `~/Library/Application Support/Claude/claude-code/2.1.64/claude`
