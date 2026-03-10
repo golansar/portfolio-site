@@ -60,12 +60,18 @@ DNS switch completed March 9, 2026. Final state:
 |-----------------|------------------------------------------------------|
 | `lightbox.js`   | Click-to-enlarge for all images. 156 lines, self-contained (injects own `<style>`). Excludes `.case-hero` and `nav` images. Spring animation `cubic-bezier(0.34,1.4,0.64,1)`. MutationObserver for lazy-loaded images. |
 
-### Images (`/images/` — 48 files)
+### Shared Files
+| File      | Purpose                                                                 |
+|-----------|-------------------------------------------------------------------------|
+| `fav.svg` | Custom pinball-themed favicon. Round (rx=32). Used as favicon + nav logo on all 10 pages. Designed by Golan — circle (ball), small circle (bumper), rounded rect (flipper). Colors: `#09091B` bg, `#FFDF00` strokes. |
+
+### Images (`/images/` — 61 files)
 - **Cover images:** `asap-cover.png`, `logo-design-cover.jpg`, `print-cover.jpg`, `journals-cover.jpg`, `SocialMediaPreviewImage_Portfolio.png`
 - **ASAP gallery:** `asap-00.png` → `asap-08.png` (9 files)
 - **Logo gallery:** `logo-design-00.jpg` → `logo-design-07.jpg` (8 files)
 - **Print gallery:** `print-00.png` → `print-05.png` (6 files)
 - **Case study assets:** Genesis, Converse, Lifestyle, SimpleInvest screenshots + `converse-demo.mp4`
+- **Lifestyle & Rewards:** `lr-discovery.png`, `lr-workshop-main.png`, `lr-workshop-a1/a2.png`, `lr-workshop-b1/b2/b3.jpg`, `lr-rewards-1/2.png`, `lr-header-explorations.png`, `lr-unified-1/2.png` (12 files)
 
 ---
 
@@ -182,6 +188,37 @@ All 9 pages follow this exact pattern.
 - Real data: 9h 41m, 5,388 lines, 9 pages, 48 images, 11 commits, 7 platforms
 - Added card to `index.html` Other Work section
 
+---
+
+## Session 2 — March 10, 2026
+
+### Commit 14 — Favicon: custom pinball SVG
+- Designed by Golan in Figma: pinball (circle), bumper (small circle), flipper (rounded rect)
+- Saved as `fav.svg` (64×64, `#09091B` bg, `#FFDF00` strokes)
+- Added `<link rel="icon" type="image/svg+xml" href="/fav.svg">` to all 10 pages
+- Updated to round version (`rx=32` clip) — `fav-round.svg` → replaced `fav.svg`
+
+### Commit 15 — Nav logo: GS text → pinball SVG icon
+- Replaced `>GS</a>` with `<img src="/fav.svg" width="28" height="28">` across all 10 pages via Python
+- Initial size: 28px with yellow drop-shadow filter
+
+### Commit 16 — Nav logo polish
+- Homepage: removed `filter:drop-shadow` glow
+- All pages: bumped size to 40px, removed glow filter
+- Final: `<img src="/fav.svg" width="40" height="40" alt="GS" style="display:block;">`
+
+### Commit 17 — Lifestyle & Rewards: full content update
+- **Notion source:** `cerulean-outrigger-7b3.notion.site/Lifestyle-Rewards-UOB-TMRW-dd24d8d330c34488b328446880e74301`
+- **Images downloaded (12):** Discovery phase screenshot, Workshop overview + 5 activity shots, Rewards screens (×2), Header explorations, Unified rewards view (×2)
+- **Process accordions:** Added images to Discovery and Workshop items. `max-height` increased from 600px → 5000px to allow images to expand
+- **Features section:** Replaced 3 plain text cards with 3 expanded sections, each with: description + image(s) + Problem/Solution callout pair (pink/cyan labels)
+- **New CSS classes:** `.feature-section`, `.feature-imgs-pair`, `.callout-pair`, `.callout`, `.callout-problem`, `.callout-solution`, `.process-body-inner img`, `.process-img-grid`
+- Testing & Iteration images: inaccessible (Notion `file://` URLs — require auth)
+
+### Terminal / Claude Code setup note
+- `claude` command not found in Terminal → binary at `~/Library/Application Support/Claude/claude-code/2.1.64/claude`
+- Fix: `echo 'export PATH="$HOME/Library/Application Support/Claude/claude-code/2.1.64:$PATH"' >> ~/.zshrc && source ~/.zshrc`
+
 ### DNS Switch — March 9, 2026 (evening)
 - Navigated Wix Studio → golansarig.com → Manage DNS Records
 - Changed A record: `23.236.62.147` → `216.198.79.1` (Vercel)
@@ -217,6 +254,14 @@ POST /getSignedFileUrls
 - Logo Design: `139feaeb-b433-80dc-89fb-d154e7c6a28b`
 - Print: `139feaeb-b433-806b-babf-d2a249f95328`
 - Project Journals: `13efeaeb-b433-807f-9b21-d846f176d352`
+- Lifestyle & Rewards: `dd24d8d3-30c3-4488-b328-446880e74301`
+
+**Image download flow (Lifestyle & Rewards):**
+- `loadPageChunk` returns top-level blocks only — toggle children NOT included
+- Images inside toggles: URLs expire after ~1 hour (AWS `X-Amz-Expires=3600`)
+- Best practice: fetch Notion page via MCP tool first → extract signed URLs immediately → download before they expire
+- `syncRecordValues` endpoint returns 403 on public pages (no auth token)
+- `file://` encoded image URLs (Testing & Iteration section) = inaccessible via public API
 
 ---
 
