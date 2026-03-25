@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment Transaction Platform — Golan Sarig</title>
+  <meta name="description" content="Redesigning an internal banking platform to support multiple investment products — from Unit Trusts to bonds, structured deposits, structured notes, and insurance.">
+  <meta property="og:title" content="Investment Transaction Platform — Golan Sarig">
+  <meta property="og:description" content="Redesigning an internal banking platform for multiple investment products.">
+  <meta property="og:image" content="/images/SocialMediaPreviewImage_Portfolio.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="/fav.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #08081a;
+      --surface:   #0f0f26;
+      --surface-2: #161638;
+      --border:    rgba(255,255,255,0.07);
+      --text:      #eeeef8;
+      --muted:     #7878a0;
+      --yellow:  #ffe000;
+      --pink:    #ff2d6b;
+      --cyan:    #00d4ff;
+      --orange:  #ff6b35;
+      --purple:  #b06cff;
+      --glow-y: 0 0 24px rgba(255,224,0,.45);
+      --glow-p: 0 0 24px rgba(255,45,107,.45);
+      --glow-c: 0 0 24px rgba(0,212,255,.45);
+      --glow-o: 0 0 24px rgba(255,107,53,.45);
+      --radius: 10px;
+      --font-px: 'Press Start 2P', monospace;
+      --font:    'Space Grotesk', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.07) 3px, rgba(0,0,0,.07) 4px);
+      pointer-events: none;
+    }
+
+    section { position: relative; z-index: 1; }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(8,8,26,.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-px);
+      font-size: 9px;
+      color: var(--yellow);
+      text-shadow: var(--glow-y);
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-family: var(--font-px);
+      font-size: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color .2s;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-back:hover { color: var(--orange); text-shadow: var(--glow-o); }
+    .nav-back::before { content: '←'; }
+
+    /* HERO */
+    .case-hero {
+      margin-top: 64px;
+      position: relative;
+      overflow: hidden;
+      max-height: 520px;
+    }
+
+    .case-hero img {
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(.75);
+    }
+
+    .case-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, var(--bg) 100%);
+    }
+
+    .case-hero-info {
+      position: absolute;
+      bottom: 48px; left: 0; right: 0;
+      padding: 0 48px;
+      max-width: 1000px; margin: 0 auto;
+    }
+
+    .case-meta {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .case-client {
+      font-family: var(--font-px);
+      font-size: 9px;
+      color: var(--orange);
+      text-shadow: var(--glow-o);
+      letter-spacing: 1px;
+    }
+
+    .case-year {
+      font-family: var(--font-px);
+      font-size: 8px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .case-title {
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 700px;
+      color: var(--text);
+    }
+
+    /* TAGS */
+    .case-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      font-family: var(--font-px);
+      font-size: 7px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      letter-spacing: .5px;
+    }
+
+    .t-mob  { background: rgba(176,108,255,.15); color: var(--purple); border: 1px solid rgba(176,108,255,.3); }
+    .t-uxd  { background: rgba(0,212,255,.12);   color: var(--cyan);   border: 1px solid rgba(0,212,255,.3); }
+    .t-ui   { background: rgba(255,45,107,.12);  color: var(--pink);   border: 1px solid rgba(255,45,107,.3); }
+    .t-uxr  { background: rgba(255,224,0,.12);   color: var(--yellow); border: 1px solid rgba(255,224,0,.3); }
+    .t-dsk  { background: rgba(255,107,53,.12);  color: var(--orange); border: 1px solid rgba(255,107,53,.3); }
+
+    /* CONTENT */
+    .case-body {
+      padding: 80px 0;
+    }
+
+    /* Section header */
+    .sec-head {
+      display: flex; align-items: center; gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .sec-tag {
+      font-family: var(--font-px);
+      font-size: 9px;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .sec-rule {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(255,107,53,.35), transparent);
+    }
+
+    /* Two-column about */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 80px;
+    }
+
+    @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-col h3 {
+      font-family: var(--font-px);
+      font-size: 8px;
+      color: var(--orange);
+      text-shadow: var(--glow-o);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .about-col p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    /* Problem cards */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .problem-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      border-top: 2px solid var(--orange);
+    }
+
+    .problem-num {
+      font-family: var(--font-px);
+      font-size: 8px;
+      color: var(--orange);
+      text-shadow: var(--glow-o);
+      margin-bottom: 14px;
+    }
+
+    .problem-name {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .problem-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* Principles */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .principle-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .principle-card:hover {
+      border-color: rgba(176,108,255,.35);
+      transform: translateY(-3px);
+    }
+
+    .principle-num {
+      font-family: var(--font-px);
+      font-size: 8px;
+      color: var(--purple);
+      margin-bottom: 12px;
+    }
+
+    .principle-name {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .principle-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* Process accordion */
+    .process-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 80px;
+    }
+
+    .process-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .process-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px;
+      cursor: pointer;
+      user-select: none;
+      transition: background .2s;
+    }
+
+    .process-header:hover { background: var(--surface-2); }
+
+    .process-header-left {
+      display: flex; align-items: center; gap: 16px;
+    }
+
+    .process-num {
+      font-family: var(--font-px);
+      font-size: 8px;
+      color: var(--cyan);
+      text-shadow: var(--glow-c);
+      min-width: 24px;
+    }
+
+    .process-name {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .process-arrow {
+      font-size: 12px;
+      color: var(--muted);
+      transition: transform .25s;
+    }
+
+    .process-item.open .process-arrow { transform: rotate(180deg); }
+
+    .process-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+
+    .process-item.open .process-body { max-height: 900px; }
+
+    .process-body-inner {
+      padding: 0 24px 28px 64px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .process-body-inner p + p {
+      margin-top: 14px;
+    }
+
+    /* Image placeholder */
+    .img-placeholder {
+      width: 100%;
+      background: var(--surface);
+      border: 1px dashed rgba(255,107,53,.3);
+      border-radius: var(--radius);
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-placeholder::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 20px,
+        rgba(255,107,53,.03) 20px,
+        rgba(255,107,53,.03) 40px
+      );
+    }
+
+    .img-placeholder-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 32px;
+      text-align: center;
+      position: relative; z-index: 1;
+    }
+
+    .img-placeholder-icon {
+      font-size: 28px;
+      opacity: .4;
+    }
+
+    .img-placeholder-label {
+      font-family: var(--font-px);
+      font-size: 7px;
+      color: var(--orange);
+      opacity: .6;
+      letter-spacing: 1px;
+      line-height: 1.8;
+      max-width: 420px;
+    }
+
+    .img-placeholder-note {
+      font-size: 13px;
+      color: var(--muted);
+      opacity: .7;
+      max-width: 460px;
+      line-height: 1.6;
+    }
+
+    /* Full-width image */
+    .full-img {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 48px;
+      display: block;
+    }
+
+    /* Inline body text */
+    .body-text {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .body-text + .body-text {
+      margin-top: -20px;
+    }
+
+    /* Summary */
+    .summary-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      margin-bottom: 80px;
+    }
+
+    .summary-block p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .summary-block p + p {
+      margin-top: 16px;
+    }
+
+    /* Contributions */
+    .contrib-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 80px;
+    }
+
+    .contrib-chip {
+      background: var(--surface);
+      border: 1px solid rgba(255,107,53,.25);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+
+    .contrib-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 8px rgba(255,107,53,.7);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .contrib-label {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .contrib-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    /* Neon divider */
+    .neon-div {
+      display: flex; align-items: center; gap: 16px;
+      margin: 64px 0;
+    }
+
+    .neon-node {
+      width: 10px; height: 10px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .neon-line {
+      flex: 1; height: 1px;
+    }
+
+    /* Footer */
+    .case-footer {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .case-footer p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--yellow);
+      color: #08081a;
+      box-shadow: var(--glow-y);
+    }
+    .btn-primary:hover { box-shadow: 0 0 40px rgba(255,224,0,.7); transform: translateY(-2px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.25); transform: translateY(-2px); }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 640px) {
+      .container { padding: 0 24px; }
+      nav { padding: 18px 24px; }
+      .case-hero-info { padding: 0 24px; }
+      .process-body-inner { padding: 0 16px 24px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo"><img src="/fav.svg" width="40" height="40" alt="GS" style="display:block;"></a>
+    <a href="index.html" class="nav-back">Back to Work</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="case-hero" style="background:var(--surface);min-height:420px;display:flex;align-items:flex-end;">
+    <!-- Replace the placeholder below with: <img src="/images/investment-hero.png" alt="Investment Transaction Platform overview"> -->
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;opacity:.18;">
+      <div style="font-size:48px;">🖼</div>
+      <div style="font-family:var(--font-px);font-size:7px;color:var(--orange);letter-spacing:1px;">HERO IMAGE — FINAL OVERVIEW PAGE</div>
+    </div>
+    <div class="case-hero-overlay"></div>
+    <div class="case-hero-info">
+      <div class="case-meta">
+        <span class="case-client">UOB</span>
+        <span class="case-year">· 2023</span>
+      </div>
+      <h1 class="case-title">Investment Transaction Platform: Redesigning for Multiple Products</h1>
+      <div class="case-tags">
+        <span class="tag t-dsk">Desktop</span>
+        <span class="tag t-uxd">UX Design</span>
+        <span class="tag t-ui">User Interface</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="case-body">
+    <div class="container">
+
+      <!-- ── ABOUT ── -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--orange);text-shadow:var(--glow-o)">ABOUT</span>
+        <div class="sec-rule"></div>
+      </div>
+
+      <div class="about-grid reveal">
+        <div class="about-col">
+          <h3>THE CHALLENGE</h3>
+          <p>An internal banking platform built for Unit Trust transactions needed to expand — supporting bonds, structured deposits, structured notes, and insurance. The problem wasn't just adding new product journeys. The platform's core logic, screen structure, and actions were all shaped around how Unit Trusts were transacted. That model didn't scale.</p>
+        </div>
+        <div class="about-col">
+          <h3>THE PROJECT</h3>
+          <p>A platform-level redesign across seven two-week sprints. The goal was not to make every product behave the same, but to create a system that feels coherent even when product rules differ — with a stronger overview structure, a scalable action hierarchy, and shared patterns that could support future growth.</p>
+        </div>
+      </div>
+
+      <!-- Old transaction model diagram placeholder -->
+      <div class="img-placeholder reveal" style="min-height:220px;margin-bottom:80px;">
+        <div class="img-placeholder-inner">
+          <div class="img-placeholder-icon">🖼</div>
+          <div class="img-placeholder-label">OLD TRANSACTION MODEL DIAGRAM</div>
+          <div class="img-placeholder-note">Advisory record → multiple Unit Trust items → one shared submit action</div>
+        </div>
+      </div>
+
+      <div class="neon-div reveal">
+        <div class="neon-node" style="background:var(--orange);box-shadow:0 0 10px var(--orange)"></div>
+        <div class="neon-line" style="background:linear-gradient(to right,rgba(255,107,53,.4),transparent)"></div>
+        <div class="neon-node" style="width:6px;height:6px;background:var(--purple);box-shadow:0 0 8px var(--purple)"></div>
+        <div class="neon-line" style="background:linear-gradient(to right,rgba(176,108,255,.2),transparent)"></div>
+      </div>
+
+      <!-- ── FRAME THE PROBLEM ── -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--yellow);text-shadow:var(--glow-y)">FRAME THE PROBLEM</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,224,0,.35),transparent)"></div>
+      </div>
+
+      <p class="body-text reveal">The core challenge was scale. The platform had been built around Unit Trust behaviour — from the order structure to the overview page and the action buttons. As new investment products were introduced, those patterns began to break. Three issues became clear.</p>
+
+      <div class="problem-grid reveal">
+        <div class="problem-card">
+          <div class="problem-num">01</div>
+          <div class="problem-name">Transaction Model</div>
+          <div class="problem-desc">The order structure was too tightly tied to Unit Trust bulk-order logic. Products that required individual transactions couldn't fit the existing pattern.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-num">02</div>
+          <div class="problem-name">Overview Navigation</div>
+          <div class="problem-desc">The overview page grouped all order types into one long scrollable screen, making work harder to scan and prioritise as products multiplied.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-num">03</div>
+          <div class="problem-name">Action Hierarchy</div>
+          <div class="problem-desc">Secondary and utility actions appeared in inconsistent places as journeys grew more complex, making it unclear what the user should do next.</div>
+        </div>
+      </div>
+
+      <!-- Audit findings image placeholder -->
+      <div class="img-placeholder reveal">
+        <div class="img-placeholder-inner">
+          <div class="img-placeholder-icon">🖼</div>
+          <div class="img-placeholder-label">AUDIT FINDINGS — 3-PART VISUAL</div>
+          <div class="img-placeholder-note">Three-panel visual showing each issue with cropped screenshots from the old design underneath</div>
+        </div>
+      </div>
+
+      <!-- ── UNDERSTAND REALITY ── -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--cyan);text-shadow:var(--glow-c)">UNDERSTAND REALITY</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(0,212,255,.35),transparent)"></div>
+      </div>
+
+      <p class="body-text reveal">The project was scoped across seven two-week sprints, beginning with a full audit and assessment of the platform to understand what could scale, what needed redesign, and where the Unit Trust model would fail once more products were introduced.</p>
+
+      <p class="body-text reveal">This early phase focused on two things. First, understanding the impact of the new products with the business team — each product introduced different transaction rules, lifecycle needs, and display requirements. Second, reviewing the existing platform from a system perspective to assess which patterns could be extended, which needed a full redesign, and how a more scalable structure could be introduced without losing familiarity.</p>
+
+      <p class="body-text reveal" style="margin-bottom:48px;">These discussions confirmed that the redesign needed to happen at platform level, not only at screen level.</p>
+
+      <!-- Order lifecycle placeholder -->
+      <div class="img-placeholder reveal">
+        <div class="img-placeholder-inner">
+          <div class="img-placeholder-icon">🖼</div>
+          <div class="img-placeholder-label">ORDER LIFECYCLE — BEFORE REDESIGN</div>
+          <div class="img-placeholder-note">Original Unit Trust-only order cycle screen — showing how the current flow assumed one grouped order with one final submit action</div>
+        </div>
+      </div>
+
+      <!-- ── DESIGN PRINCIPLES ── -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--purple);text-shadow:0 0 24px rgba(176,108,255,.45)">DESIGN PRINCIPLES</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(176,108,255,.35),transparent)"></div>
+      </div>
+
+      <p class="body-text reveal">Four principles guided the redesign.</p>
+
+      <div class="principles-grid reveal">
+        <div class="principle-card">
+          <div class="principle-num">01</div>
+          <div class="principle-name">Make work easier to scan</div>
+          <div class="principle-desc">Break complexity into clearer sections so users can find relevant work faster.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-num">02</div>
+          <div class="principle-name">Keep the structure familiar</div>
+          <div class="principle-desc">Use a shared information model across products wherever possible, even when transaction rules differ.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-num">03</div>
+          <div class="principle-name">Design for expansion</div>
+          <div class="principle-desc">Create patterns that support future products and more complex journeys, not only the current scope.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-num">04</div>
+          <div class="principle-name">Make the next step obvious</div>
+          <div class="principle-desc">Define a clearer action hierarchy so primary, secondary, and utility actions remain understandable at every stage.</div>
+        </div>
+      </div>
+
+      <!-- Principles strip placeholder -->
+      <div class="img-placeholder reveal" style="min-height:180px;">
+        <div class="img-placeholder-inner">
+          <div class="img-placeholder-icon">🖼</div>
+          <div class="img-placeholder-label">PRINCIPLES STRIP</div>
+          <div class="img-placeholder-note">Simple horizontal visual with the four principles — a visual pause before the design decisions</div>
+        </div>
+      </div>
+
+      <div class="neon-div reveal">
+        <div class="neon-node" style="background:var(--purple);box-shadow:0 0 10px var(--purple)"></div>
+        <div class="neon-line" style="background:linear-gradient(to right,rgba(176,108,255,.4),transparent)"></div>
+        <div class="neon-node" style="width:6px;height:6px;background:var(--cyan);box-shadow:0 0 8px var(--cyan)"></div>
+        <div class="neon-line" style="background:linear-gradient(to right,rgba(0,212,255,.2),transparent)"></div>
+      </div>
+
+      <!-- ── DESIGN DECISIONS ── -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--cyan);text-shadow:var(--glow-c)">DESIGN DECISIONS</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(0,212,255,.35),transparent)"></div>
+      </div>
+
+      <p class="body-text reveal">The redesign focused on three key areas.</p>
+
+      <div class="process-list reveal">
+
+        <div class="process-item open">
+          <div class="process-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="process-header-left">
+              <span class="process-num">01</span>
+              <span class="process-name">Rethinking the overview as a workbench</span>
+            </div>
+            <span class="process-arrow">▾</span>
+          </div>
+          <div class="process-body">
+            <div class="process-body-inner">
+              <p>The original overview behaved like a long order feed — all order types in one scrollable page under separate sections. As more product types and order states were added, this became harder to scan and prioritise.</p>
+              <p>The redesign shifted the page toward a more structured workbench. Work was grouped first by transaction family — Buy or Switch orders, Sell orders, Order instructions — then narrowed further by lifecycle state. This created a stronger navigation model and a clearer mental model for future growth.</p>
+
+              <!-- Navigation exploration placeholder -->
+              <div class="img-placeholder" style="min-height:220px;margin-top:24px;">
+                <div class="img-placeholder-inner">
+                  <div class="img-placeholder-icon">🖼</div>
+                  <div class="img-placeholder-label">EARLY NAVIGATION EXPLORATION</div>
+                  <div class="img-placeholder-note">Side-by-side exploration of different navigation mental models before landing on the final structure</div>
+                </div>
+              </div>
+
+              <!-- Final overview placeholder -->
+              <div class="img-placeholder" style="min-height:260px;margin-bottom:0;">
+                <div class="img-placeholder-inner">
+                  <div class="img-placeholder-icon">🖼</div>
+                  <div class="img-placeholder-label">FINAL OVERVIEW NAVIGATION</div>
+                  <div class="img-placeholder-note">Final overview page with callouts: top-level transaction family, second-level lifecycle state, consistent product grouping</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="process-item">
+          <div class="process-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="process-header-left">
+              <span class="process-num">02</span>
+              <span class="process-name">Creating a shared structure across products</span>
+            </div>
+            <span class="process-arrow">▾</span>
+          </div>
+          <div class="process-body">
+            <div class="process-body-inner">
+              <p>The redesign did not force all products into one generic table, nor did it split the experience into separate product silos. Instead, it introduced a common structural pattern across product sections, while allowing product-specific fields and transaction details where needed.</p>
+              <p>This was especially important because some products supported bulk actions while others did not. The interface needed to stay consistent without pretending all products followed the same logic. The shared structure helped the platform feel familiar even as transaction behaviour became more varied.</p>
+
+              <!-- Product grouping placeholder -->
+              <div class="img-placeholder" style="min-height:240px;margin-top:24px;margin-bottom:0;">
+                <div class="img-placeholder-inner">
+                  <div class="img-placeholder-icon">🖼</div>
+                  <div class="img-placeholder-label">PRODUCT GROUPING STRUCTURE</div>
+                  <div class="img-placeholder-note">Cropped section of the final overview showing multiple product groups under the same work context — shared structure with product-specific variation</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="process-item">
+          <div class="process-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="process-header-left">
+              <span class="process-num">03</span>
+              <span class="process-name">Building a scalable action system</span>
+            </div>
+            <span class="process-arrow">▾</span>
+          </div>
+          <div class="process-body">
+            <div class="process-body-inner">
+              <p>The action pattern was redesigned to create a clearer hierarchy. The previous design had accumulated tertiary buttons in inconsistent places as more products and states were introduced — making actions harder to scan and weaker in priority.</p>
+              <p>The redesigned approach separated primary, secondary, and utility actions more explicitly. This made the next step easier to understand and gave the platform a more scalable action model across different lifecycle states.</p>
+
+              <!-- Action hierarchy placeholder -->
+              <div class="img-placeholder" style="min-height:240px;margin-top:24px;margin-bottom:0;">
+                <div class="img-placeholder-inner">
+                  <div class="img-placeholder-icon">🖼</div>
+                  <div class="img-placeholder-label">ACTION HIERARCHY MAPPING</div>
+                  <div class="img-placeholder-note">Button and actions mapping showing the logic behind the button system — not only the final UI</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── VALIDATION & ITERATION ── -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--yellow);text-shadow:var(--glow-y)">VALIDATION & ITERATION</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,224,0,.35),transparent)"></div>
+      </div>
+
+      <p class="body-text reveal">The work developed through repeated iterations across the seven-sprint timeline — briefing sessions with the business team, internal design critiques, regular reviews with the design head, walkthroughs to validate decisions, and check-backs with business stakeholders.</p>
+
+      <p class="body-text reveal" style="margin-bottom:48px;">One example of negotiation involved checkboxes and bulk actions. These were originally kept only for Unit Trust, since other products didn't support the same behaviour. Later, they were added back to unify the display logic from a system perspective — agreed after negotiation, particularly after a separate scope intended to change the sell interaction model was dropped.</p>
+
+      <!-- Iteration snapshot placeholder -->
+      <div class="img-placeholder reveal">
+        <div class="img-placeholder-inner">
+          <div class="img-placeholder-icon">🖼</div>
+          <div class="img-placeholder-label">ITERATION OR CRITIQUE SNAPSHOT</div>
+          <div class="img-placeholder-note">Exploration board, critique screenshot, or mid-fidelity comparison — showing this was an iterative platform redesign, not a one-pass screen update</div>
+        </div>
+      </div>
+
+      <!-- ── OUTCOMES & LEARNINGS ── -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--pink);text-shadow:var(--glow-p)">OUTCOMES & LEARNINGS</span>
+        <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,45,107,.35),transparent)"></div>
+      </div>
+
+      <div class="summary-block reveal">
+        <p>The redesign moved the platform away from a Unit Trust-shaped workflow and toward a more scalable investment transaction platform. Instead of extending legacy patterns one product at a time, the work created a stronger foundation for handling more product types and more complex transaction journeys.</p>
+        <p>The biggest learning was that scaling a banking platform is not only about adding new flows. It also requires redesigning the underlying structure that helps users find work, understand status, and take action with confidence.</p>
+        <p>It also reinforced that consistency does not mean forcing every product into the same flow. It means building a system that stays coherent while allowing product-specific rules where they are needed.</p>
+      </div>
+
+      <!-- Before / After placeholder -->
+      <div class="img-placeholder reveal">
+        <div class="img-placeholder-inner">
+          <div class="img-placeholder-icon">🖼</div>
+          <div class="img-placeholder-label">BEFORE VS AFTER SUMMARY</div>
+          <div class="img-placeholder-note">
+            Before: UT-shaped logic · long-scroll overview · scattered actions<br>
+            After: broader product support · structured workbench · clearer action hierarchy
+          </div>
+        </div>
+      </div>
+
+      <!-- ── KEY CONTRIBUTIONS ── -->
+      <div class="sec-head reveal">
+        <span class="sec-tag" style="color:var(--orange);text-shadow:var(--glow-o)">KEY CONTRIBUTIONS</span>
+        <div class="sec-rule"></div>
+      </div>
+
+      <div class="contrib-grid reveal">
+        <div class="contrib-chip">
+          <div class="contrib-dot"></div>
+          <div>
+            <div class="contrib-label">Project Framing & Ideation</div>
+            <div class="contrib-desc">Led the briefing stage and early ideation for the redesign direction.</div>
+          </div>
+        </div>
+        <div class="contrib-chip">
+          <div class="contrib-dot"></div>
+          <div>
+            <div class="contrib-label">UI/UX Direction</div>
+            <div class="contrib-desc">Defined the experience approach for the platform's most critical scaling areas.</div>
+          </div>
+        </div>
+        <div class="contrib-chip">
+          <div class="contrib-dot"></div>
+          <div>
+            <div class="contrib-label">Stakeholder Alignment</div>
+            <div class="contrib-desc">Worked with stakeholders and PM to align scope, priorities, and timeline across delivery.</div>
+          </div>
+        </div>
+        <div class="contrib-chip">
+          <div class="contrib-dot"></div>
+          <div>
+            <div class="contrib-label">Platform Redesign</div>
+            <div class="contrib-desc">Shaped core experience changes across overview navigation, action hierarchy, and scalable design patterns.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <section>
+    <div class="case-footer">
+      <div class="container">
+        <p>Next case study</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <a href="simple-invest.html" class="btn btn-primary">Simple Invest — UOB →</a>
+          <a href="index.html" class="btn btn-ghost">← All Work</a>
+        </div>
+        <div style="margin-top:20px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap">
+          <a href="mailto:oshki2001@gmail.com" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">oshki2001@gmail.com</a>
+          <a href="https://www.linkedin.com/in/golansa" target="_blank" rel="noopener" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">LinkedIn ↗</a>
+          <a href="https://www.instagram.com/golansarig" target="_blank" rel="noopener" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">Instagram ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Reveal on scroll
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+
+  <script src="/lightbox.js"></script>
+</body>
+</html>
