@@ -226,42 +226,6 @@
       font-size: 15px;
     }
 
-    /* Problem cards */
-    .problem-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      margin-bottom: 48px;
-    }
-
-    .problem-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      border-top: 2px solid var(--orange);
-    }
-
-    .problem-num {
-      font-family: var(--font-px);
-      font-size: 8px;
-      color: var(--orange);
-      text-shadow: var(--glow-o);
-      margin-bottom: 14px;
-    }
-
-    .problem-name {
-      font-weight: 600;
-      font-size: 15px;
-      margin-bottom: 10px;
-    }
-
-    .problem-desc {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.65;
-    }
-
     /* Principles */
     .principles-grid {
       display: grid;
@@ -358,7 +322,7 @@
       transition: max-height .35s ease;
     }
 
-    .process-item.open .process-body { max-height: 900px; }
+    .process-item.open .process-body { max-height: 2400px; }
 
     .process-body-inner {
       padding: 0 24px 28px 64px;
@@ -586,12 +550,8 @@
   </nav>
 
   <!-- HERO -->
-  <div class="case-hero" style="background:var(--surface);min-height:420px;display:flex;align-items:flex-end;">
-    <!-- Replace the placeholder below with: <img src="/images/investment-hero.png" alt="Investment Transaction Platform overview"> -->
-    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;opacity:.18;">
-      <div style="font-size:48px;">🖼</div>
-      <div style="font-family:var(--font-px);font-size:7px;color:var(--orange);letter-spacing:1px;">HERO IMAGE — FINAL OVERVIEW PAGE</div>
-    </div>
+  <div class="case-hero">
+    <img src="/images/SPV_cover.png" alt="Investment Transaction Platform overview">
     <div class="case-hero-overlay"></div>
     <div class="case-hero-info">
       <div class="case-meta">
@@ -619,21 +579,12 @@
 
       <div class="about-grid reveal">
         <div class="about-col">
-          <h3>THE CHALLENGE</h3>
-          <p>An internal banking platform built for Unit Trust transactions needed to expand — supporting bonds, structured deposits, structured notes, and insurance. The problem wasn't just adding new product journeys. The platform's core logic, screen structure, and actions were all shaped around how Unit Trusts were transacted. That model didn't scale.</p>
-        </div>
-        <div class="about-col">
           <h3>THE PROJECT</h3>
           <p>A platform-level redesign across seven two-week sprints. The goal was not to make every product behave the same, but to create a system that feels coherent even when product rules differ — with a stronger overview structure, a scalable action hierarchy, and shared patterns that could support future growth.</p>
         </div>
-      </div>
-
-      <!-- Old transaction model diagram placeholder -->
-      <div class="img-placeholder reveal" style="min-height:220px;margin-bottom:80px;">
-        <div class="img-placeholder-inner">
-          <div class="img-placeholder-icon">🖼</div>
-          <div class="img-placeholder-label">OLD TRANSACTION MODEL DIAGRAM</div>
-          <div class="img-placeholder-note">Advisory record → multiple Unit Trust items → one shared submit action</div>
+        <div class="about-col">
+          <h3>THE CHALLENGE</h3>
+          <p>An internal banking platform built for Unit Trust transactions needed to expand — supporting bonds, structured deposits, structured notes, and insurance. The problem wasn't just adding new product journeys. The platform's core logic, screen structure, and actions were all shaped around how Unit Trusts were transacted. That model didn't scale.</p>
         </div>
       </div>
 
@@ -644,39 +595,64 @@
         <div class="neon-line" style="background:linear-gradient(to right,rgba(176,108,255,.2),transparent)"></div>
       </div>
 
-      <!-- ── FRAME THE PROBLEM ── -->
+      <!-- ── IDENTIFYING THE ISSUES ── -->
       <div class="sec-head reveal">
-        <span class="sec-tag" style="color:var(--yellow);text-shadow:var(--glow-y)">FRAME THE PROBLEM</span>
+        <span class="sec-tag" style="color:var(--yellow);text-shadow:var(--glow-y)">IDENTIFYING THE ISSUES</span>
         <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,224,0,.35),transparent)"></div>
       </div>
 
       <p class="body-text reveal">The core challenge was scale. The platform had been built around Unit Trust behaviour — from the order structure to the overview page and the action buttons. As new investment products were introduced, those patterns began to break. Three issues became clear.</p>
 
-      <div class="problem-grid reveal">
-        <div class="problem-card">
-          <div class="problem-num">01</div>
-          <div class="problem-name">Transaction Model</div>
-          <div class="problem-desc">The order structure was too tightly tied to Unit Trust bulk-order logic. Products that required individual transactions couldn't fit the existing pattern.</div>
-        </div>
-        <div class="problem-card">
-          <div class="problem-num">02</div>
-          <div class="problem-name">Overview Navigation</div>
-          <div class="problem-desc">The overview page grouped all order types into one long scrollable screen, making work harder to scan and prioritise as products multiplied.</div>
-        </div>
-        <div class="problem-card">
-          <div class="problem-num">03</div>
-          <div class="problem-name">Action Hierarchy</div>
-          <div class="problem-desc">Secondary and utility actions appeared in inconsistent places as journeys grew more complex, making it unclear what the user should do next.</div>
-        </div>
-      </div>
+      <div class="process-list reveal">
 
-      <!-- Audit findings image placeholder -->
-      <div class="img-placeholder reveal">
-        <div class="img-placeholder-inner">
-          <div class="img-placeholder-icon">🖼</div>
-          <div class="img-placeholder-label">AUDIT FINDINGS — 3-PART VISUAL</div>
-          <div class="img-placeholder-note">Three-panel visual showing each issue with cropped screenshots from the old design underneath</div>
+        <div class="process-item open">
+          <div class="process-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="process-header-left">
+              <span class="process-num">01</span>
+              <span class="process-name">Transaction model</span>
+            </div>
+            <span class="process-arrow">▾</span>
+          </div>
+          <div class="process-body">
+            <div class="process-body-inner">
+              <p>The order structure was too tightly tied to Unit Trust bulk-order logic. Products that required individual transactions couldn't fit the existing pattern.</p>
+              <img src="/images/SPV_ut01.png" alt="Original Unit Trust transaction model — advisory record with multiple UT items and one shared submit action" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);margin-top:24px;display:block;margin-bottom:0;">
+            </div>
+          </div>
         </div>
+
+        <div class="process-item">
+          <div class="process-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="process-header-left">
+              <span class="process-num">02</span>
+              <span class="process-name">Overview navigation</span>
+            </div>
+            <span class="process-arrow">▾</span>
+          </div>
+          <div class="process-body">
+            <div class="process-body-inner">
+              <p>The overview page grouped all order types into one long scrollable screen, making work harder to scan and prioritise as products multiplied.</p>
+              <img src="/images/SPV_stacked.png" alt="Overview page showing all order types stacked in one long scrollable screen" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);margin-top:24px;display:block;margin-bottom:0;">
+            </div>
+          </div>
+        </div>
+
+        <div class="process-item">
+          <div class="process-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="process-header-left">
+              <span class="process-num">03</span>
+              <span class="process-name">Action hierarchy</span>
+            </div>
+            <span class="process-arrow">▾</span>
+          </div>
+          <div class="process-body">
+            <div class="process-body-inner">
+              <p>Secondary and utility actions appeared in inconsistent places as journeys grew more complex, making it unclear what the user should do next.</p>
+              <img src="/images/SPV_actions.png" alt="Action hierarchy issues — inconsistent placement of secondary and utility actions across journeys" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);margin-top:24px;display:block;margin-bottom:0;">
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- ── UNDERSTAND REALITY ── -->
@@ -691,14 +667,8 @@
 
       <p class="body-text reveal" style="margin-bottom:48px;">These discussions confirmed that the redesign needed to happen at platform level, not only at screen level.</p>
 
-      <!-- Order lifecycle placeholder -->
-      <div class="img-placeholder reveal">
-        <div class="img-placeholder-inner">
-          <div class="img-placeholder-icon">🖼</div>
-          <div class="img-placeholder-label">ORDER LIFECYCLE — BEFORE REDESIGN</div>
-          <div class="img-placeholder-note">Original Unit Trust-only order cycle screen — showing how the current flow assumed one grouped order with one final submit action</div>
-        </div>
-      </div>
+      <!-- Order lifecycle before redesign -->
+      <img class="full-img reveal" src="/images/SPV_UToldcycle%20(1).png" alt="Original Unit Trust-only order cycle — grouped order with one final submit action">
 
       <!-- ── DESIGN PRINCIPLES ── -->
       <div class="sec-head reveal">
@@ -728,15 +698,6 @@
           <div class="principle-num">04</div>
           <div class="principle-name">Make the next step obvious</div>
           <div class="principle-desc">Define a clearer action hierarchy so primary, secondary, and utility actions remain understandable at every stage.</div>
-        </div>
-      </div>
-
-      <!-- Principles strip placeholder -->
-      <div class="img-placeholder reveal" style="min-height:180px;">
-        <div class="img-placeholder-inner">
-          <div class="img-placeholder-icon">🖼</div>
-          <div class="img-placeholder-label">PRINCIPLES STRIP</div>
-          <div class="img-placeholder-note">Simple horizontal visual with the four principles — a visual pause before the design decisions</div>
         </div>
       </div>
 
@@ -770,23 +731,11 @@
               <p>The original overview behaved like a long order feed — all order types in one scrollable page under separate sections. As more product types and order states were added, this became harder to scan and prioritise.</p>
               <p>The redesign shifted the page toward a more structured workbench. Work was grouped first by transaction family — Buy or Switch orders, Sell orders, Order instructions — then narrowed further by lifecycle state. This created a stronger navigation model and a clearer mental model for future growth.</p>
 
-              <!-- Navigation exploration placeholder -->
-              <div class="img-placeholder" style="min-height:220px;margin-top:24px;">
-                <div class="img-placeholder-inner">
-                  <div class="img-placeholder-icon">🖼</div>
-                  <div class="img-placeholder-label">EARLY NAVIGATION EXPLORATION</div>
-                  <div class="img-placeholder-note">Side-by-side exploration of different navigation mental models before landing on the final structure</div>
-                </div>
-              </div>
+              <!-- Early navigation exploration -->
+              <img src="/images/SPV_navX.png" alt="Early navigation exploration — different mental models for the overview structure" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);margin-top:24px;display:block;">
 
-              <!-- Final overview placeholder -->
-              <div class="img-placeholder" style="min-height:260px;margin-bottom:0;">
-                <div class="img-placeholder-inner">
-                  <div class="img-placeholder-icon">🖼</div>
-                  <div class="img-placeholder-label">FINAL OVERVIEW NAVIGATION</div>
-                  <div class="img-placeholder-note">Final overview page with callouts: top-level transaction family, second-level lifecycle state, consistent product grouping</div>
-                </div>
-              </div>
+              <!-- Final overview navigation -->
+              <img src="/images/SPV_NAVnew.png" alt="Final overview navigation — transaction family grouping with lifecycle state filtering" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);margin-top:16px;display:block;margin-bottom:0;">
             </div>
           </div>
         </div>
@@ -804,14 +753,8 @@
               <p>The redesign did not force all products into one generic table, nor did it split the experience into separate product silos. Instead, it introduced a common structural pattern across product sections, while allowing product-specific fields and transaction details where needed.</p>
               <p>This was especially important because some products supported bulk actions while others did not. The interface needed to stay consistent without pretending all products followed the same logic. The shared structure helped the platform feel familiar even as transaction behaviour became more varied.</p>
 
-              <!-- Product grouping placeholder -->
-              <div class="img-placeholder" style="min-height:240px;margin-top:24px;margin-bottom:0;">
-                <div class="img-placeholder-inner">
-                  <div class="img-placeholder-icon">🖼</div>
-                  <div class="img-placeholder-label">PRODUCT GROUPING STRUCTURE</div>
-                  <div class="img-placeholder-note">Cropped section of the final overview showing multiple product groups under the same work context — shared structure with product-specific variation</div>
-                </div>
-              </div>
+              <!-- Product grouping structure -->
+              <img src="/images/SPV_grouping.png" alt="Product grouping structure — shared layout across product types with product-specific variation" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);margin-top:24px;display:block;margin-bottom:0;">
             </div>
           </div>
         </div>
@@ -829,14 +772,8 @@
               <p>The action pattern was redesigned to create a clearer hierarchy. The previous design had accumulated tertiary buttons in inconsistent places as more products and states were introduced — making actions harder to scan and weaker in priority.</p>
               <p>The redesigned approach separated primary, secondary, and utility actions more explicitly. This made the next step easier to understand and gave the platform a more scalable action model across different lifecycle states.</p>
 
-              <!-- Action hierarchy placeholder -->
-              <div class="img-placeholder" style="min-height:240px;margin-top:24px;margin-bottom:0;">
-                <div class="img-placeholder-inner">
-                  <div class="img-placeholder-icon">🖼</div>
-                  <div class="img-placeholder-label">ACTION HIERARCHY MAPPING</div>
-                  <div class="img-placeholder-note">Button and actions mapping showing the logic behind the button system — not only the final UI</div>
-                </div>
-              </div>
+              <!-- Action hierarchy mapping -->
+              <img src="/images/SPV_buttons.png" alt="Action hierarchy mapping — primary, secondary and utility action logic across lifecycle states" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);margin-top:24px;display:block;margin-bottom:0;">
             </div>
           </div>
         </div>
@@ -853,15 +790,6 @@
 
       <p class="body-text reveal" style="margin-bottom:48px;">One example of negotiation involved checkboxes and bulk actions. These were originally kept only for Unit Trust, since other products didn't support the same behaviour. Later, they were added back to unify the display logic from a system perspective — agreed after negotiation, particularly after a separate scope intended to change the sell interaction model was dropped.</p>
 
-      <!-- Iteration snapshot placeholder -->
-      <div class="img-placeholder reveal">
-        <div class="img-placeholder-inner">
-          <div class="img-placeholder-icon">🖼</div>
-          <div class="img-placeholder-label">ITERATION OR CRITIQUE SNAPSHOT</div>
-          <div class="img-placeholder-note">Exploration board, critique screenshot, or mid-fidelity comparison — showing this was an iterative platform redesign, not a one-pass screen update</div>
-        </div>
-      </div>
-
       <!-- ── OUTCOMES & LEARNINGS ── -->
       <div class="sec-head reveal">
         <span class="sec-tag" style="color:var(--pink);text-shadow:var(--glow-p)">OUTCOMES & LEARNINGS</span>
@@ -872,18 +800,6 @@
         <p>The redesign moved the platform away from a Unit Trust-shaped workflow and toward a more scalable investment transaction platform. Instead of extending legacy patterns one product at a time, the work created a stronger foundation for handling more product types and more complex transaction journeys.</p>
         <p>The biggest learning was that scaling a banking platform is not only about adding new flows. It also requires redesigning the underlying structure that helps users find work, understand status, and take action with confidence.</p>
         <p>It also reinforced that consistency does not mean forcing every product into the same flow. It means building a system that stays coherent while allowing product-specific rules where they are needed.</p>
-      </div>
-
-      <!-- Before / After placeholder -->
-      <div class="img-placeholder reveal">
-        <div class="img-placeholder-inner">
-          <div class="img-placeholder-icon">🖼</div>
-          <div class="img-placeholder-label">BEFORE VS AFTER SUMMARY</div>
-          <div class="img-placeholder-note">
-            Before: UT-shaped logic · long-scroll overview · scattered actions<br>
-            After: broader product support · structured workbench · clearer action hierarchy
-          </div>
-        </div>
       </div>
 
       <!-- ── KEY CONTRIBUTIONS ── -->
