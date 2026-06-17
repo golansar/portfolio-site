@@ -55,19 +55,19 @@
       <!-- ─── INTRO + ROLE ─── -->
       <div class="intro-section reveal">
         <p class="intro-problem" style="margin-bottom: 24px;">
-          An internal banking platform used by relationship managers at UOB to process investment transactions was built entirely around <em>Unit Trusts</em>. The business decided to expand it to cover four more products — bonds, structured deposits, structured notes, and insurance. Design was brought in to execute that plan.
+          UOB's internal transaction platform was built for one product: Unit Trusts. When the business decided to expand it to bonds, structured deposits, structured notes, and insurance, design was brought in to execute the plan.
         </p>
         <p class="intro-problem" style="margin-bottom: 24px;">
-          From the first meetings, something felt wrong. Unit Trusts allow bulk transactions — an RM can select multiple and submit together. Bonds don't. One bond per transaction. These aren't style differences — they're different transaction models. The platform had been built around one of them.
+          From the first meetings, something felt wrong. Unit Trusts allow bulk transactions — an RM can select multiple and submit together. Bonds don't. One bond per transaction. That's not a style difference — they're different transaction models, built on different rules. The platform had been built around one of them.
         </p>
         <p class="intro-problem">
-          Before designing anything, we pushed for an audit. Not a long one — focused on the three journeys most at risk. We presented the findings visually: the existing platform on one side, a projection of what five products stacked on top of it on the other. Stakeholders could see the problem. A written argument about scalability risk is easy to defer. A screen showing it isn't.
+          Before designing anything, we pushed for an audit. Not a long one — focused on the three journeys most at risk. We presented the findings visually: the existing platform on one side, what five products would look like stacked on top of it on the other. Stakeholders could see the problem. A written argument about scalability risk is easy to defer. A screen showing it isn't.
         </p>
         <div class="intro-grid">
           <div class="intro-col">
             <span class="col-label">My Role</span>
-            <p>I was the lead product designer, one of two on the team. I owned the platform-level thinking — the overview navigation model, the shared structure across products, and the action hierarchy system. My co-designer handled detailed screen execution.</p>
-            <p>I ran briefing sessions with the business team, design reviews with the design head, and scope negotiations with the PM and stakeholders across seven two-week sprints.</p>
+            <p>I was the lead product designer on a two-person team. I owned the architecture decisions — how the navigation model worked, how products shared structure, how actions were organized across the platform. My co-designer handled the detailed screen work.</p>
+            <p>Across seven sprints, I managed the stakeholder side: briefs with the business, design reviews with the design head, scope discussions with the PM.</p>
           </div>
           <div>
             <span class="col-label">Project Info</span>
@@ -93,13 +93,13 @@
         <span class="decision-num">Decision 01</span>
         <h2 class="decision-title">Turned the overview from a feed into a workbench</h2>
         <p class="decision-tension">
-          The original overview stacked all order types in one scrollable screen — Unit Trusts, bonds, structured products, all visible at once in separate sections. As products multiplied, finding relevant work meant scrolling past everything else first. The instinct was to fix this by adding more tabs.
+          The original overview stacked all order types in one scrollable screen — Unit Trusts, bonds, structured products, all visible at once in separate sections. As products multiplied, finding relevant work meant scrolling past everything else first. The obvious fix was more tabs.
         </p>
         <p class="decision-body">
-          More tabs would have made the navigation wider without making it smarter. Instead, I regrouped the page around how RMs actually worked: by what action they were taking (Buy/Switch, Sell, Instructions), then filtered by lifecycle state within each group. The context shift is the primary choice — the product is a secondary detail.
+          More tabs would have made the navigation wider without making it smarter. Instead, I regrouped the page around how RMs actually worked: by what action they were taking (Buy/Switch, Sell, Instructions), then filtered by lifecycle state within each group. The action you're taking is the primary choice. Which product it involves is secondary.
         </p>
         <p class="decision-body">
-          This also gave the platform a navigation model that could absorb future products. A new product type slots into an existing transaction family rather than requiring a new top-level section.
+          It also meant the platform could take on new products without restructuring. A new product slots into an existing transaction family — no new top-level section needed.
         </p>
         <div class="decision-visuals">
           <div class="before-after">
@@ -120,7 +120,7 @@
         <span class="decision-num">Decision 02</span>
         <h2 class="decision-title">Gave every product a shared structure without forcing shared flows</h2>
         <p class="decision-tension">
-          The team's initial instinct was to either build separate screens per product, or use one generic table for all of them. Separate screens fragment the platform — it starts to feel like multiple tools. One table loses the product-specific detail RMs need to do their job.
+          Two obvious paths: separate screens per product, or one generic table for all of them. Separate screens fragment the platform — it starts to feel like five different tools. One table strips out the detail each product actually needs.
         </p>
         <p class="decision-body">
           I designed a common structural pattern: same page layout, same information hierarchy, same slot for product-specific detail. A bond screen and a Unit Trust screen use the same skeleton. The product fills in differently, but the platform feels like one tool.
@@ -129,7 +129,7 @@
           The sharpest friction point was checkboxes. Midway through the project, the system architect pushed for full UI consistency — checkboxes on every product screen, regardless of transaction type. Our position: checkboxes communicate multi-select. A checkbox next to a single bond tells the user they can pick more. They can't. That's not a style question — it's a false affordance.
         </p>
         <p class="decision-body">
-          We built it as a rule: checkboxes appear only when multiple records exist in the list. One bond — no checkbox. Two bonds — checkboxes appear, but selecting one disables the other to prevent submitting two transactions the system can't process. The architect accepted it not as a compromise but as a consistent rule. It went into the design system as a platform-level decision, not a per-product judgment call.
+          We built it as a rule: checkboxes appear only when the list has multiple records. One bond — no checkbox. Two bonds — checkboxes appear, but selecting one locks the other out, because the system won't process two at once. The architect accepted it not as a compromise but as a consistent rule. It went into the design system as a platform-level decision, not a per-product judgment call.
         </p>
         <div class="decision-visuals">
           <img class="decision-img-single" src="/images/SPV_grouping.png" alt="Shared product grouping structure — same skeleton across products, product-specific detail within">
@@ -141,13 +141,13 @@
         <span class="decision-num">Decision 03</span>
         <h2 class="decision-title">Rebuilt the action hierarchy before it accumulated more debt</h2>
         <p class="decision-tension">
-          The platform had grown its button set product by product, sprint by sprint. By the time we started, there was no principled rule for where a primary, secondary, or utility action should live. Different lifecycle states, different products — different patterns everywhere.
+          The platform had grown its button set product by product, sprint by sprint. By the time we got involved, there was no rule for where actions should live. Different lifecycle states, different products — different patterns everywhere.
         </p>
         <p class="decision-body">
-          I mapped every action across all lifecycle states and all product types, then defined an explicit rule: one primary action per screen — always the most important next step. Secondary actions support or modify it. Utilities (print, export, history) live in a separate zone that doesn't compete with the main path.
+          I mapped every action across every lifecycle state and product, then wrote one rule: one primary action per screen — always the next thing the RM needs to do. Secondary actions support or modify it. Utilities (print, export, history) live in a separate zone that doesn't compete with the main path.
         </p>
         <p class="decision-body">
-          The rule was codified into the design patterns so future products had a framework to follow, not just a screen to copy. This was the work that mattered most for long-term scalability.
+          We put the rule into the design patterns — future products would have something to follow, not just a screen to copy. Of the three decisions, this is the one that compounds: every product added after this has one fewer problem to solve.
         </p>
         <div class="decision-visuals">
           <div class="before-after">
@@ -170,10 +170,10 @@
           The platform shipped across all seven sprints. The structural changes held — adding a new product type required a new product section, not a new overview design or a new action pattern.
         </p>
         <p class="outcome-note">
-          One finding came from prototype testing that nothing in the BRD had flagged: RMs were reading the submit button as a confirmation — the final step. But submit was a trigger. It sent the transaction into a review queue. The distinction was invisible in the UI. We caught it because someone paused on a prototype. An explicit review state before submission fixed it.
+          Prototype testing surfaced something the BRD never mentioned: RMs were reading the submit button as a confirmation — the final step. It wasn't. Submit was a trigger that sent the transaction into a review queue, not to completion. The distinction was invisible. We caught it because someone paused on a prototype. Adding an explicit review state before submission fixed it.
         </p>
         <p class="outcome-note" style="margin-top: 20px;">
-          The audit was the value. Not the screens. If we had accepted the lift-and-shift brief and started designing, we would have delivered five broken journeys on time. The decision to push for an audit before touching structure — that's what made the rest of the work matter.
+          The audit was the value. Not the screens. If we had accepted the lift-and-shift brief and started designing, we would have delivered five broken journeys on time. Pushing for that audit before touching anything — that's what made the rest of the work matter.
         </p>
       </div>
 
