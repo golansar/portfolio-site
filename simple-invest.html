@@ -4,860 +4,149 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simple Invest — Golan Sarig</title>
-  <meta name="description" content="Expanding UOB's Simple Invest wealth management platform to Malaysia, Thailand, and Indonesia with localized self-serve experiences.">
+  <meta name="description" content="Expanding UOB's Simple Invest from Singapore to Malaysia, Thailand, and Indonesia — one shared framework, three different implementations.">
   <meta property="og:title" content="Simple Invest — Golan Sarig">
-  <meta property="og:description" content="Regional expansion of UOB's Simple Invest wealth management platform.">
+  <meta property="og:description" content="Expanding a self-serve investment product across three Southeast Asian markets.">
   <meta property="og:image" content="/images/SocialMediaPreviewImage_SimpleInvest.png">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="/fav.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:        #08081a;
-      --surface:   #0f0f26;
-      --surface-2: #161638;
-      --border:    rgba(255,255,255,0.07);
-      --text:      #eeeef8;
-      --muted:     #7878a0;
-      --yellow:  #ffe000;
-      --pink:    #ff2d6b;
-      --cyan:    #00d4ff;
-      --orange:  #ff6b35;
-      --purple:  #b06cff;
-      --glow-y: 0 0 24px rgba(255,224,0,.45);
-      --glow-p: 0 0 24px rgba(255,45,107,.45);
-      --glow-c: 0 0 24px rgba(0,212,255,.45);
-      --glow-o: 0 0 24px rgba(255,107,53,.45);
-      --radius: 10px;
-      --font-px: 'Press Start 2P', monospace;
-      --font:    'Space Grotesk', sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 16px;
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
-      background-size: 30px 30px;
-      pointer-events: none;
-    }
-
-    body::after {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.07) 3px, rgba(0,0,0,.07) 4px);
-      pointer-events: none;
-    }
-
-    section { position: relative; z-index: 1; }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 48px;
-      background: rgba(8,8,26,.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: var(--font-px);
-      font-size: 9px;
-      color: var(--yellow);
-      text-shadow: var(--glow-y);
-      letter-spacing: 1px;
-      text-decoration: none;
-    }
-
-    .nav-back {
-      font-family: var(--font-px);
-      font-size: 8px;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 1px;
-      transition: color .2s;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .nav-back:hover { color: var(--yellow); text-shadow: var(--glow-y); }
-    .nav-back::before { content: '←'; }
-
-    .case-hero {
-      margin-top: 64px;
-      position: relative;
-      overflow: hidden;
-      max-height: 520px;
-    }
-
-    .case-hero img {
-      width: 100%;
-      object-fit: cover;
-      display: block;
-      filter: brightness(.75);
-    }
-
-    .case-hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, var(--bg) 100%);
-    }
-
-    .case-hero-info {
-      position: absolute;
-      bottom: 48px; left: 0; right: 0;
-      padding: 0 48px;
-    }
-
-    .case-meta {
-      display: flex; align-items: center; gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .case-client {
-      font-family: var(--font-px);
-      font-size: 9px;
-      color: var(--yellow);
-      text-shadow: var(--glow-y);
-      letter-spacing: 1px;
-    }
-
-    .case-year {
-      font-family: var(--font-px);
-      font-size: 8px;
-      color: var(--muted);
-      letter-spacing: 1px;
-    }
-
-    .case-title {
-      font-size: clamp(24px, 4vw, 40px);
-      font-weight: 700;
-      line-height: 1.2;
-      max-width: 700px;
-    }
-
-    .case-tags {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      margin-top: 16px;
-    }
-
-    .tag {
-      font-family: var(--font-px);
-      font-size: 7px;
-      padding: 5px 10px;
-      border-radius: 4px;
-      letter-spacing: .5px;
-    }
-
-    .t-mob  { background: rgba(176,108,255,.15); color: var(--purple); border: 1px solid rgba(176,108,255,.3); }
-    .t-uxd  { background: rgba(0,212,255,.12);   color: var(--cyan);   border: 1px solid rgba(0,212,255,.3); }
-    .t-uxr  { background: rgba(255,224,0,.12);   color: var(--yellow); border: 1px solid rgba(255,224,0,.3); }
-    .t-ui   { background: rgba(255,45,107,.12);  color: var(--pink);   border: 1px solid rgba(255,45,107,.3); }
-
-    .case-body { padding: 80px 0; }
-
-    .sec-head {
-      display: flex; align-items: center; gap: 20px;
-      margin-bottom: 40px;
-    }
-
-    .sec-tag {
-      font-family: var(--font-px);
-      font-size: 9px;
-      letter-spacing: 2px;
-      white-space: nowrap;
-    }
-
-    .sec-rule {
-      flex: 1; height: 1px;
-      background: linear-gradient(to right, rgba(255,224,0,.35), transparent);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 80px;
-    }
-
-    @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
-
-    .about-col h3 {
-      font-family: var(--font-px);
-      font-size: 8px;
-      color: var(--yellow);
-      text-shadow: var(--glow-y);
-      letter-spacing: 2px;
-      margin-bottom: 16px;
-    }
-
-    .about-col p {
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 15px;
-    }
-
-    .process-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      margin-bottom: 80px;
-    }
-
-    .process-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-
-    .process-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 24px;
-      cursor: pointer;
-      user-select: none;
-      transition: background .2s;
-    }
-
-    .process-header:hover { background: var(--surface-2); }
-
-    .process-header-left {
-      display: flex; align-items: center; gap: 16px;
-    }
-
-    .process-num {
-      font-family: var(--font-px);
-      font-size: 8px;
-      color: var(--yellow);
-      text-shadow: var(--glow-y);
-      min-width: 24px;
-    }
-
-    .process-name {
-      font-weight: 600;
-      font-size: 15px;
-    }
-
-    .process-arrow {
-      font-size: 12px;
-      color: var(--muted);
-      transition: transform .25s;
-    }
-
-    .process-item.open .process-arrow { transform: rotate(180deg); }
-
-    .process-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .3s ease;
-    }
-
-    .process-item.open .process-body { max-height: 5000px; }
-
-    .process-body-inner {
-      padding: 0 24px 24px 64px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.75;
-    }
-
-    /* Feature sections */
-    .feature-section {
-      margin-bottom: 64px;
-      padding-bottom: 64px;
-      border-bottom: 1px solid var(--border);
-    }
-    .feature-section:last-child { border-bottom: none; }
-
-    .feature-section-head {
-      display: flex; align-items: center; gap: 14px;
-      margin-bottom: 16px;
-    }
-
-    .feature-section-num {
-      font-family: var(--font-px);
-      font-size: 8px;
-      color: var(--cyan);
-      text-shadow: var(--glow-c);
-      min-width: 24px;
-    }
-
-    .feature-section-title {
-      font-weight: 700;
-      font-size: 20px;
-    }
-
-    .feature-section-desc {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.75;
-      margin-bottom: 24px;
-    }
-
-    .feature-section img {
-      width: 100%;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      display: block;
-      margin-bottom: 24px;
-    }
-
-    .callout-pair {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 8px;
-    }
-    @media (max-width: 640px) { .callout-pair { grid-template-columns: 1fr; } }
-
-    .callout {
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-    }
-
-    .callout-label {
-      font-family: var(--font-px);
-      font-size: 7px;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-    }
-
-    .callout-problem .callout-label { color: var(--pink); }
-    .callout-solution .callout-label { color: var(--cyan); }
-
-    .callout p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.65;
-    }
-
-    /* Additional requirements */
-    .req-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 80px;
-    }
-    @media (max-width: 640px) { .req-grid { grid-template-columns: 1fr; } }
-
-    .req-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-    }
-
-    .req-card h4 {
-      font-family: var(--font-px);
-      font-size: 8px;
-      color: var(--yellow);
-      text-shadow: var(--glow-y);
-      letter-spacing: 1px;
-      margin-bottom: 14px;
-    }
-
-    .req-card p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .full-img {
-      width: 100%;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      margin-bottom: 48px;
-      display: block;
-    }
-
-    /* Impact / Takeaways columns */
-    .impact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      margin-bottom: 80px;
-    }
-
-    @media (max-width: 700px) { .impact-grid { grid-template-columns: 1fr; } }
-
-    .impact-col h4 {
-      font-family: var(--font-px);
-      font-size: 8px;
-      color: var(--yellow);
-      text-shadow: var(--glow-y);
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-    }
-
-    .impact-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .impact-list li {
-      display: flex; align-items: flex-start; gap: 12px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .impact-list li::before {
-      content: '';
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--yellow);
-      box-shadow: 0 0 6px rgba(255,224,0,.6);
-      flex-shrink: 0;
-      margin-top: 7px;
-    }
-
-    /* Takeaways */
-    .takeaways-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      margin-bottom: 80px;
-    }
-
-    @media (max-width: 700px) { .takeaways-grid { grid-template-columns: 1fr; } }
-
-    .takeaway-col h4 {
-      font-family: var(--font-px);
-      font-size: 8px;
-      color: var(--cyan);
-      text-shadow: var(--glow-c);
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-    }
-
-    .takeaway-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .takeaway-list li {
-      display: flex; align-items: flex-start; gap: 12px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .takeaway-list li::before {
-      content: '';
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 6px rgba(0,212,255,.6);
-      flex-shrink: 0;
-      margin-top: 7px;
-    }
-
-    .summary-block {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 40px;
-      margin-bottom: 80px;
-    }
-
-    .summary-block p {
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    .contrib-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 80px;
-    }
-
-    @media (max-width: 640px) { .contrib-grid { grid-template-columns: 1fr; } }
-
-    .contrib-chip {
-      background: var(--surface);
-      border: 1px solid rgba(255,224,0,.2);
-      border-radius: 8px;
-      padding: 20px 20px;
-      display: flex; align-items: flex-start; gap: 12px;
-    }
-
-    .contrib-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--yellow);
-      box-shadow: 0 0 8px rgba(255,224,0,.7);
-      flex-shrink: 0;
-      margin-top: 6px;
-    }
-
-    .contrib-label {
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 1.4;
-    }
-
-    .contrib-sub {
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 4px;
-      line-height: 1.5;
-    }
-
-    .neon-div {
-      display: flex; align-items: center; gap: 16px;
-      margin: 64px 0;
-    }
-
-    .neon-node {
-      width: 10px; height: 10px; border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .neon-line {
-      flex: 1; height: 1px;
-    }
-
-    .case-footer {
-      padding: 60px 0;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .case-footer p {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 24px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 14px;
-      text-decoration: none;
-      transition: all .2s;
-    }
-
-    .btn-primary {
-      background: var(--yellow);
-      color: #08081a;
-      box-shadow: var(--glow-y);
-    }
-    .btn-primary:hover { box-shadow: 0 0 40px rgba(255,224,0,.7); transform: translateY(-2px); }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-ghost:hover { border-color: rgba(255,255,255,.25); transform: translateY(-2px); }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity .6s ease, transform .6s ease;
-    }
-    .reveal.in { opacity: 1; transform: none; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/case-study.css">
 </head>
 <body>
 
+  <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-logo"><img src="/fav.svg" width="40" height="40" alt="GS" style="display:block;"></a>
+    <a href="index.html" style="display:block;text-decoration:none;">
+      <img src="/fav.svg" width="36" height="36" alt="GS">
+    </a>
     <a href="index.html" class="nav-back">Back to Work</a>
   </nav>
 
+  <!-- HERO -->
   <div class="case-hero">
-    <img src="/images/Screenshot_2024-11-09_at_9.52.14_AM.png" alt="Simple Invest cover">
-    <div class="case-hero-overlay"></div>
-    <div class="case-hero-info">
+    <img src="/images/Screenshot_2024-11-09_at_9.52.14_AM.png" alt="Simple Invest">
+    <div class="case-hero-fade"></div>
+  </div>
+
+  <!-- CASE HEADER -->
+  <div class="case-header">
+    <div class="container">
       <div class="case-meta">
         <span class="case-client">UOB</span>
         <span class="case-year">· 2024</span>
       </div>
-      <h1 class="case-title">Simple Invest: Self-Serve Capabilities to Regional Markets</h1>
+      <h1 class="case-title">Simple Invest</h1>
       <div class="case-tags">
-        <span class="tag t-mob">Mobile</span>
-        <span class="tag t-uxd">UX Design</span>
-        <span class="tag t-uxr">UX Research</span>
-        <span class="tag t-ui">User Interface</span>
+        <span class="tag">Mobile</span>
+        <span class="tag">UX Design</span>
+        <span class="tag">UI Design</span>
+        <span class="tag">Multi-market</span>
       </div>
     </div>
   </div>
 
+  <!-- BODY -->
   <div class="case-body">
     <div class="container">
 
-      <!-- ABOUT -->
-      <div class="sec-head reveal">
-        <span class="sec-tag" style="color:var(--yellow);text-shadow:var(--glow-y)">ABOUT</span>
-        <div class="sec-rule"></div>
-      </div>
-
-      <div class="about-grid reveal">
-        <div class="about-col">
-          <h3>THE CLIENT</h3>
-          <p>UOB, a major Asian bank, is transforming wealth management through digital innovation. With the UOB TMRW app, it offers self-serve investment tools that let customers across Southeast Asia manage their finances independently. By focusing on scalable, localized solutions, UOB ensures users have easy access to wealth-building tools tailored to their needs while maintaining a consistent experience across markets.</p>
-        </div>
-        <div class="about-col">
-          <h3>THE PROJECT</h3>
-          <p>After the successful launch of Simple Invest in Singapore, the project expanded to regional markets — Malaysia, Thailand, and Indonesia. The goal was to adapt the product for local regulations and currencies while maintaining the core user experience of Simple Invest, enabling self-serve investment capabilities across South APAC.</p>
-        </div>
-      </div>
-
-      <div class="neon-div reveal">
-        <div class="neon-node" style="background:var(--yellow);box-shadow:0 0 10px var(--yellow)"></div>
-        <div class="neon-line" style="background:linear-gradient(to right,rgba(255,224,0,.4),transparent)"></div>
-        <div class="neon-node" style="width:6px;height:6px;background:var(--pink);box-shadow:0 0 8px var(--pink)"></div>
-        <div class="neon-line" style="background:linear-gradient(to right,rgba(255,45,107,.2),transparent)"></div>
-      </div>
-
-      <!-- Hero image -->
-      <img class="full-img reveal" src="/images/si-overview.png" alt="Simple Invest regional expansion overview">
-
-      <!-- PROCESS -->
-      <div class="sec-head reveal">
-        <span class="sec-tag" style="color:var(--purple);text-shadow:0 0 24px rgba(176,108,255,.45)">PROCESS</span>
-        <div class="sec-rule" style="background:linear-gradient(to right,rgba(176,108,255,.35),transparent)"></div>
-      </div>
-
-      <div class="process-list reveal">
-
-        <div class="process-item">
-          <div class="process-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="process-header-left">
-              <span class="process-num" style="color:var(--purple)">01</span>
-              <span class="process-name">Exploration & Discovery</span>
-            </div>
-            <span class="process-arrow">▾</span>
+      <!-- ─── INTRO + ROLE ─── -->
+      <div class="intro-section reveal">
+        <p class="intro-problem" style="margin-bottom: 24px;">
+          Simple Invest launched in Singapore as a self-serve investment product inside UOB's TMRW app. When it worked, the business decided to expand to Malaysia, Thailand, and Indonesia. The plan was lift and shift — same product, same flows, localised language and currency.
+        </p>
+        <p class="intro-problem">
+          We knew that wouldn't hold. Three different regulatory environments, three different user bases, three different levels of digital and financial confidence. The question wasn't how to localise — it was which parts of the Singapore product were actually portable, and which were just Singapore.
+        </p>
+        <div class="intro-grid">
+          <div class="intro-col">
+            <span class="col-label">My Role</span>
+            <p>Lead designer across all three markets. I drove the framework decision — what could be shared, what had to vary — and ran cross-market alignment across design, product, legal, and engineering.</p>
           </div>
-          <div class="process-body">
-            <div class="process-body-inner">
-              Audited the existing Singapore Simple Invest product to identify what was market-agnostic vs. Singapore-specific. Worked with regional product and legal teams to map regulatory constraints per country — understanding where UI flexibility existed and where flows were mandated.
-            </div>
-          </div>
-        </div>
-
-        <div class="process-item">
-          <div class="process-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="process-header-left">
-              <span class="process-num" style="color:var(--purple)">02</span>
-              <span class="process-name">Localization & Iteration</span>
-            </div>
-            <span class="process-arrow">▾</span>
-          </div>
-          <div class="process-body">
-            <div class="process-body-inner">
-              Designed localized UI variants for each market — adapting language handling, layout density, risk disclosure flows, and product category presentation to local context. Maintained a shared component system to ensure design consistency while accommodating meaningful regional differences.
-            </div>
-          </div>
-        </div>
-
-        <div class="process-item">
-          <div class="process-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="process-header-left">
-              <span class="process-num" style="color:var(--purple)">03</span>
-              <span class="process-name">Cross-Regional Collaboration</span>
-            </div>
-            <span class="process-arrow">▾</span>
-          </div>
-          <div class="process-body">
-            <div class="process-body-inner">
-              Coordinated with product managers, engineers, and legal representatives across 4 countries simultaneously. Maintained design alignment across markets while navigating different release timelines, compliance reviews, and local stakeholder feedback cycles — ensuring the Singapore baseline remained coherent with each localized variant.
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- FEATURES -->
-      <div class="sec-head reveal">
-        <span class="sec-tag" style="color:var(--cyan);text-shadow:var(--glow-c)">KEY FEATURES</span>
-        <div class="sec-rule" style="background:linear-gradient(to right,rgba(0,212,255,.35),transparent)"></div>
-      </div>
-
-      <!-- Feature 01: Self-Serve Investment Capabilities -->
-      <div class="feature-section reveal">
-        <div class="feature-section-head">
-          <span class="feature-section-num">01</span>
-          <h3 class="feature-section-title">Self-Serve Investment Capabilities</h3>
-        </div>
-        <p class="feature-section-desc">One of the primary goals of expanding Simple Invest to regional markets was to reduce the dependency on call centers and in-branch support. In smaller markets like Singapore, users could easily visit a branch for help, but in larger countries like Indonesia, Thailand, and Malaysia, this was not practical. Throughout the journey, users are equipped with the tools to take actions independently.</p>
-        <img src="/images/si-self-serve.png" alt="Self-serve investment flow across regional markets">
-        <div class="callout-pair">
-          <div class="callout callout-problem">
-            <div class="callout-label">PROBLEM</div>
-            <p>Users in these larger markets often faced delays and complex issues when relying on call centers for wealth management support, which added strain to customer service teams.</p>
-          </div>
-          <div class="callout callout-solution">
-            <div class="callout-label">SOLUTION</div>
-            <p>In Indonesia and Thailand, we leveraged existing chatbot technology to guide users through common issues. In Malaysia, we focused on detailed FAQs and tailored error messages, empowering users to manage their investments independently.</p>
+          <div>
+            <span class="col-label">Project Info</span>
+            <ul class="meta-list">
+              <li><strong>Client</strong><span>UOB — TMRW app</span></li>
+              <li><strong>Year</strong><span>2024</span></li>
+              <li><strong>Markets</strong><span>Malaysia · Thailand · Indonesia</span></li>
+              <li><strong>Platform</strong><span>iOS &amp; Android</span></li>
+            </ul>
           </div>
         </div>
       </div>
 
-      <!-- Feature 02: Localized UI Experiences -->
-      <div class="feature-section reveal">
-        <div class="feature-section-head">
-          <span class="feature-section-num">02</span>
-          <h3 class="feature-section-title">Localized UI Experiences</h3>
-        </div>
-        <p class="feature-section-desc">As Simple Invest expanded across different markets, one of the biggest challenges was ensuring that the user interface could handle local currency variations and maintain clarity for users. Each region had unique financial practices and currency formats, requiring significant UI adjustments. The regional project required adaptations across different markets, impacting terminology, currency displays, regulatory features, and product lifecycles.</p>
-        <img src="/images/si-localized-ui.png" alt="Regional UI adaptations across markets">
-        <div class="callout-pair">
-          <div class="callout callout-problem">
-            <div class="callout-label">PROBLEM</div>
-            <p>In countries like Indonesia, where currency values can reach 14–16 digits, the original design led to overcrowded screens and a confusing experience. These large numbers made it difficult to maintain the clean, simple UI that worked in Singapore.</p>
-          </div>
-          <div class="callout callout-solution">
-            <div class="callout-label">SOLUTION</div>
-            <p>The UI was adapted with dynamic formatting to handle larger numbers and currency symbols. Abbreviations were used to reduce clutter (e.g., "B" for billions), and visual elements were optimized to ensure data was presented in a clear, readable way.</p>
-          </div>
+      <!-- ─── DECISIONS ─── -->
+      <div class="decisions-header reveal">
+        <span class="section-eyebrow">Key Design Decisions</span>
+        <p class="section-standfirst">Before designing anything for the new markets, we audited what Singapore had actually built. That audit is where the real work started.</p>
+      </div>
+
+      <!-- Decision 01 -->
+      <div class="decision-block reveal">
+        <span class="decision-num">Decision 01</span>
+        <h2 class="decision-title">Audited what was universal before assuming anything was</h2>
+        <p class="decision-tension">
+          Singapore users are unusually financially literate and digitally confident, even by regional standards. Simple Invest had been designed from that reference point — it just hadn't been named as a design assumption. Carrying it into three different markets without checking it was the core risk.
+        </p>
+        <p class="decision-body">
+          We ran an audit against one question: which parts of this product depend on the Singapore user? The navigation model, the visual hierarchy, the core interaction patterns — most of that was portable. What wasn't: the onboarding assumptions, the level of financial jargon in the copy, and the implicit expectation that users arrived already knowing what they wanted to do.
+        </p>
+        <p class="decision-body">
+          That distinction drove everything else. Market-agnostic components stayed shared. Journey-level flows varied wherever regulation or user context required it. One product, three implementations — but only after we'd been honest about what one product actually meant.
+        </p>
+        <div class="decision-visuals">
+          <img class="decision-img-single" src="/images/si-overview.png" alt="Simple Invest regional expansion — shared component foundation across markets">
         </div>
       </div>
 
-      <div class="neon-div reveal">
-        <div class="neon-node" style="background:var(--cyan);box-shadow:0 0 10px var(--cyan)"></div>
-        <div class="neon-line" style="background:linear-gradient(to right,rgba(0,212,255,.4),transparent)"></div>
-        <div class="neon-node" style="width:6px;height:6px;background:var(--yellow);box-shadow:0 0 8px var(--yellow)"></div>
-        <div class="neon-line" style="background:linear-gradient(to right,rgba(255,224,0,.2),transparent)"></div>
-      </div>
-
-      <!-- ADDITIONAL REQUIREMENTS -->
-      <div class="sec-head reveal">
-        <span class="sec-tag" style="color:var(--purple);text-shadow:0 0 24px rgba(176,108,255,.45)">ADDITIONAL REQUIREMENTS</span>
-        <div class="sec-rule" style="background:linear-gradient(to right,rgba(176,108,255,.35),transparent)"></div>
-      </div>
-
-      <div class="req-grid reveal">
-        <div class="req-card">
-          <h4>SCALABILITY & FLEXIBILITY</h4>
-          <p>The project required a scalable design system that could adapt to different markets without a simple "lift and shift" approach. This meant balancing local needs with the overall feature consistency of Simple Invest — ensuring each market version felt intentional, not just translated.</p>
-        </div>
-        <div class="req-card">
-          <h4>CROSS-REGIONAL COLLABORATION</h4>
-          <p>Engaging with stakeholders from different countries was essential to understanding cultural and operational nuances. This collaboration ensured that the project met the unique regulatory and cultural needs of each region while maintaining its core features and design integrity.</p>
+      <!-- Decision 02 -->
+      <div class="decision-block reveal">
+        <span class="decision-num">Decision 02</span>
+        <h2 class="decision-title">Indonesia broke two things — the screen and the seam</h2>
+        <p class="decision-tension">
+          Indonesia surfaced the most visible problems. Currency values run fourteen to sixteen digits. The UI had been built around short, clean Singapore dollar amounts. Drop a Rupiah balance into that layout and numbers overflow, alignment breaks, and the interface that felt simple in Singapore reads as cluttered in Jakarta. That was the first problem. The second was underneath it.
+        </p>
+        <p class="decision-body">
+          The formatting fix was dynamic number display — abbreviating large values, surfacing 'B' for billions, restructuring how currency rendered so the hierarchy stayed readable regardless of digit count.
+        </p>
+        <p class="decision-body">
+          The second problem was structural. Part of the Indonesia journey had to route through an existing banking module with no design control on our side. In testing, users hit that transition and thought the app had crashed — one moment they were in our flow, the next they were dropped into a completely different interface with no warning. We couldn't redesign the module. We built a dedicated transition screen instead: something that told users exactly what was happening and why the interface was about to change. That turned a crash moment into a deliberate handoff.
+        </p>
+        <div class="decision-visuals">
+          <img class="decision-img-single" src="/images/si-localized-ui.png" alt="Indonesia adaptations — dynamic number formatting and transition screen">
         </div>
       </div>
 
-      <!-- IMPACT -->
-      <div class="sec-head reveal">
-        <span class="sec-tag" style="color:var(--yellow);text-shadow:var(--glow-y)">IMPACT</span>
-        <div class="sec-rule"></div>
-      </div>
-
-      <div class="impact-grid reveal">
-        <div class="impact-col">
-          <h4>BUSINESS</h4>
-          <ul class="impact-list">
-            <li>Expanded UOB's wealth management reach to 3 new regional markets</li>
-            <li>Enabled self-serve customer acquisition without relationship manager overhead</li>
-            <li>Reduced time-to-market for regional launches through shared design system</li>
-          </ul>
-        </div>
-        <div class="impact-col">
-          <h4>DESIGN</h4>
-          <ul class="impact-list">
-            <li>Established scalable localization patterns reusable across future UOB products</li>
-            <li>Maintained visual and interaction consistency across all 4 country variants</li>
-            <li>Streamlined handoff with a single multi-market component library</li>
-          </ul>
-        </div>
-        <div class="impact-col">
-          <h4>TECHNOLOGY</h4>
-          <ul class="impact-list">
-            <li>Reduced engineering complexity through shared component architecture</li>
-            <li>Design specs aligned with existing UOB mobile engineering frameworks</li>
-            <li>Enabled parallel development across markets without design bottlenecks</li>
-          </ul>
+      <!-- Decision 03 -->
+      <div class="decision-block reveal">
+        <span class="decision-num">Decision 03</span>
+        <h2 class="decision-title">Thailand's drop-off wasn't about length</h2>
+        <p class="decision-tension">
+          Thailand had a regulatory suitability questionnaire we couldn't shorten — every question was mandated. It was longer than Singapore's. The natural assumption was that drop-off came from length.
+        </p>
+        <p class="decision-body">
+          When we looked at where drop-off actually clustered, it wasn't spread evenly across the form. It concentrated around specific questions that used financial regulatory terminology retail investors didn't recognise. The questionnaire wasn't too long. It was written for someone who already understood what the words meant.
+        </p>
+        <p class="decision-body">
+          We couldn't remove a single question. What we could do was rewrite how each was framed — plain language, legal meaning preserved. Drop-off improved without touching one regulatory requirement.
+        </p>
+        <div class="decision-visuals">
+          <img class="decision-img-single" src="/images/si-self-serve.png" alt="Thailand suitability questionnaire — reframed in plain language">
         </div>
       </div>
 
-      <!-- KEY TAKEAWAYS -->
-      <div class="sec-head reveal">
-        <span class="sec-tag" style="color:var(--cyan);text-shadow:var(--glow-c)">KEY TAKEAWAYS</span>
-        <div class="sec-rule" style="background:linear-gradient(to right,rgba(0,212,255,.35),transparent)"></div>
-      </div>
-
-      <div class="takeaways-grid reveal">
-        <div class="takeaway-col">
-          <h4>LOCALIZATION</h4>
-          <ul class="takeaway-list">
-            <li>Localisation is more than translation — layout, hierarchy, and metaphors differ by market</li>
-            <li>Early legal alignment saves significant late-stage redesign</li>
-            <li>Regional user research reveals unexpected behavioural differences</li>
-          </ul>
-        </div>
-        <div class="takeaway-col">
-          <h4>SCALABILITY</h4>
-          <ul class="takeaway-list">
-            <li>Invest in a shared component foundation before market-specific work begins</li>
-            <li>Atomic design thinking enables rapid variant generation with minimal drift</li>
-            <li>Documentation designed for handoff, not just internal reference</li>
-          </ul>
-        </div>
-        <div class="takeaway-col">
-          <h4>COLLABORATION</h4>
-          <ul class="takeaway-list">
-            <li>Multi-timezone stakeholder management requires proactive async communication</li>
-            <li>Trust is built through transparent decision logs, not just deliverables</li>
-            <li>Regional champions within each country team accelerate alignment</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- SUMMARY -->
-      <div class="sec-head reveal">
-        <span class="sec-tag" style="color:var(--yellow);text-shadow:var(--glow-y)">SUMMARY</span>
-        <div class="sec-rule"></div>
-      </div>
-
-      <div class="summary-block reveal">
-        <p>Led the UX and UI expansion of UOB's Simple Invest platform from Singapore to Malaysia, Thailand, and Indonesia — delivering localized self-serve investment experiences tailored to each market's regulatory environment and user expectations. Designed a scalable multi-market system that reduced engineering overhead, maintained brand consistency, and gave UOB a repeatable playbook for future regional product launches.</p>
-      </div>
-
-      <!-- CONTRIBUTIONS -->
-      <div class="sec-head reveal">
-        <span class="sec-tag" style="color:var(--yellow);text-shadow:var(--glow-y)">KEY CONTRIBUTIONS</span>
-        <div class="sec-rule"></div>
-      </div>
-
-      <div class="contrib-grid reveal">
-        <div class="contrib-chip">
-          <div class="contrib-dot"></div>
-          <div class="contrib-label">Lead UX/UI Designer
-            <div class="contrib-sub">End-to-end design across all 4 regional markets</div>
-          </div>
-        </div>
-        <div class="contrib-chip">
-          <div class="contrib-dot"></div>
-          <div class="contrib-label">Stakeholder Management
-            <div class="contrib-sub">Cross-regional product, legal, and engineering alignment</div>
-          </div>
-        </div>
+      <!-- ─── OUTCOME ─── -->
+      <div class="outcome-section reveal">
+        <span class="section-eyebrow">Outcome</span>
+        <p class="outcome-lead">
+          Simple Invest launched across all three markets with a shared component foundation. The visual language stayed consistent. The flows varied where they had to.
+        </p>
+        <p class="outcome-note">
+          Each market surfaced a different problem, but the pattern underneath was the same: we had built Simple Invest around a Singapore user — financially literate, digitally confident, already familiar with the product category. Those assumptions were invisible while we were inside Singapore. The moment we moved, they surfaced. Indonesia showed it in scale and formatting. Thailand showed it in language. We found that out market by market, when it would have been faster to find it at the start.
+        </p>
       </div>
 
     </div>
@@ -867,15 +156,15 @@
   <section>
     <div class="case-footer">
       <div class="container">
-        <p>Explore more work</p>
-        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-          <a href="converse-experience.html" class="btn btn-primary">← Converse Experience</a>
-          <a href="index.html" class="btn btn-ghost">All Work</a>
+        <p>Next case study</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+          <a href="genesis.html" class="btn btn-primary">Genesis — DBS →</a>
+          <a href="index.html" class="btn btn-ghost">← All Work</a>
         </div>
-        <div style="margin-top:20px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap">
-          <a href="mailto:oshki2001@gmail.com" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">oshki2001@gmail.com</a>
-          <a href="https://www.linkedin.com/in/golansa" target="_blank" rel="noopener" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">LinkedIn ↗</a>
-          <a href="https://www.instagram.com/golansarig" target="_blank" rel="noopener" style="color:rgba(255,255,255,.45);font-size:12px;text-decoration:none;letter-spacing:.05em">Instagram ↗</a>
+        <div class="footer-links">
+          <a href="mailto:golansarig@gmail.com">golansarig@gmail.com</a>
+          <a href="https://www.linkedin.com/in/golansa" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href="https://www.instagram.com/golansarig" target="_blank" rel="noopener">Instagram ↗</a>
         </div>
       </div>
     </div>
@@ -884,7 +173,7 @@
   <script>
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.06 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
 
