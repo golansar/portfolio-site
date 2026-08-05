@@ -1,0 +1,144 @@
+/* ===========================================================================
+   Golan Sarig — portfolio v2. Global system: tokens, base, nav, footer,
+   home sections, reveal motion base. Case pages also load case-study.css.
+   =========================================================================== */
+
+:root{
+  --paper:#f5f5f3; --surf:#ecebe8; --card:#fff;
+  --ink:#14151c; --muted:#6a6e75; --line:rgba(20,21,28,.12);
+  --acc:#3d5afe; --acc-ink:#2b3fd4;
+  --disp:'Bricolage Grotesque',sans-serif;
+  --body:'General Sans','Helvetica Neue',Arial,sans-serif;
+  --wrap:920px; --pad:32px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--body);line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--acc);color:#fff}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+
+/* ---- reveal motion base (additive; content visible by default) ---- */
+[data-reveal]{opacity:1;transform:none}
+.js [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .7s var(--ease)}
+.js [data-reveal].is-in{opacity:1;transform:none}
+.js [data-reveal].no-anim{transition:none}
+@media (prefers-reduced-motion:reduce){
+  .js [data-reveal]{opacity:1;transform:none;transition:none}
+}
+
+/* ---- nav ---- */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:26px 0}
+.brand{font-family:var(--disp);font-weight:600;font-size:16px;letter-spacing:-.01em}
+.brand .d{color:var(--acc)}
+.nav-links{display:flex;gap:26px;font-weight:500;font-size:14px}
+.nav-links a{color:var(--muted)}
+.nav-links a:hover{color:var(--ink)}
+.nav .back{font-weight:500;font-size:14px;color:var(--muted)}
+.nav .back:hover{color:var(--ink)}
+
+/* ---- buttons ---- */
+.btn{display:inline-block;font-family:var(--body);font-weight:600;font-size:15px;
+  padding:13px 22px;border-radius:10px;background:var(--acc);color:#fff;
+  border:1px solid var(--acc);transition:background .18s,transform .18s}
+.btn:hover{background:var(--acc-ink);border-color:var(--acc-ink)}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink);background:transparent}
+
+/* ---- kicker (section label) ---- */
+.kick{font-family:var(--body);font-weight:600;font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted)}
+
+/* ===== HOME: hero ===== */
+.hero{padding:96px 0 88px;border-bottom:1px solid var(--line)}
+.avail{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:12.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--acc-ink);margin-bottom:28px}
+.avail .dot{width:8px;height:8px;border-radius:50%;background:var(--acc)}
+.hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(56px,11vw,116px);
+  line-height:.9;letter-spacing:-.04em;margin-bottom:30px}
+.hero h1 .d{color:var(--acc)}
+.lede{font-size:clamp(18px,2.3vw,23px);line-height:1.5;max-width:32ch;margin-bottom:40px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+
+/* ===== HOME: section chrome ===== */
+.sec{padding:72px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:36px}
+.sec-head .count{font-weight:500;font-size:13px;color:var(--muted)}
+
+/* ===== HOME: selected work list ===== */
+.work a.row{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;
+  padding:26px 0;border-top:1px solid var(--line);color:inherit;
+  transition:padding-left .35s var(--ease)}
+.work a.row:hover{padding-left:14px}
+.work .title{font-family:var(--disp);font-weight:600;font-size:clamp(26px,4vw,40px);
+  letter-spacing:-.03em;line-height:1;margin-bottom:8px;transition:color .2s}
+.work a.row:hover .title{color:var(--acc-ink)}
+.work .rmeta{font-size:13.5px;color:var(--muted)}
+.work .rmeta .sep{opacity:.5;margin:0 8px}
+.work .arrow{font-family:var(--disp);font-size:26px;color:var(--muted);
+  transition:transform .35s var(--ease),color .2s}
+.work a.row:hover .arrow{transform:translateX(6px);color:var(--acc)}
+
+/* ---- other work (secondary list) ---- */
+.other a.orow{display:flex;justify-content:space-between;gap:16px;padding:16px 0;
+  border-top:1px solid var(--line);color:inherit;transition:padding-left .3s var(--ease)}
+.other a.orow:hover{padding-left:10px;color:var(--acc-ink)}
+.other .ot{font-weight:600;font-size:16px}
+.other .om{font-size:13px;color:var(--muted)}
+
+/* ===== HOME: about ===== */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.about .big{font-family:var(--disp);font-weight:500;font-size:clamp(22px,3vw,30px);
+  line-height:1.25;letter-spacing:-.02em}
+.about p{font-size:15.5px;color:var(--muted);margin-bottom:14px}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{font-size:13px;font-weight:500;padding:6px 13px;border:1px solid var(--line);
+  border-radius:100px;color:var(--muted)}
+
+/* ---- experience rows ---- */
+.exp .xrow{display:grid;grid-template-columns:1fr auto;gap:16px;padding:16px 0;
+  border-top:1px solid var(--line)}
+.exp .xr-role{font-weight:600;font-size:15px}
+.exp .xr-co{font-size:13.5px;color:var(--muted)}
+.exp .xr-yr{font-size:13px;color:var(--muted);white-space:nowrap}
+
+/* ===== footer ===== */
+.foot{padding:88px 0 100px}
+.foot .big{font-family:var(--disp);font-weight:700;font-size:clamp(38px,8vw,80px);
+  letter-spacing:-.035em;line-height:.95;margin-bottom:12px}
+.foot .big .d{color:var(--acc)}
+.foot .email{font-family:var(--disp);font-weight:700;font-size:clamp(20px,3vw,28px);
+  color:var(--acc);display:inline-block;margin-top:8px}
+.foot .sub{display:flex;gap:20px;font-weight:500;font-size:14px;color:var(--muted);margin-top:26px;flex-wrap:wrap}
+.foot .sub a{color:var(--muted)}
+.foot .sub a:hover{color:var(--ink)}
+.foot .sub .rt{margin-left:auto}
+
+/* ===== lightbox ===== */
+.zoomable{cursor:zoom-in}
+body.lb-lock{overflow:hidden}
+.lightbox{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
+  padding:4vmin;background:rgba(20,21,28,.9);opacity:0;visibility:hidden;
+  transition:opacity .25s ease,visibility .25s;cursor:zoom-out}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox img{max-width:100%;max-height:92vh;border-radius:10px;box-shadow:0 40px 90px -20px rgba(0,0,0,.6)}
+.lightbox-close{position:absolute;top:20px;right:24px;width:40px;height:40px;border:none;
+  border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:22px;line-height:1;cursor:pointer}
+.lightbox-close:hover{background:rgba(255,255,255,.24)}
+@media (prefers-reduced-motion:reduce){.lightbox{transition:none}}
+
+/* ===== responsive ===== */
+@media (max-width:640px){
+  :root{--pad:24px}
+  .about{grid-template-columns:1fr;gap:24px}
+  .hero{padding:72px 0 64px}
+}
