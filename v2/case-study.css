@@ -85,6 +85,7 @@
 .fig{margin-top:22px}
 .fig .frame{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surf)}
 .fig .frame img{width:100%}
+.fig.phone{max-width:400px;margin-left:auto;margin-right:auto}
 .fig .frame video{display:block;width:auto;max-width:100%;max-height:600px;margin:0 auto;background:#000}
 .fig figcaption{font-size:13px;color:var(--muted);margin-top:10px;max-width:60ch}
 

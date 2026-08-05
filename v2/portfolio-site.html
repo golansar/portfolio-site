@@ -10,15 +10,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/v2/styles.css?v=3">
-  <link rel="stylesheet" href="/v2/case-study.css?v=3">
+  <link rel="stylesheet" href="/v2/styles.css?v=4">
+  <link rel="stylesheet" href="/v2/case-study.css?v=4">
   <style>
     :root{ --mono:'JetBrains Mono',ui-monospace,monospace }
 
     /* stats */
-    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:32px 24px;margin:52px 0 4px}
-    .stats .num{font-family:var(--disp);font-weight:700;font-size:clamp(34px,5vw,54px);letter-spacing:-.03em;line-height:1}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:38px 24px;margin:52px 0 4px}
+    .stats .num{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.4vw,50px);letter-spacing:-.03em;line-height:1;white-space:nowrap}
     .stats .lab{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+    @media(max-width:520px){.stats{grid-template-columns:repeat(2,1fr)}}
 
     /* build timeline (a real sequence) */
     .timeline{list-style:none;margin-top:36px;display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative}
@@ -128,6 +129,6 @@
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-<script src="/v2/motion.js?v=3"></script>
+<script src="/v2/motion.js?v=4"></script>
 </body>
 </html>
