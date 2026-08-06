@@ -41,7 +41,7 @@
   <section class="blk" data-reveal>
     <div class="kick">About</div>
     <div class="two">
-      <div><h3>The project</h3><p class="bd">A platform-level redesign across seven two-week sprints. The goal was not to make every product behave the same, but to create a system that feels coherent even when product rules differ, with a stronger overview structure, a scalable action hierarchy, and shared patterns that could support future growth.</p></div>
+      <div><h3>The project</h3><p class="bd">A platform-level redesign across seven two-week sprints. The goal was not to make every product behave the same, but to create a system that feels coherent even when product rules differ, with a stronger overview structure, a scalable action hierarchy, and shared patterns that could support future growth. I led on a two-person design team, owning the platform architecture, how navigation, shared structure, and actions worked, while a co-designer drove the detailed screen design.</p></div>
       <div><h3>The challenge</h3><p class="bd">An internal banking platform built for Unit Trust transactions needed to expand, supporting bonds, structured deposits, structured notes, and insurance. The problem wasn't just adding new product journeys. The platform's core logic, screen structure, and actions were all shaped around how Unit Trusts were transacted. That model didn't scale.</p></div>
     </div>
   </section>
@@ -81,7 +81,7 @@
         <figure class="fig"><div class="frame"><img src="/images/SPV_NAVnew.png" alt="Final overview navigation"></div><figcaption>Final overview navigation, transaction-family grouping with lifecycle-state filtering.</figcaption></figure>
       </div>
       <div class="feat"><div class="n">02</div><h3>Creating a shared structure across products</h3>
-        <p class="bd">The redesign did not force all products into one generic table, nor split the experience into separate silos. Instead it introduced a common structural pattern across product sections, while allowing product-specific fields where needed. This mattered because some products supported bulk actions while others did not. The interface needed to stay consistent without pretending all products followed the same logic.</p>
+        <p class="bd">The redesign did not force all products into one generic table, nor split the experience into separate silos. Instead it introduced a common structural pattern across product sections, while allowing product-specific fields where needed. This mattered because some products supported bulk actions while others did not. The interface needed to stay consistent without pretending all products followed the same logic. Selection followed one rule: a single record shows no checkbox at all, and for non-bulk products, choosing one record greys out the rest, so the shared layout never implies a multi-select the product cannot support.</p>
         <figure class="fig"><div class="frame"><img src="/images/SPV_grouping.png" alt="Product grouping structure"></div><figcaption>Shared layout across product types with product-specific variation.</figcaption></figure>
       </div>
       <div class="feat"><div class="n">03</div><h3>Building a scalable action system</h3>
@@ -96,7 +96,7 @@
     <div>
       <div class="say">Consistency does not mean forcing every product into the same flow. It means a system that stays coherent while letting product rules differ.</div>
       <p class="bd">The real value was the audit, not the screens. Accepting the lift-and-shift brief and designing straight away would have shipped five broken journeys on time. Pushing for a focused audit first, on the journeys most at risk, is what made the rest of the work matter.</p>
-      <p class="bd">Prototype testing then caught something the brief never mentioned: RMs read the submit button as the final confirmation. It wasn't. Submit sent the transaction into a review queue, not to completion. Adding an explicit review state before submission closed a gap that was invisible on paper.</p>
+      <p class="bd">The submit action itself had to move. In the Unit Trust world, one submit sent an entire advisory report, every product in the order at once. That could not hold when products transact individually. Submit moved down to the product level, where each product lives separately within the order, so an RM commits one product without committing the rest.</p>
       <p class="bd">The platform moved from a Unit Trust-shaped workflow to a structure that can take on new products without a redesign each time. Scaling it was never only about adding flows, it was about the structure underneath that helps users find work, read status, and act with confidence.</p>
       <ul class="contrib">
         <li><b>Project framing &amp; ideation</b><span>Led the briefing stage and early ideation for the redesign direction</span></li>
