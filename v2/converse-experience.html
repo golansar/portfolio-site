@@ -42,28 +42,23 @@
     <div class="kick">About</div>
     <div class="two">
       <div><h3>The challenge</h3><p class="bd">Refinitiv ran four major APAC conferences a year, thousands of finance professionals in the room. But an offline event is a black box: leads captured by hand, sentiment invisible, engagement entirely passive. Once everyone went home, there was almost nothing to measure.</p></div>
-      <div><h3>The project</h3><p class="bd">A platform to read audience sentiment in real time and act on it, wiring the room to the operations running it. The aim was to turn passive attendance into something measurable, and answerable, while the event was still happening.</p></div>
+      <div><h3>The project</h3><p class="bd">A platform to read audience sentiment in real time and act on it, wiring the room to the operations running it. I ran stakeholder interviews and on-site research, designed both the attendee app and the operations dashboard, and gave hands-on support during live deployments across APAC.</p></div>
     </div>
   </section>
 
   <section class="blk" data-reveal>
-    <div class="kick">Process</div>
+    <div class="kick">Design decisions</div>
     <div>
-      <div class="step"><div class="n">01</div><h3>Discovery &amp; research</h3><p class="bd">Conducted stakeholder interviews and site observation to identify pain points, including manual check-ins, absent feedback loops, and disconnected operations. Findings were synthesised into opportunity areas and design principles.</p></div>
-      <div class="step"><div class="n">02</div><h3>Concept &amp; wireframing</h3><p class="bd">Explored interaction models for engagement (polling, Q&amp;A, sentiment). Wireframes were tested iteratively with event stakeholders, balancing attendee ease-of-use with operational utility.</p></div>
-      <div class="step"><div class="n">03</div><h3>Design &amp; iteration</h3><p class="bd">Developed high-fidelity UI for the attendee app and operations dashboard, including QR check-in, real-time sentiment views, and personalized feeds, across multiple feedback rounds with conference and Refinitiv teams.</p></div>
-      <div class="step"><div class="n">04</div><h3>Onsite deployment &amp; support</h3><p class="bd">Provided hands-on support during live APAC conferences, serving as onsite advisor for real-time decisions, troubleshooting, and post-event learnings.</p>
-        <figure class="fig"><div class="frame"><img src="/images/converse-architecture.jpeg" alt="Converse architecture diagram"></div><figcaption>Front-end experience to backstage service operation.</figcaption></figure>
+      <div class="feat"><div class="n">01</div><h3>Two interfaces that had to feel like one system</h3>
+        <p class="bd">The attendee app and the operations dashboard had opposite jobs. Attendees needed a low-friction surface, join a poll, ask a question, react to a session. Event managers needed the opposite, density, trends, a live read across many sessions at once. Designing them separately was the risk: if they didn't share a data model, the operations view would show a different reality from what attendees were doing. We treated them as two views of one system from the start, same data layer, different density, so every attendee action mapped to something operations could surface in real time.</p>
+        <figure class="fig"><div class="frame"><img src="/images/converse-architecture.jpeg" alt="Converse architecture diagram"></div><figcaption>Front-end experience wired to the backstage operation, one data layer.</figcaption></figure>
       </div>
-    </div>
-  </section>
-
-  <section class="blk" data-reveal>
-    <div class="kick">Key features</div>
-    <div>
-      <div class="feat"><div class="n">01</div><h3>Real-time engagement</h3><p class="bd">Live polling, Q&amp;A, and sentiment capture, giving organizers instant visibility into audience response and structured lead data in place of manual collection.</p></div>
-      <div class="feat"><div class="n">02</div><h3>Seamless online–offline integration</h3><p class="bd">Bridging physical event touchpoints with digital capture, a unified experience from arrival to session end.</p></div>
-      <div class="feat"><div class="n">03</div><h3>Smart conference check-in</h3><p class="bd">QR-based iPad scanning for instant, frictionless attendee check-in, cutting queue time and operational load.</p></div>
+      <div class="feat"><div class="n">02</div><h3>Check-in that works in a crowded lobby</h3>
+        <p class="bd">Check-in was sign-in sheets and badge printing, slow at scale, lossy on lead data, and it bottlenecked at the worst moment, arrival, when patience is lowest. We replaced it with QR-based iPad scanning: register in advance, scan at the door, data captured automatically. The constraint was that it had to be self-explanatory for staff who weren't trained on it and attendees who weren't expecting it, so we ran it through on-site research and iterated before the first conference, not after.</p>
+      </div>
+      <div class="feat"><div class="n">03</div><h3>Deployed onsite, iterated in real time</h3>
+        <p class="bd">Most projects have a gap between design and deployment, feedback arriving weeks later. A live conference has no such gap: if something isn't working, thousands of people are hitting it now. Being onsite changed what the role meant. Interactions that read fine on a phone didn't read in a dim hall; labels clear in prototype turned ambiguous on the floor. I captured decisions and reasoning as they happened and fed them back before the next event, so by the final conference the first event's problems were resolved, not accumulated.</p>
+      </div>
     </div>
   </section>
 

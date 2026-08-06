@@ -43,37 +43,23 @@
     <div class="kick">About</div>
     <div class="two">
       <div><h3>The challenge</h3><p class="bd">A product built for Singapore assumes Singapore: its currency, its regulations, its support model. Expanding Simple Invest to Malaysia, Thailand, and Indonesia meant none of those held. The risk was either rebuilding the product four times, or shipping a Singapore product that quietly broke in three markets.</p></div>
-      <div><h3>The project</h3><p class="bd">Bring UOB's self-serve investing to three new Southeast Asian markets on one system. Adapt what each market's rules, currency, and habits demanded, while keeping the core experience, and the codebase, shared.</p></div>
+      <div><h3>The project</h3><p class="bd">Bring UOB's self-serve investing to three new Southeast Asian markets on one system. I led design across all three, driving the framework decision, what could be shared and what had to vary, and running alignment across product, legal, and engineering.</p></div>
     </div>
   </section>
 
   <section class="blk" data-reveal>
-    <div class="kick">Process</div>
+    <div class="kick">Design decisions</div>
     <div>
-      <div class="step"><div class="n">01</div><h3>Exploration &amp; discovery</h3><p class="bd">Audited the Singapore product to separate market-agnostic elements from Singapore-specific ones, and mapped regulatory constraints per country with regional teams.</p></div>
-      <div class="step"><div class="n">02</div><h3>Localization &amp; iteration</h3><p class="bd">Designed localized variants for each market: language handling, layout density, risk-disclosure flows, and product presentation, all on a shared component base.</p></div>
-      <div class="step"><div class="n">03</div><h3>Cross-regional collaboration</h3><p class="bd">Coordinated across four countries with product, engineering, and legal, navigating different release timelines and compliance reviews while holding the Singapore baseline.</p></div>
-    </div>
-  </section>
-
-  <section class="blk" data-reveal>
-    <div class="kick">Key features</div>
-    <div>
-      <div class="feat">
-        <h3>Self-serve investment capabilities</h3>
-        <div class="ps">
-          <div><div class="lab">Problem</div><p>Indonesia, Thailand, and Malaysia lacked practical in-branch support. Call-center reliance created delays and strained service.</p></div>
-          <div><div class="lab sol">Solution</div><p>Indonesia and Thailand used chatbot guidance. Malaysia leaned on detailed FAQs and tailored error messages, so customers could manage investments independently.</p></div>
-        </div>
-        <figure class="fig"><div class="frame"><img src="/images/si-self-serve.png" alt="Self-serve investment flow across regional markets"></div><figcaption>Self-serve investment flow across regional markets.</figcaption></figure>
+      <p class="bd" style="margin-bottom:8px">The plan was lift and shift: same product, localised language and currency. It wouldn't hold. Before designing for the new markets, we audited what Singapore had actually built. That audit is where the work started.</p>
+      <div class="feat"><div class="n">01</div><h3>Audited what was universal before assuming anything</h3>
+        <p class="bd">Simple Invest had been designed for the Singapore user, financially literate, digitally confident, already knowing what they wanted, but that had never been named as an assumption. We ran the audit against one question: which parts of this product depend on that user? Navigation, visual hierarchy, and the core patterns were portable. The onboarding assumptions, the financial jargon in the copy, and the expectation that people arrived knowing what to do were not. Market-agnostic components stayed shared; journey-level flows varied where regulation or context required. One product, three implementations, but only after being honest about what one product meant.</p>
       </div>
-      <div class="feat">
-        <h3>Localized UI experiences</h3>
-        <div class="ps">
-          <div><div class="lab">Problem</div><p>Indonesian currency values reach 14 to 16 digits, overcrowding screens built around clean Singapore-dollar amounts.</p></div>
-          <div><div class="lab sol">Solution</div><p>Dynamic number formatting abbreviated large values, surfacing B for billions, so the hierarchy stayed readable at any digit count.</p></div>
-        </div>
-        <figure class="fig"><div class="frame"><img src="/images/si-localized-ui.png" alt="Regional UI adaptations across markets"></div><figcaption>Regional UI adaptations across markets.</figcaption></figure>
+      <div class="feat"><div class="n">02</div><h3>Indonesia broke the screen and the seam</h3>
+        <p class="bd">The visible problem came first: Rupiah values run fourteen to sixteen digits, and the UI was built around short Singapore-dollar amounts. Numbers overflowed and alignment broke. The fix was dynamic formatting, abbreviating large values and surfacing B for billions so the hierarchy held at any digit count. The second problem was underneath it. Part of the Indonesia journey routed through an existing bank module we had no design control over, and in testing users hit that hand-off and thought the app had crashed, dropped into a different interface with no warning. We couldn't redesign the module, so we designed the seam, a dedicated transition that prepared users for the change instead of letting it ambush them.</p>
+        <figure class="fig"><div class="frame"><img src="/images/si-localized-ui.png" alt="Regional UI adaptations across markets"></div><figcaption>Dynamic currency formatting, keeping hierarchy readable at any digit count.</figcaption></figure>
+      </div>
+      <div class="feat"><div class="n">03</div><h3>Thailand's drop-off wasn't length, it was language</h3>
+        <p class="bd">Thailand had a regulatory suitability questionnaire we couldn't shorten, every question mandated, and longer than Singapore's. The easy assumption was that length caused the drop-off. But it wasn't spread across the form, it concentrated on questions using regulatory terminology retail investors didn't recognise. The questionnaire wasn't too long; it was written for someone who already knew what the words meant. We couldn't remove a question, so we rewrote how each was framed, plain language with the legal meaning preserved. Drop-off improved without touching a single requirement.</p>
       </div>
     </div>
   </section>
@@ -81,9 +67,9 @@
   <section class="blk" data-reveal>
     <div class="kick">Outcome</div>
     <div>
-      <div class="say">Localization is not translation. It is layout, hierarchy, and support model, decided market by market on a shared base.</div>
-      <p class="bd">Simple Invest reached Malaysia, Thailand, and Indonesia on one component system rather than four codebases. Shared foundations let the markets develop in parallel without bottlenecking each other, held the experience consistent across four variants, and left reusable localization patterns behind.</p>
-      <p class="bd">The clearest lesson was to align legal and regulatory constraints early. They reshape layout, not just copy, so finding them late means redesigning, not re-labelling.</p>
+      <div class="say">The assumptions were invisible while we were inside Singapore. The moment we moved, they surfaced.</div>
+      <p class="bd">Simple Invest launched across all three markets on a shared component foundation. The visual language stayed consistent; the flows varied where they had to. Indonesia showed the assumptions in scale and formatting, Thailand in language, but the pattern underneath was the same: a product built around one kind of user, adapted only once we were honest about it.</p>
+      <p class="bd">What the next market inherits is not just the components, but the habit of auditing assumptions before porting, and aligning legal early, because regulation reshapes layout, not just copy.</p>
       <ul class="contrib">
         <li><b>Lead UIUX Designer</b><span>End-to-end design across four markets</span></li>
         <li><b>Stakeholder management</b><span>Cross-regional alignment across product, engineering, and legal</span></li>
