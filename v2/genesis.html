@@ -82,28 +82,52 @@
   <section class="blk" data-reveal>
     <div class="kick">About</div>
     <div class="two">
-      <div><h3>The client</h3><p class="bd">DBS Bank, the largest financial institution in Southeast Asia, was undergoing a significant digital transformation. Internally, siloed HR data and project tracking across 20+ departments created friction, inefficiency, and a lack of visibility for leadership.</p></div>
-      <div><h3>The project</h3><p class="bd">Genesis is an internal platform integrating HR workforce data with project management across DBS's technology division. The goal was to surface the right information to the right people, reduce operational overhead, and create a single source of truth for resource planning and delivery tracking.</p></div>
+      <div><h3>The challenge</h3><p class="bd">DBS's technology division ran on two separate records. HR owned the people, headcount, roles, skills, and bench capacity. Delivery owned the work, project portfolios, milestones, and team allocation. Neither could see the other. Answering a basic leadership question, who is free to staff this, meant cross-referencing the two by hand across more than 20 departments.</p></div>
+      <div><h3>The project</h3><p class="bd">Genesis joins those two records into one source of truth. Not a new HR tool and not a new project tracker, but the layer between them, built so leadership can see people and work in the same place and resource on current data instead of a stale spreadsheet.</p></div>
     </div>
   </section>
 
   <section class="blk" data-reveal>
-    <div class="kick">Process</div>
+    <div class="kick">The problem</div>
     <div>
-      <div class="step"><div class="n">01</div><h3>Discovery &amp; exploration</h3><p class="bd">Conducted stakeholder interviews and workflow mapping across DBS technology and HR teams. Identified pain points in how workforce data was tracked, how project portfolios were reported, and how leadership made resourcing decisions, then synthesised insights into key opportunity areas.</p></div>
-      <div class="step"><div class="n">02</div><h3>Design integration &amp; iteration</h3><p class="bd">Designed integrated views connecting HR data (headcount, roles, bench capacity) with project delivery data (portfolio status, milestones, team allocation). Iterated with product owners and department leads, balancing depth of information with ease of scanning for busy stakeholders.</p></div>
-      <div class="step"><div class="n">03</div><h3>Collaboration &amp; alignment</h3><p class="bd">Led design reviews and alignment across 20+ stakeholder groups over a 23-week engagement. Created comprehensive documentation on DBS's Canopy Design System to ensure consistency and scalable handoff to engineering, while managing competing priorities across senior leadership and operational teams.</p>
-        <figure class="fig"><div class="frame"><img src="/images/genesis-process.png" alt="Genesis process and collaboration"></div><figcaption>Design integration and cross-team collaboration across the 23-week engagement.</figcaption></figure>
+      <p class="bd" style="margin-bottom:8px">The data already existed. What was missing was a single place to see it together, and a structure more than 20 departments could agree on. Three gaps made that concrete.</p>
+      <div class="step"><div class="n">01</div><h3>No single view of the workforce</h3><p class="bd">Headcount, roles, skills, and bench capacity lived across departmental spreadsheets. There was no reliable read on who was available, or where the gaps were.</p></div>
+      <div class="step"><div class="n">02</div><h3>No consolidated view of delivery</h3><p class="bd">Project status, milestones, and allocation were tracked separately by each department. Leadership saw fragments, never the full portfolio at once.</p></div>
+      <div class="step"><div class="n">03</div><h3>No line of sight on delivery health</h3><p class="bd">With people and work in different systems, there was no way to tell at a glance whether delivery was on track, or where resourcing was the risk.</p></div>
+    </div>
+  </section>
+
+  <section class="blk" data-reveal>
+    <div class="kick">Approach</div>
+    <div>
+      <div class="say">Build the join between people and work, not a third system to maintain.</div>
+      <p class="bd">Across a 23-week engagement, discovery started with stakeholder interviews and workflow mapping over the technology and HR teams, tracing how workforce data was tracked, how portfolios were reported, and how leadership actually made resourcing calls.</p>
+      <p class="bd">The consistent finding was that no one needed more data. They needed the two records they already had, side by side, in a structure every department could read the same way.</p>
+      <p class="bd">Not every idea earned its place. A timeline view for portfolio key dates read well as a concept, but it carried too much build cost for the delivery pipeline, so it was dropped in favour of a simpler structure. On a platform this size, judging what not to ship mattered as much as the screens that made it.</p>
+      <figure class="fig"><div class="frame"><img src="/images/genesis-process.png" alt="Genesis workflow mapping and cross-team alignment"></div><figcaption>Workflow mapping and cross-team alignment across the 23-week engagement.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="blk" data-reveal>
+    <div class="kick">What we built</div>
+    <div>
+      <div class="feat"><div class="n">01</div><h3>Workforce, who we have</h3><p class="bd">A unified view of headcount, roles, skills, and bench availability. Capacity and resourcing gaps became visible in one place instead of pieced together by hand each time the question came up.</p></div>
+      <div class="feat"><div class="n">02</div><h3>Portfolio, what they're on</h3><p class="bd">A consolidated portfolio view with status, milestones, and team allocation, replacing fragmented spreadsheets and manual reporting with one live list.</p></div>
+      <div class="feat"><div class="n">03</div><h3>Dashboard, is delivery healthy</h3><p class="bd">An executive dashboard surfacing delivery health, resourcing signals, and operational KPIs, structured for a quick scan rather than a deep read.</p></div>
+    </div>
+  </section>
+
+  <section class="blk" data-reveal>
+    <div class="kick">Design decisions</div>
+    <div>
+      <div class="feat"><div class="n">01</div><h3>Navigation was the anchor</h3>
+        <p class="bd">Genesis started with three stacked navigation bars. On a platform this layered, that meant users lost their place, especially inside the multi-level portfolio structure. Navigation was not a detail here, it set the experience of every screen, so it was the first thing to fix.</p>
+        <p class="bd">After testing several models, the platform settled on a cleaner global navigation plus a separate in-portfolio left navigation. The split did two jobs: it kept app-level and portfolio-level movement from being mistaken for each other, and it gave the portfolio hierarchy a place to live, so people always knew where they were and where a step would take them.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="blk" data-reveal>
-    <div class="kick">Key features</div>
-    <div>
-      <div class="feat"><div class="n">01</div><h3>Workforce data</h3><p class="bd">A unified view of headcount, roles, skills, and bench availability, giving leadership real-time visibility into team capacity and resourcing gaps.</p></div>
-      <div class="feat"><div class="n">02</div><h3>Portfolio listing</h3><p class="bd">A consolidated project portfolio view with status tracking, milestones, and team allocation, replacing fragmented spreadsheets and manual reporting.</p></div>
-      <div class="feat"><div class="n">03</div><h3>Build dashboard</h3><p class="bd">An executive-level dashboard surfacing delivery health, resourcing signals, and operational KPIs, designed for quick scanning and informed decisions.</p></div>
+      <div class="feat"><div class="n">02</div><h3>Designing the dense data, not decorating it</h3>
+        <p class="bd">The dashboard and financials views carried the heaviest data on the platform, the kind of screens that fail quietly by showing everything and communicating nothing. The test they were held to was simple: a visualisation works when people ask better questions about the data, not about the chart.</p>
+        <p class="bd">That meant choosing forms deliberately, area charts for trends over time, columns for comparison, each kept to a readable number of series, and structuring the financial summary around how leaders actually read it, scenario against scenario, across monthly, quarterly, and yearly views.</p>
+      </div>
     </div>
   </section>
 
@@ -111,8 +135,9 @@
     <div class="kick">Design system</div>
     <div>
       <span class="ds-badge">Built on Canopy</span>
-      <div class="say">Designed entirely within DBS's Canopy Design System.</div>
-      <p class="bd">This ensured full visual and interaction consistency with the broader DBS product ecosystem, and enabled efficient developer handoff across a large, distributed engineering team.</p>
+      <div class="say">Designed within Canopy, and helping shape it for internal use.</div>
+      <p class="bd">Canopy was DBS's design system, but it had been built for customer-facing products. Genesis was one of the first internal platforms to adopt it, so part of the work was defining what the system needed to become for dense, data-heavy internal tools.</p>
+      <p class="bd">That happened in daily sessions with the design-system team: agreeing patterns, feeding CSS back as design tokens, and flagging where Canopy did not yet cover an internal need so new components could be added deliberately rather than improvised. The work handed off cleanly to a large, distributed engineering team, and left the system a little more ready for the internal apps that followed.</p>
       <figure class="fig"><div class="frame"><img src="/images/genesis-screens.png" alt="Genesis screens built on the Canopy Design System"></div><figcaption>Genesis screens, built on the Canopy Design System.</figcaption></figure>
     </div>
   </section>
@@ -120,8 +145,8 @@
   <section class="blk" data-reveal>
     <div class="kick">Journals</div>
     <div>
-      <div class="say">Weekly design journals, prepared for client stakeholders across the 23-week engagement.</div>
-      <p class="bd">A running record of progress, visual updates, and the thinking behind each week's decisions.</p>
+      <div class="say">A design journal, every week, for 23 weeks.</div>
+      <p class="bd">Aligning more than 20 departments was the hard part of Genesis, and it was earned in writing. Each week I prepared a journal for stakeholders: progress, visual updates, and the reasoning behind that week's decisions. Together they are the actual record of how the platform was thought through, not a reconstruction after the fact.</p>
       <div class="film" id="film">
         <div class="film-title" id="filmTitle"></div>
         <div class="film-stage">
@@ -135,10 +160,10 @@
   </section>
 
   <section class="blk" data-reveal>
-    <div class="kick">Summary</div>
+    <div class="kick">Outcome</div>
     <div>
-      <div class="say">Delivered a platform that gave DBS leadership clear, consolidated visibility into their technology workforce and delivery portfolio for the first time.</div>
-      <p class="bd">Over a 23-week engagement, led the end-to-end UX and UI design of Genesis, drove stakeholder alignment across 20+ departments, and created scalable design documentation on the Canopy Design System.</p>
+      <div class="say">For the first time, DBS leadership could see their technology workforce and delivery portfolio in one place.</div>
+      <p class="bd">Genesis replaced manual reconciliation across 20+ departments with a single source of truth for resourcing and delivery tracking. The measure of the work was structural, people and work finally in the same view, on current data, so a resourcing decision no longer started by stitching the two records together by hand.</p>
       <ul class="contrib">
         <li><b>Lead UX·UI Designer</b><span>End-to-end platform design</span></li>
         <li><b>Stakeholder management</b><span>Alignment across 20+ departments</span></li>

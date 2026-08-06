@@ -36,6 +36,8 @@ DNS switch completed March 9, 2026. Final state:
 **Note:** NS records are not editable in Wix. Domain registrar remains Wix (renews Sep 2, 2026).
 **Propagation:** Up to 48 hours. SSL auto-provisioned by Vercel once active.
 
+**March 10, 2026:** Wix hosting plan cancelled. Domain-only plan kept active for renewal. Vercel handles all hosting.
+
 ---
 
 ## Site Architecture
@@ -304,9 +306,121 @@ Run the Python snippet from the session with the correct page ID and User-Agent 
 
 ---
 
+---
+
+## Session 3 — March 25, 2026
+
+### Commit 19 — Add Investment Transaction Platform case study
+
+**New page:** `investment-transaction.html`
+- Full case study for the UOB internal banking platform redesign
+- Client: UOB · Year: 2023
+- Accent colour: Orange (`--orange: #ff6b35`)
+- Sections: About (2-col), Frame the Problem (3-card grid), Understand Reality, Design Principles (4 cards), Design Decisions (3-item accordion), Validation & Iteration, Outcomes & Learnings, Key Contributions
+- 11 image placeholder slots throughout — dashed orange border with label/note, ready to swap for real images
+- Footer links to `simple-invest.html` as next case study
+
+**Updated:** `index.html`
+- New card added as Card 4 in Featured Work grid (Simple Invest moved to Card 5)
+- Tags: Desktop, UX Design, User Interface
+- `transition-delay` updated on Simple Invest card: `.3s` → `.4s`
+
+**Images pending:** 11 placeholder slots to be filled once screenshots are provided:
+1. Hero — final overview page
+2. Old transaction model diagram
+3. Audit findings — 3-part visual with cropped screenshots
+4. Order lifecycle — before redesign (original UT-only flow)
+5. Principles strip — horizontal 4-principle visual
+6. Early navigation exploration — side-by-side options
+7. Final overview navigation — with callouts
+8. Product grouping structure — shared structure, product variation
+9. Action hierarchy mapping — button/action logic
+10. Iteration or critique snapshot
+11. Before vs after summary
+
+**Image naming convention (to follow):**
+`/images/it-[descriptor].png` — e.g. `it-hero.png`, `it-overview-nav.png`, `it-action-hierarchy.png`
+
+**Commit SHA:** `b099c24`
+
+---
+
+## Session 4 — March 29, 2026
+
+### Commit 20 — Investment Transaction Platform: images + final copy
+
+**Commit SHA:** `5cf6ab2`
+**Deployment:** Vercel production — `READY` ✓
+**Live URL:** https://golansarig.com/investment-transaction
+
+**Files changed:**
+- `investment-transaction.html` — structural and content overhaul (see below)
+- `images/SPV_cover.png` — hero image
+- `images/SPV_ut01.png` — original UT transaction model
+- `images/SPV_stacked.png` — old stacked overview navigation
+- `images/SPV_SPV_Dashboard_Default_OrderCap_347.png` — dashboard/audit view
+- `images/SPV_UToldcycle (1).png` — original UT order lifecycle
+- `images/SPV_navX.png` — early nav exploration
+- `images/SPV_NAVnew.png` — final nav redesign
+- `images/SPV_grouping.png` — product grouping structure
+- `images/SPV_buttons.png` — action hierarchy mapping
+- `images/SPV_actions.png` — action hierarchy issues
+
+**Changes to `investment-transaction.html`:**
+- Section renamed: "Frame the Problem" → "Identifying the Issues"
+- Section layout changed: 3 static cards replaced with 3-item interactive accordion (matching Design Decisions pattern)
+- About section: "THE PROJECT" and "THE CHALLENGE" columns swapped (Project left, Challenge right)
+- Image placeholders removed: Principles Strip and Before/After Summary
+- Accordion max-height raised 900px → 2400px (prevents tall images clipping)
+- Dead CSS (`.problem-grid`, `.problem-card`) removed
+
+**Images used per section (final):**
+| Section | Image |
+|---|---|
+| Hero | `SPV_cover.png` |
+| Identifying the Issues — 01 Transaction model | `SPV_ut01.png` |
+| Identifying the Issues — 02 Overview navigation | `SPV_stacked.png` |
+| Identifying the Issues — 03 Action hierarchy | `SPV_actions.png` |
+| Understand Reality | `SPV_UToldcycle (1).png` |
+| Design Decisions — 01 Overview workbench | `SPV_navX.png` + `SPV_NAVnew.png` |
+| Design Decisions — 02 Shared structure | `SPV_grouping.png` |
+| Design Decisions — 03 Action system | `SPV_buttons.png` |
+
+---
+
 ## Contact / Accounts
 - **Email:** oshki2001@gmail.com
 - **LinkedIn:** https://www.linkedin.com/in/golansa
 - **Instagram:** https://www.instagram.com/golansarig
 - **GitHub:** https://github.com/golansar
 - **Domain registrar:** Wix (renews Sep 2, 2026)
+
+---
+
+## Phase 3 — Case-study storytelling: Genesis (2026-08-06)
+
+Rewrote `v2/genesis.html` from a template into a story. Depth-over-template
+lens; no fabricated business-impact numbers (NDA banking), impact shown
+structurally.
+
+**Sections now (8):** About / The problem / Approach / What we built /
+Design decisions / Design system / Journals / Outcome.
+
+**Depth mined from the 21 weekly journal PDFs** (read via PyMuPDF; notes in
+`docs/content/genesis-journal-notes.md`). Everything sourced, nothing invented:
+- Journals reframed as the spine (real week-by-week record).
+- About leads with the real tension: two records (HR people vs delivery work)
+  that couldn't see each other; Genesis is the join, not a third tool.
+  Confirmed by journals: MVP01 = people, MVP02 = work, plus Dashboard.
+- Design system: not just "Built on Canopy" — Genesis was an early internal
+  adopter and helped define Canopy for internal use (daily DLS sessions,
+  CSS fed back as design tokens). [wk12/18/20]
+- Approach: honest trade-off — Key Dates timeline designed then cut for build
+  cost. [wk07]
+- New "Design decisions" block: Navigation was the anchor (original had 3
+  stacked nav bars; global + in-portfolio left nav) [wk01-02/05/20] +
+  Designing the dense data not decorating it (real dataviz test + chart rules)
+  [wk21/22].
+
+Logged-only (no downloadable visual): persona journey / JTBD board [wk10-14].
+Filmstrip + reader JS untouched. HTML-only edits, existing kit classes, no CSS.
