@@ -16,35 +16,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/v2/styles.css?v=4">
   <style>
-    /* Other work — visual, playful counterpoint to the text-led Selected work */
-    .owork-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-    .ocard{display:block;color:inherit;transition:transform .4s var(--ease)}
+    /* Other work — editorial composition: one featured card + a refined 3-up */
+    .owork-feature{margin-bottom:26px}
+    .owork-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .ocard{display:block;color:inherit;transition:transform .45s var(--ease)}
     .ocard:hover{transform:translateY(-5px)}
-    .ocard-media{position:relative;aspect-ratio:16/10;border-radius:16px;overflow:hidden;
+    .ocard-media{position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;
       background:var(--surf);border:1px solid var(--line)}
-    .ocard-media img{width:100%;height:100%;object-fit:cover;
-      transition:transform .55s var(--ease)}
-    .ocard:hover .ocard-media img{transform:scale(1.055)}
+    .ocard-lg .ocard-media{aspect-ratio:21/9}
+    .ocard-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+    .ocard:hover .ocard-media img{transform:scale(1.045)}
     .ocard-media::after{content:"";position:absolute;inset:0;border-radius:16px;
       box-shadow:inset 0 0 0 1px rgba(20,21,28,.07);pointer-events:none}
-    .ocard-cap{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:15px 4px 0}
-    .ocard .oct{font-family:var(--disp);font-weight:600;font-size:17px;letter-spacing:-.01em;transition:color .2s}
+    .ocard-cap{display:flex;gap:16px;padding:16px 2px 0}
+    .ocard .oix{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;
+      color:var(--acc-ink);letter-spacing:.04em;padding-top:15px}
+    .ocard .octw{flex:1;display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+      border-top:1px solid var(--line);padding-top:13px;transition:border-color .3s var(--ease)}
+    .ocard:hover .octw{border-color:var(--acc)}
+    .ocard .oct{font-family:var(--disp);font-weight:600;font-size:18px;letter-spacing:-.015em;transition:color .2s}
+    .ocard-lg .oct{font-size:clamp(24px,3.2vw,34px);line-height:1}
     .ocard:hover .oct{color:var(--acc-ink)}
-    .ocard .ocm{font-size:12.5px;color:var(--muted);text-align:right;white-space:nowrap}
+    .ocard .ocm{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;
+      white-space:nowrap;text-align:right;padding-top:2px}
     /* Portfolio OS — mono "terminal" card (no cover image needed) */
     .ocard-term{display:flex;flex-direction:column;background:var(--ink);
       font-family:ui-monospace,'SF Mono',Menlo,monospace}
-    .term-bar{display:flex;gap:7px;padding:15px 16px;border-bottom:1px solid rgba(255,255,255,.09)}
-    .term-bar span{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.24)}
+    .term-bar{display:flex;gap:7px;padding:14px 15px;border-bottom:1px solid rgba(255,255,255,.09)}
+    .term-bar span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.24)}
     .term-bar span:first-child{background:var(--acc)}
-    .term-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:11px;padding:0 22px;font-size:14px}
+    .term-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:0 20px;font-size:13.5px}
     .term-body .tl{color:rgba(255,255,255,.5)}
     .term-body .tc{color:#fff}
-    .term-body .cur{display:inline-block;width:8px;height:15px;background:var(--acc);
+    .term-body .cur{display:inline-block;width:8px;height:14px;background:var(--acc);
       margin-left:3px;vertical-align:-2px;animation:blink 1.15s steps(1) infinite}
     @keyframes blink{50%{opacity:0}}
     @media (prefers-reduced-motion:reduce){.term-body .cur{animation:none}}
-    @media (max-width:640px){.owork-grid{grid-template-columns:1fr;gap:18px}}
+    @media (max-width:720px){.owork-row{grid-template-columns:1fr;gap:20px}.ocard-lg .ocard-media{aspect-ratio:16/9}}
     /* subtle paper grain for warmth (very low, non-distracting) */
     body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.03;
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -95,25 +103,27 @@
 
   <section class="sec owork" data-reveal>
     <div class="sec-head"><span class="kick">Other work</span><span class="count">Off the clock</span></div>
-    <div class="owork-grid">
-      <a class="ocard" href="/v2/asap.html">
+    <div class="owork-feature">
+      <a class="ocard ocard-lg" href="/v2/asap.html">
         <div class="ocard-media"><img src="/images/asap-cover.png" alt="ASAP After-Sales Portal" loading="lazy"></div>
-        <div class="ocard-cap"><span class="oct">ASAP · After-Sales Portal</span><span class="ocm">Concept · Personal</span></div>
+        <div class="ocard-cap"><span class="oix">01</span><span class="octw"><span class="oct">ASAP · After-Sales Portal</span><span class="ocm">Concept · Personal</span></span></div>
       </a>
+    </div>
+    <div class="owork-row">
       <a class="ocard" href="/v2/logo-design.html">
         <div class="ocard-media"><img src="/images/logo-design-cover.jpg" alt="Logo design collection" loading="lazy"></div>
-        <div class="ocard-cap"><span class="oct">Logo Design</span><span class="ocm">Brand &amp; Identity</span></div>
+        <div class="ocard-cap"><span class="oix">02</span><span class="octw"><span class="oct">Logo Design</span><span class="ocm">Brand &amp; Identity</span></span></div>
       </a>
       <a class="ocard" href="/v2/print.html">
         <div class="ocard-media"><img src="/images/print-cover.jpg" alt="Print and editorial work" loading="lazy"></div>
-        <div class="ocard-cap"><span class="oct">Print</span><span class="ocm">Editorial &amp; Graphic</span></div>
+        <div class="ocard-cap"><span class="oix">03</span><span class="octw"><span class="oct">Print</span><span class="ocm">Editorial &amp; Graphic</span></span></div>
       </a>
       <a class="ocard" href="/v2/portfolio-site.html">
         <div class="ocard-media ocard-term">
           <div class="term-bar"><span></span><span></span><span></span></div>
           <div class="term-body"><span class="tl">~ / portfolio.os</span><span class="tc">built with AI<span class="cur"></span></span></div>
         </div>
-        <div class="ocard-cap"><span class="oct">Portfolio OS</span><span class="ocm">This site, built with AI</span></div>
+        <div class="ocard-cap"><span class="oix">04</span><span class="octw"><span class="oct">Portfolio OS</span><span class="ocm">Built with AI</span></span></div>
       </a>
     </div>
   </section>
