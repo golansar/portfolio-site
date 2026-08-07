@@ -22,12 +22,13 @@
     .pol{position:relative;display:block;background:#fff;padding:9px 9px 0;border-radius:3px;color:inherit;
       width:clamp(150px,19vw,200px);cursor:pointer;transform-origin:center;will-change:transform;
       box-shadow:0 20px 44px -22px rgba(20,21,28,.5),0 2px 6px rgba(20,21,28,.09);
+      transform:translateX(var(--tx,0px)) translateY(var(--ty,0px)) rotate(var(--rot,0deg));
       transition:transform .55s cubic-bezier(.2,.8,.2,1),box-shadow .4s cubic-bezier(.2,.8,.2,1)}
-    /* rest: clustered per sketch — two up top, one behind centre, one hanging below */
-    .pol--a{transform:translateX(342px) translateY(20px) rotate(2deg);z-index:1}   /* ASAP: centre, behind */
-    .pol--b{transform:translateX(-41px) translateY(-10px) rotate(-7deg);z-index:2}  /* Logo: top-left */
-    .pol--c{transform:translateX(-79px) translateY(78px) rotate(-3deg);z-index:4}   /* Print: bottom-centre */
-    .pol--d{transform:translateX(-162px) translateY(-30px) rotate(9deg);z-index:3}  /* Portfolio OS: top-right */
+    /* rest: clustered per sketch (base values; a script jitters each on load) */
+    .pol--a{--tx:342px;--ty:20px;--rot:2deg;z-index:1}    /* ASAP: centre, behind */
+    .pol--b{--tx:-41px;--ty:-10px;--rot:-7deg;z-index:2}  /* Logo: top-left */
+    .pol--c{--tx:-79px;--ty:78px;--rot:-3deg;z-index:4}   /* Print: bottom-centre */
+    .pol--d{--tx:-162px;--ty:-30px;--rot:9deg;z-index:3}  /* Portfolio OS: top-right */
     /* hover the area (whole section): spread into a row (slightly hand-placed) */
     .owork:hover .pol--a{transform:translateX(0) translateY(0) rotate(-3deg)}
     .owork:hover .pol--b{transform:translateX(0) translateY(0) rotate(2deg)}
@@ -166,6 +167,24 @@
   </footer>
 
 </div>
+<script>
+  /* Other-work: jitter each polaroid's resting toss on load so it varies every visit.
+     Only nudges the --tx/--ty/--rot vars; the hover-spread rules set transform directly
+     (higher specificity) so they always win. */
+  (function () {
+    var pols = document.querySelectorAll('.owork-strip .pol');
+    var r = function (m) { return (Math.random() * 2 - 1) * m; };
+    pols.forEach(function (p) {
+      var cs = getComputedStyle(p);
+      var tx = parseFloat(cs.getPropertyValue('--tx')) || 0;
+      var ty = parseFloat(cs.getPropertyValue('--ty')) || 0;
+      var rot = parseFloat(cs.getPropertyValue('--rot')) || 0;
+      p.style.setProperty('--tx', (tx + r(15)).toFixed(1) + 'px');
+      p.style.setProperty('--ty', (ty + r(12)).toFixed(1) + 'px');
+      p.style.setProperty('--rot', (rot + r(3.5)).toFixed(2) + 'deg');
+    });
+  })();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="/v2/motion.js?v=4"></script>
 </body>
