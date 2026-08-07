@@ -18,16 +18,16 @@
   <style>
     /* Other work — a pile of tilted polaroids that pop on hover (breaks the flatness) */
     .owork-strip{display:flex;justify-content:center;align-items:center;gap:18px;
-      flex-wrap:nowrap;padding:44px 0 30px}
+      flex-wrap:nowrap;padding:52px 0 96px}
     .pol{position:relative;display:block;background:#fff;padding:9px 9px 0;border-radius:3px;color:inherit;
       width:clamp(150px,19vw,200px);cursor:pointer;transform-origin:center;will-change:transform;
       box-shadow:0 20px 44px -22px rgba(20,21,28,.5),0 2px 6px rgba(20,21,28,.09);
       transition:transform .55s cubic-bezier(.2,.8,.2,1),box-shadow .4s cubic-bezier(.2,.8,.2,1)}
-    /* rest: a genuinely tossed pile — uneven positions, heights, angles */
-    .pol--a{transform:translateX(196px) translateY(46px) rotate(-15deg);z-index:2}
-    .pol--b{transform:translateX(38px) translateY(-16px) rotate(4deg);z-index:4}
-    .pol--c{transform:translateX(-24px) translateY(30px) rotate(-7deg);z-index:1}
-    .pol--d{transform:translateX(-176px) translateY(-4px) rotate(13deg);z-index:3}
+    /* rest: clustered per sketch — two up top, one behind centre, one hanging below */
+    .pol--a{transform:translateX(342px) translateY(20px) rotate(2deg);z-index:1}   /* ASAP: centre, behind */
+    .pol--b{transform:translateX(-41px) translateY(-10px) rotate(-7deg);z-index:2}  /* Logo: top-left */
+    .pol--c{transform:translateX(-79px) translateY(78px) rotate(-3deg);z-index:4}   /* Print: bottom-centre */
+    .pol--d{transform:translateX(-162px) translateY(-30px) rotate(9deg);z-index:3}  /* Portfolio OS: top-right */
     /* hover the area (whole section): spread into a row (slightly hand-placed) */
     .owork:hover .pol--a{transform:translateX(0) translateY(0) rotate(-3deg)}
     .owork:hover .pol--b{transform:translateX(0) translateY(0) rotate(2deg)}
