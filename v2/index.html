@@ -19,30 +19,42 @@
     /* Other work — a pile of tilted polaroids that pop on hover (breaks the flatness) */
     .owork-strip{display:flex;justify-content:center;align-items:center;gap:18px;
       flex-wrap:nowrap;padding:52px 0 96px}
-    .pol{position:relative;display:block;background:#fff;padding:9px 9px 0;border-radius:3px;color:inherit;
-      width:clamp(150px,19vw,200px);cursor:pointer;transform-origin:center;will-change:transform;
+    .pol{position:relative;display:block;background:#fff;padding:8px 8px 0;border-radius:3px;color:inherit;
+      width:clamp(128px,15vw,150px);cursor:pointer;transform-origin:center;will-change:transform;
       box-shadow:0 20px 44px -22px rgba(20,21,28,.5),0 2px 6px rgba(20,21,28,.09);
       transform:translateX(var(--tx,0px)) translateY(var(--ty,0px)) rotate(var(--rot,0deg));
       transition:transform .55s cubic-bezier(.2,.8,.2,1),box-shadow .4s cubic-bezier(.2,.8,.2,1)}
-    /* rest: clustered per sketch (base values; a script jitters each on load) */
-    .pol--a{--tx:342px;--ty:20px;--rot:2deg;z-index:1}    /* ASAP: centre, behind */
-    .pol--b{--tx:-41px;--ty:-10px;--rot:-7deg;z-index:2}  /* Logo: top-left */
-    .pol--c{--tx:-79px;--ty:78px;--rot:-3deg;z-index:4}   /* Print: bottom-centre */
-    .pol--d{--tx:-162px;--ty:-30px;--rot:9deg;z-index:3}  /* Portfolio OS: top-right */
+    /* rest: clustered, tossed (base values; a script jitters each on load) */
+    .pol--a{--tx:276px;--ty:16px;--rot:3deg;z-index:1}    /* ASAP: centre, behind */
+    .pol--b{--tx:3px;--ty:-12px;--rot:-8deg;z-index:3}    /* Logo: top-left */
+    .pol--c{--tx:30px;--ty:74px;--rot:-3deg;z-index:2}    /* Print: bottom-centre */
+    .pol--d{--tx:-8px;--ty:-24px;--rot:9deg;z-index:4}    /* Portfolio OS: top-right */
+    .pol--e{--tx:-261px;--ty:42px;--rot:6deg;z-index:5}   /* PBI: lower-right */
     /* hover the area (whole section): spread into a row (slightly hand-placed) */
     .owork:hover .pol--a{transform:translateX(0) translateY(0) rotate(-3deg)}
     .owork:hover .pol--b{transform:translateX(0) translateY(0) rotate(2deg)}
     .owork:hover .pol--c{transform:translateX(0) translateY(0) rotate(-1deg)}
     .owork:hover .pol--d{transform:translateX(0) translateY(0) rotate(3.5deg)}
+    .owork:hover .pol--e{transform:translateX(0) translateY(0) rotate(-2deg)}
     /* hover a photo: it lifts and comes forward */
     .owork:hover .pol:hover{transform:translateX(0) translateY(-12px) rotate(0deg) scale(1.05);z-index:9;
       box-shadow:0 40px 70px -24px rgba(20,21,28,.55),0 3px 10px rgba(20,21,28,.12)}
     .pol-photo{aspect-ratio:1/1;border-radius:2px;overflow:hidden;background:var(--surf)}
     .pol-photo img{width:100%;height:100%;object-fit:cover;display:block}
-    .pol-cap{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:11px 3px 13px}
-    .pol-cap .pct{font-family:var(--disp);font-weight:600;font-size:13.5px;letter-spacing:-.01em}
+    .pol-cap{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:10px 3px 12px}
+    .pol-cap .pct{font-family:var(--disp);font-weight:600;font-size:13px;letter-spacing:-.01em;line-height:1.1}
     .pol-cap .pcm{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:9.5px;color:var(--muted);
       text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+    /* PBI — mini operations-dashboard motif (designed cover, real KPI numbers) */
+    .pol-dash{display:flex;flex-direction:column;gap:7px;padding:11px;background:var(--card)}
+    .dash-top{display:flex;align-items:center;gap:6px;font-family:ui-monospace,'SF Mono',Menlo,monospace;
+      font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    .dash-top .dot{width:6px;height:6px;border-radius:50%;background:var(--acc)}
+    .dash-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .dstat{display:flex;flex-direction:column;justify-content:center;border-radius:8px;background:var(--surf);padding:7px 9px}
+    .dstat b{font-family:var(--disp);font-weight:700;font-size:21px;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+    .dstat span{font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+    .dstat.g b{color:#15a34a}.dstat.a b{color:#d97706}.dstat.r b{color:#dc2626}
     /* Portfolio OS — mini terminal as the polaroid photo (keeps the AI cursor motion) */
     .pol-term{display:flex;flex-direction:column;background:var(--ink);
       font-family:ui-monospace,'SF Mono',Menlo,monospace}
@@ -56,10 +68,10 @@
       margin-left:3px;vertical-align:-2px;animation:blink 1.15s steps(1) infinite}
     @keyframes blink{50%{opacity:0}}
     @media (prefers-reduced-motion:reduce){.term-body .cur{animation:none}.pol{transition:none}}
-    @media (max-width:640px){.owork-strip{flex-wrap:wrap;gap:16px;padding:26px 0 14px}
-      .pol{width:clamp(140px,42vw,168px)}
+    @media (max-width:640px){.owork-strip{flex-wrap:wrap;gap:14px;padding:26px 0 14px}
+      .pol{width:clamp(130px,40vw,156px)}
       .pol--a{transform:rotate(-4deg)}.pol--b{transform:rotate(3deg)}
-      .pol--c{transform:rotate(-3deg)}.pol--d{transform:rotate(4deg)}}
+      .pol--c{transform:rotate(-3deg)}.pol--d{transform:rotate(4deg)}.pol--e{transform:rotate(-2deg)}}
     /* subtle paper grain for warmth (very low, non-distracting) */
     body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.03;
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -129,6 +141,18 @@
           <div class="term-body"><span class="tl">~ / portfolio.os</span><span class="tc">built with AI<span class="cur"></span></span></div>
         </div>
         <div class="pol-cap"><span class="pct">Portfolio OS</span><span class="pcm">Built w/ AI</span></div>
+      </a>
+      <a class="pol pol--e" href="/pbi/">
+        <div class="pol-photo pol-dash">
+          <div class="dash-top"><span class="dot"></span>PBIx · Operations</div>
+          <div class="dash-grid">
+            <div class="dstat"><b>17</b><span>Cases</span></div>
+            <div class="dstat g"><b>7</b><span>Cleared</span></div>
+            <div class="dstat a"><b>6</b><span>Pending</span></div>
+            <div class="dstat r"><b>4</b><span>Issues</span></div>
+          </div>
+        </div>
+        <div class="pol-cap"><span class="pct">Banking CRM</span><span class="pcm">with AI</span></div>
       </a>
     </div>
   </section>
