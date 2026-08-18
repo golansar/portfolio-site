@@ -75,3 +75,27 @@
   ov.addEventListener('click', close);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 })();
+
+/* Custom circle cursor: a ring that trails the pointer (fine-pointer devices only). */
+(() => {
+  if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  const ring = document.createElement('div');
+  ring.className = 'cursor';
+  document.body.appendChild(ring);
+  document.documentElement.classList.add('cursor-on');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
+  addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; ring.classList.add('on'); });
+  document.addEventListener('mouseleave', () => ring.classList.remove('on'));
+  document.addEventListener('mousedown', () => ring.classList.add('down'));
+  document.addEventListener('mouseup', () => ring.classList.remove('down'));
+  const sel = 'a,button,[role=button],input,textarea,select,.zoomable';
+  document.addEventListener('mouseover', (e) => { if (e.target.closest && e.target.closest(sel)) ring.classList.add('hover'); });
+  document.addEventListener('mouseout', (e) => { if (e.target.closest && e.target.closest(sel)) ring.classList.remove('hover'); });
+  (function loop() {
+    const k = reduce ? 1 : 0.2;
+    rx += (mx - rx) * k; ry += (my - ry) * k;
+    ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(loop);
+  })();
+})();
