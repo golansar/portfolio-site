@@ -21,7 +21,7 @@
 <div class="wrap">
 
   <nav class="nav">
-    <a class="brand" href="/v2/index.html" aria-label="Golan Sarig, home"><img class="brand-logo" src="/images/gs-logo.png" alt="Golan Sarig" width="32" height="32"></a>
+    <a class="brand" href="/v2/index.html" aria-label="Golan Sarig, home"><img class="brand-logo" src="/images/gs-logo.webp" alt="Golan Sarig" width="32" height="32"></a>
     <a class="back" href="/v2/index.html">Back to work</a>
   </nav>
 
@@ -39,7 +39,7 @@
     <span class="c-tag">Desktop</span><span class="c-tag">UX Design</span><span class="c-tag">UI Design</span><span class="c-tag">Platform</span><span class="c-tag">Design System</span>
   </div>
 
-  <div class="showcase" data-reveal><img src="/images/SPV_cover.png" alt="Investment Transaction Platform overview"></div>
+  <div class="showcase" data-reveal><img src="/images/SPV_cover.webp" alt="Investment Transaction Platform overview"></div>
 
   <section class="blk" data-reveal>
     <div class="kick">About</div>
@@ -54,13 +54,13 @@
     <div>
       <p class="bd" style="margin-bottom:8px">The core challenge was scale. The platform had been built around Unit Trust behaviour, from the order structure to the overview page and the action buttons. As new investment products were introduced, those patterns began to break. Three issues became clear.</p>
       <div class="step"><div class="n">01</div><h3>Transaction model</h3><p class="bd">The order structure was too tightly tied to Unit Trust bulk-order logic. Products that required individual transactions couldn't fit the existing pattern.</p>
-        <figure class="fig"><div class="frame"><img src="/images/SPV_ut01.png" alt="Original Unit Trust transaction model"></div><figcaption>Original Unit Trust transaction model, an advisory record with multiple UT items and one shared submit action.</figcaption></figure>
+        <figure class="fig"><div class="frame"><img src="/images/SPV_ut01.webp" alt="Original Unit Trust transaction model"></div><figcaption>Original Unit Trust transaction model, an advisory record with multiple UT items and one shared submit action.</figcaption></figure>
       </div>
       <div class="step"><div class="n">02</div><h3>Overview navigation</h3><p class="bd">The overview page grouped all order types into one long scrollable screen, making work harder to scan and prioritise as products multiplied.</p>
-        <figure class="fig"><div class="frame"><img src="/images/SPV_stacked.png" alt="Overview page with all order types stacked"></div><figcaption>Overview page showing all order types stacked in one long scrollable screen.</figcaption></figure>
+        <figure class="fig"><div class="frame"><img src="/images/SPV_stacked.webp" alt="Overview page with all order types stacked"></div><figcaption>Overview page showing all order types stacked in one long scrollable screen.</figcaption></figure>
       </div>
       <div class="step"><div class="n">03</div><h3>Action hierarchy</h3><p class="bd">Secondary and utility actions appeared in inconsistent places as journeys grew more complex, making it unclear what the user should do next.</p>
-        <figure class="fig"><div class="frame"><img src="/images/SPV_actions.png" alt="Action hierarchy issues across journeys"></div><figcaption>Inconsistent placement of secondary and utility actions across journeys.</figcaption></figure>
+        <figure class="fig"><div class="frame"><img src="/images/SPV_actions.webp" alt="Action hierarchy issues across journeys"></div><figcaption>Inconsistent placement of secondary and utility actions across journeys.</figcaption></figure>
       </div>
     </div>
   </section>
@@ -71,7 +71,7 @@
       <div class="say">The redesign needed to happen at platform level, not only at screen level.</div>
       <p class="bd">The project was scoped across seven two-week sprints, beginning with a full audit of the platform to understand what could scale, what needed redesign, and where the Unit Trust model would fail once more products were introduced.</p>
       <p class="bd">This early phase focused on two things. First, understanding the impact of the new products with the business team, since each introduced different transaction rules, lifecycle needs, and display requirements. Second, reviewing the existing platform from a system perspective to assess which patterns could be extended, which needed a full redesign, and how a more scalable structure could be introduced without losing familiarity.</p>
-      <figure class="fig"><div class="frame"><img src="/images/SPV_UToldcycle%20(1).png" alt="Original Unit Trust-only order cycle"></div><figcaption>Original Unit Trust-only order cycle, a grouped order with one final submit action.</figcaption></figure>
+      <figure class="fig"><div class="frame"><img src="/images/SPV_UToldcycle%20(1).webp" alt="Original Unit Trust-only order cycle"></div><figcaption>Original Unit Trust-only order cycle, a grouped order with one final submit action.</figcaption></figure>
     </div>
   </section>
 
@@ -80,16 +80,16 @@
     <div>
       <div class="feat"><div class="n">01</div><h3>Rethinking the overview as a workbench</h3>
         <p class="bd">The original overview behaved like a long order feed, all order types in one scrollable page. As more product types and order states were added, this became harder to scan and prioritise. The redesign shifted the page toward a structured workbench: work grouped first by transaction family, Buy or Switch orders, Sell orders, Order instructions, then narrowed by lifecycle state. This created a stronger navigation model and a clearer mental model for future growth.</p>
-        <figure class="fig"><div class="frame"><img src="/images/SPV_navX.png" alt="Early navigation exploration"></div><figcaption>Early navigation exploration, different mental models for the overview structure.</figcaption></figure>
-        <figure class="fig"><div class="frame"><img src="/images/SPV_NAVnew.png" alt="Final overview navigation"></div><figcaption>Final overview navigation, transaction-family grouping with lifecycle-state filtering.</figcaption></figure>
+        <figure class="fig"><div class="frame"><img src="/images/SPV_navX.webp" alt="Early navigation exploration"></div><figcaption>Early navigation exploration, different mental models for the overview structure.</figcaption></figure>
+        <figure class="fig"><div class="frame"><img src="/images/SPV_NAVnew.webp" alt="Final overview navigation"></div><figcaption>Final overview navigation, transaction-family grouping with lifecycle-state filtering.</figcaption></figure>
       </div>
       <div class="feat"><div class="n">02</div><h3>Creating a shared structure across products</h3>
         <p class="bd">The redesign did not force all products into one generic table, nor split the experience into separate silos. Instead it introduced a common structural pattern across product sections, while allowing product-specific fields where needed. This mattered because some products supported bulk actions while others did not. The interface needed to stay consistent without pretending all products followed the same logic. Selection followed one rule: a single record shows no checkbox at all, and for non-bulk products, choosing one record greys out the rest, so the shared layout never implies a multi-select the product cannot support.</p>
-        <figure class="fig"><div class="frame"><img src="/images/SPV_grouping.png" alt="Product grouping structure"></div><figcaption>Shared layout across product types with product-specific variation.</figcaption></figure>
+        <figure class="fig"><div class="frame"><img src="/images/SPV_grouping.webp" alt="Product grouping structure"></div><figcaption>Shared layout across product types with product-specific variation.</figcaption></figure>
       </div>
       <div class="feat"><div class="n">03</div><h3>Building a scalable action system</h3>
         <p class="bd">The action pattern was redesigned to create a clearer hierarchy. The previous design had accumulated tertiary buttons in inconsistent places as more products and states were introduced. The redesigned approach separated primary, secondary, and utility actions more explicitly, making the next step easier to understand and giving the platform a more scalable action model across lifecycle states.</p>
-        <figure class="fig"><div class="frame"><img src="/images/SPV_buttons.png" alt="Action hierarchy mapping"></div><figcaption>Primary, secondary, and utility action logic across lifecycle states.</figcaption></figure>
+        <figure class="fig"><div class="frame"><img src="/images/SPV_buttons.webp" alt="Action hierarchy mapping"></div><figcaption>Primary, secondary, and utility action logic across lifecycle states.</figcaption></figure>
       </div>
     </div>
   </section>

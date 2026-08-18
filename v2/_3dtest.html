@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Other work — 3D cluster prototype</title>
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap" rel="stylesheet">
+  <style>
+    :root{ --paper:#f5f5f3; --surf:#ecebe8; --ink:#14151c; --muted:#6a6e75;
+      --line:rgba(20,21,28,.12); --acc:#3d5afe; --acc-ink:#2b3fd4;
+      --disp:'Bricolage Grotesque',sans-serif; --body:'General Sans',sans-serif; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--paper);color:var(--ink);font-family:var(--body);
+      -webkit-font-smoothing:antialiased;padding:70px 32px 120px;line-height:1.5}
+    .wrap{max-width:920px;margin:0 auto}
+    .note{color:var(--muted);font-size:13px;margin-bottom:40px;max-width:60ch}
+    .head{display:flex;justify-content:space-between;align-items:baseline;
+      border-top:1px solid var(--line);padding-top:22px}
+    .kick{font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .count{font-size:13px;color:var(--muted)}
+    .stage{position:relative;width:100%;height:440px;margin-top:8px}
+    .stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+    .obj-label{position:absolute;top:0;left:0;font-family:var(--disp);font-weight:600;
+      font-size:14px;letter-spacing:-.01em;color:var(--ink);white-space:nowrap;text-decoration:none;
+      opacity:0;transition:opacity .3s ease,color .2s;will-change:transform,opacity}
+    .obj-label.is-hover{color:var(--acc-ink)}
+    .foot{border-bottom:1px solid var(--line)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="note">Prototype — Other Work as floating 3D objects. Rest: clustered, half-hidden, slow drift.
+      Hover the area: they spread into a row, names appear, each is clickable. No cards.</p>
+    <section class="owork">
+      <div class="head"><span class="kick">Other work</span><span class="count">Off the clock</span></div>
+      <div class="stage"><canvas></canvas></div>
+    </section>
+    <div class="foot"></div>
+  </div>
+  <script type="module">
+    import { mountCluster } from "/v2/three/cluster.js";
+    mountCluster(document.querySelector(".stage canvas"), [
+      { shape: "pebble", color: "#3d5afe", scale: 1.05, name: "ASAP",         href: "/v2/asap.html" },
+      { shape: "dome",   color: "#c8785e", scale: 1.00, name: "Logo Design",  href: "/v2/logo-design.html" },
+      { shape: "arch",   color: "#3d5afe", scale: 0.95, name: "Print",        href: "/v2/print.html" },
+      { shape: "pill",   color: "#e6dccb", scale: 1.08, name: "Portfolio OS", href: "/v2/portfolio-site.html" },
+      { shape: "cone",   color: "#cf8a5c", scale: 0.92, name: "Banking CRM",  href: "/pbi/" },
+    ]);
+  </script>
+</body>
+</html>
