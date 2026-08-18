@@ -3,180 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/gs-favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/gs-favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/gs-apple-touch-180.png">
   <title>Simple Invest — Golan Sarig</title>
-  <meta name="description" content="Expanding UOB's Simple Invest from Singapore to Malaysia, Thailand, and Indonesia — one shared framework, three different implementations.">
+  <meta name="description" content="Self-serve investment capabilities, brought from Singapore to three new Southeast Asian markets. UOB, 2024.">
   <meta property="og:title" content="Simple Invest — Golan Sarig">
-  <meta property="og:description" content="Expanding a self-serve investment product across three Southeast Asian markets.">
   <meta property="og:image" content="/images/SocialMediaPreviewImage_SimpleInvest.png">
-  <meta property="og:type" content="website">
-  <link rel="icon" type="image/svg+xml" href="/fav.svg">
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="stylesheet" href="https://api.fontshare.com/css?f[]=general-sans@400,500,600,700&display=swap">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css">
-  <link rel="stylesheet" href="/case-study.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=8">
+  <link rel="stylesheet" href="/case-study.css?v=6">
 </head>
 <body>
+<div class="wrap">
 
-  <!-- NAV -->
-  <nav>
-    <a href="index.html" style="display:block;text-decoration:none;">
-      <img src="/fav.svg" width="36" height="36" alt="GS">
-    </a>
-    <a href="index.html" class="nav-back">Back to Work</a>
+  <nav class="nav">
+    <a class="brand" href="/index.html" aria-label="Golan Sarig, home"><img class="brand-logo" src="/images/gs-logo.webp" alt="Golan Sarig" width="32" height="32"></a>
+    <a class="back" href="/index.html">Back to work</a>
   </nav>
 
-  <!-- HERO -->
-  <div class="case-hero">
-    <img src="/images/Screenshot_2024-11-09_at_9.52.14_AM.png" alt="Simple Invest">
-    <div class="case-hero-fade"></div>
+  <p class="c-eyebrow">Case study · Fintech</p>
+  <h1 class="c-title">Simple Invest<span class="d">.</span></h1>
+  <p class="c-lede">Self-serve investment capabilities, brought from Singapore to three new Southeast Asian markets.</p>
+
+  <div class="c-meta">
+    <div><div class="k">Client</div><div class="v">UOB · TMRW app</div></div>
+    <div><div class="k">Year</div><div class="v">2024</div></div>
+    <div><div class="k">Role</div><div class="v">Lead UIUX Designer</div></div>
+    <div><div class="k">Markets</div><div class="v">MY · TH · ID</div></div>
+  </div>
+  <div class="c-tags">
+    <span class="c-tag">Mobile</span><span class="c-tag">UX Research</span><span class="c-tag">UX Design</span><span class="c-tag">UI Design</span><span class="c-tag">Multi-market</span>
   </div>
 
-  <!-- CASE HEADER -->
-  <div class="case-header">
-    <div class="container">
-      <div class="case-meta">
-        <span class="case-client">UOB</span>
-        <span class="case-year">· 2024</span>
-      </div>
-      <h1 class="case-title">Simple Invest</h1>
-      <div class="case-tags">
-        <span class="tag">Mobile</span>
-        <span class="tag">UX Design</span>
-        <span class="tag">UI Design</span>
-        <span class="tag">Multi-market</span>
-      </div>
+  <div class="showcase" data-reveal><img src="/images/si-overview.webp" alt="Regional expansion overview across Singapore, Malaysia, Thailand, and Indonesia"></div>
+
+  <section class="blk" data-reveal>
+    <div class="kick">About</div>
+    <div class="two">
+      <div><h3>The challenge</h3><p class="bd">A product built for Singapore assumes Singapore: its currency, its regulations, its support model. Expanding Simple Invest to Malaysia, Thailand, and Indonesia meant none of those held. The risk was either rebuilding the product four times, or shipping a Singapore product that quietly broke in three markets.</p></div>
+      <div><h3>The project</h3><p class="bd">Bring UOB's self-serve investing to three new Southeast Asian markets on one system. I led design across all three, driving the framework decision, what could be shared and what had to vary, and running alignment across product, legal, and engineering.</p></div>
     </div>
-  </div>
+  </section>
 
-  <!-- BODY -->
-  <div class="case-body">
-    <div class="container">
-
-      <!-- ─── INTRO + ROLE ─── -->
-      <div class="intro-section reveal">
-        <p class="intro-problem" style="margin-bottom: 24px;">
-          Simple Invest launched in Singapore as a self-serve investment product inside UOB's TMRW app. When it worked, the business decided to expand to Malaysia, Thailand, and Indonesia. The plan was lift and shift — same product, same flows, localised language and currency.
-        </p>
-        <p class="intro-problem">
-          We knew that wouldn't hold. Three different regulatory environments, three different user bases, three different levels of digital and financial confidence. The question wasn't how to localise — it was which parts of the Singapore product were actually portable, and which were just Singapore.
-        </p>
-        <div class="intro-grid">
-          <div class="intro-col">
-            <span class="col-label">My Role</span>
-            <p>Lead designer across all three markets. I drove the framework decision — what could be shared, what had to vary — and ran cross-market alignment across design, product, legal, and engineering.</p>
-          </div>
-          <div>
-            <span class="col-label">Project Info</span>
-            <ul class="meta-list">
-              <li><strong>Client</strong><span>UOB — TMRW app</span></li>
-              <li><strong>Year</strong><span>2024</span></li>
-              <li><strong>Markets</strong><span>Malaysia · Thailand · Indonesia</span></li>
-              <li><strong>Platform</strong><span>iOS &amp; Android</span></li>
-            </ul>
-          </div>
-        </div>
+  <section class="blk" data-reveal>
+    <div class="kick">Design decisions</div>
+    <div>
+      <p class="bd" style="margin-bottom:8px">The plan was lift and shift: same product, localised language and currency. It wouldn't hold. Before designing for the new markets, we audited what Singapore had actually built. That audit is where the work started.</p>
+      <div class="feat"><div class="n">01</div><h3>Audited what was universal before assuming anything</h3>
+        <p class="bd">Simple Invest had been designed for the Singapore user, financially literate, digitally confident, already knowing what they wanted, but that had never been named as an assumption. We ran the audit against one question: which parts of this product depend on that user? Navigation, visual hierarchy, and the core patterns were portable. The onboarding assumptions, the financial jargon in the copy, and the expectation that people arrived knowing what to do were not. Market-agnostic components stayed shared; journey-level flows varied where regulation or context required. One product, three implementations, but only after being honest about what one product meant.</p>
       </div>
-
-      <!-- ─── DECISIONS ─── -->
-      <div class="decisions-header reveal">
-        <span class="section-eyebrow">Key Design Decisions</span>
-        <p class="section-standfirst">Before designing anything for the new markets, we audited what Singapore had actually built. That audit is where the real work started.</p>
+      <div class="feat"><div class="n">02</div><h3>Indonesia broke the screen and the seam</h3>
+        <p class="bd">The visible problem came first: Rupiah values run fourteen to sixteen digits, and the UI was built around short Singapore-dollar amounts. Numbers overflowed and alignment broke. The fix was dynamic formatting, abbreviating large values and surfacing B for billions so the hierarchy held at any digit count. The second problem was underneath it. Part of the Indonesia journey routed through an existing bank module we had no design control over, and in testing users hit that hand-off and thought the app had crashed, dropped into a different interface with no warning. We couldn't redesign the module, so we designed the seam, a dedicated transition that prepared users for the change instead of letting it ambush them.</p>
+        <figure class="fig"><div class="frame"><img src="/images/si-localized-ui.webp" alt="Regional UI adaptations across markets"></div><figcaption>Dynamic currency formatting, keeping hierarchy readable at any digit count.</figcaption></figure>
       </div>
-
-      <!-- Decision 01 -->
-      <div class="decision-block reveal">
-        <span class="decision-num">Decision 01</span>
-        <h2 class="decision-title">Audited what was universal before assuming anything was</h2>
-        <p class="decision-tension">
-          Singapore users are unusually financially literate and digitally confident, even by regional standards. Simple Invest had been designed from that reference point — it just hadn't been named as a design assumption. Carrying it into three different markets without checking it was the core risk.
-        </p>
-        <p class="decision-body">
-          We ran an audit against one question: which parts of this product depend on the Singapore user? The navigation model, the visual hierarchy, the core interaction patterns — most of that was portable. What wasn't: the onboarding assumptions, the level of financial jargon in the copy, and the implicit expectation that users arrived already knowing what they wanted to do.
-        </p>
-        <p class="decision-body">
-          That distinction drove everything else. Market-agnostic components stayed shared. Journey-level flows varied wherever regulation or user context required it. One product, three implementations — but only after we'd been honest about what one product actually meant.
-        </p>
-        <div class="decision-visuals">
-          <img class="decision-img-single" src="/images/si-overview.png" alt="Simple Invest regional expansion — shared component foundation across markets">
-        </div>
-      </div>
-
-      <!-- Decision 02 -->
-      <div class="decision-block reveal">
-        <span class="decision-num">Decision 02</span>
-        <h2 class="decision-title">Indonesia broke two things — the screen and the seam</h2>
-        <p class="decision-tension">
-          Indonesia surfaced the most visible problems. Currency values run fourteen to sixteen digits. The UI had been built around short, clean Singapore dollar amounts. Drop a Rupiah balance into that layout and numbers overflow, alignment breaks, and the interface that felt simple in Singapore reads as cluttered in Jakarta. That was the first problem. The second was underneath it.
-        </p>
-        <p class="decision-body">
-          The formatting fix was dynamic number display — abbreviating large values, surfacing 'B' for billions, restructuring how currency rendered so the hierarchy stayed readable regardless of digit count.
-        </p>
-        <p class="decision-body">
-          The second problem was structural. Part of the Indonesia journey had to route through an existing banking module with no design control on our side. In testing, users hit that transition and thought the app had crashed — one moment they were in our flow, the next they were dropped into a completely different interface with no warning. We couldn't redesign the module. We built a dedicated transition screen instead: something that told users exactly what was happening and why the interface was about to change. That turned a crash moment into a deliberate handoff.
-        </p>
-        <div class="decision-visuals">
-          <img class="decision-img-single" src="/images/si-localized-ui.png" alt="Indonesia adaptations — dynamic number formatting and transition screen">
-        </div>
-      </div>
-
-      <!-- Decision 03 -->
-      <div class="decision-block reveal">
-        <span class="decision-num">Decision 03</span>
-        <h2 class="decision-title">Thailand's drop-off wasn't about length</h2>
-        <p class="decision-tension">
-          Thailand had a regulatory suitability questionnaire we couldn't shorten — every question was mandated. It was longer than Singapore's. The natural assumption was that drop-off came from length.
-        </p>
-        <p class="decision-body">
-          When we looked at where drop-off actually clustered, it wasn't spread evenly across the form. It concentrated around specific questions that used financial regulatory terminology retail investors didn't recognise. The questionnaire wasn't too long. It was written for someone who already understood what the words meant.
-        </p>
-        <p class="decision-body">
-          We couldn't remove a single question. What we could do was rewrite how each was framed — plain language, legal meaning preserved. Drop-off improved without touching one regulatory requirement.
-        </p>
-        <div class="decision-visuals">
-          <img class="decision-img-single" src="/images/si-self-serve.png" alt="Thailand suitability questionnaire — reframed in plain language">
-        </div>
-      </div>
-
-      <!-- ─── OUTCOME ─── -->
-      <div class="outcome-section reveal">
-        <span class="section-eyebrow">Outcome</span>
-        <p class="outcome-lead">
-          Simple Invest launched across all three markets with a shared component foundation. The visual language stayed consistent. The flows varied where they had to.
-        </p>
-        <p class="outcome-note">
-          Each market surfaced a different problem, but the pattern underneath was the same: we had built Simple Invest around a Singapore user — financially literate, digitally confident, already familiar with the product category. Those assumptions were invisible while we were inside Singapore. The moment we moved, they surfaced. Indonesia showed it in scale and formatting. Thailand showed it in language. We found that out market by market, when it would have been faster to find it at the start.
-        </p>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <section>
-    <div class="case-footer">
-      <div class="container">
-        <p>Next case study</p>
-        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-          <a href="genesis.html" class="btn btn-primary">Genesis — DBS →</a>
-          <a href="index.html" class="btn btn-ghost">← All Work</a>
-        </div>
-        <div class="footer-links">
-          <a href="mailto:golansarig@gmail.com">golansarig@gmail.com</a>
-          <a href="https://www.linkedin.com/in/golansa" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a href="https://www.instagram.com/golansarig" target="_blank" rel="noopener">Instagram ↗</a>
-        </div>
+      <div class="feat"><div class="n">03</div><h3>Thailand's drop-off wasn't length, it was language</h3>
+        <p class="bd">Thailand had a regulatory suitability questionnaire we couldn't shorten, every question mandated, and longer than Singapore's. The easy assumption was that length caused the drop-off. But it wasn't spread across the form, it concentrated on questions using regulatory terminology retail investors didn't recognise. The questionnaire wasn't too long; it was written for someone who already knew what the words meant. We couldn't remove a question, so we rewrote how each was framed, plain language with the legal meaning preserved. Drop-off improved without touching a single requirement.</p>
       </div>
     </div>
   </section>
 
-  <script>
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-    }, { threshold: 0.06 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-  </script>
+  <section class="blk" data-reveal>
+    <div class="kick">Outcome</div>
+    <div>
+      <div class="say">The assumptions were invisible while we were inside Singapore. The moment we moved, they surfaced.</div>
+      <p class="bd">Simple Invest launched across all three markets on a shared component foundation. The visual language stayed consistent; the flows varied where they had to. Indonesia showed the assumptions in scale and formatting, Thailand in language, but the pattern underneath was the same: a product built around one kind of user, adapted only once we were honest about it.</p>
+      <p class="bd">What the next market inherits is not just the components, but the habit of auditing assumptions before porting, and aligning legal early, because regulation reshapes layout, not just copy.</p>
+      <ul class="contrib">
+        <li><b>Lead UIUX Designer</b><span>End-to-end design across four markets</span></li>
+        <li><b>Stakeholder management</b><span>Cross-regional alignment across product, engineering, and legal</span></li>
+      </ul>
+    </div>
+  </section>
 
-  <script src="/lightbox.js"></script>
+  <footer class="foot" data-reveal>
+    <div class="big">Get in touch<span class="d">.</span></div>
+    <a class="email" href="mailto:golansarig@gmail.com">golansarig@gmail.com →</a>
+    <div class="nav2"><a href="/investment-transaction.html">Next: Investment Transaction Platform →</a><a href="/index.html">All work</a></div>
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="/motion.js?v=5"></script>
 </body>
 </html>

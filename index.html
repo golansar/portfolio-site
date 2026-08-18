@@ -3,1279 +3,246 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Golan Sarig — UI/UX Designer</title>
-  <meta name="description" content="Senior UI/UX Designer based in Singapore. 7+ years crafting digital products for banking, wealth management, and consumer markets.">
-  <meta property="og:title" content="Golan Sarig — UI/UX Designer">
-  <meta property="og:description" content="Senior UI/UX Designer based in Singapore. Banking, wealth, and consumer products.">
-  <meta property="og:image" content="/images/SocialMediaPreviewImage_Portfolio.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/gs-favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/gs-favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/gs-apple-touch-180.png">
+  <title>Golan Sarig — Senior Product Designer</title>
+  <meta name="description" content="Senior product designer (UI/UX) crafting digital products for banking, wealth, and consumer markets. Currently leading design for UOB.">
+  <meta name="keywords" content="Product Designer, UI/UX Designer, UX Designer, Singapore, fintech, banking, wealth">
+  <meta property="og:title" content="Golan Sarig — Senior Product Designer">
+  <meta property="og:description" content="Senior product designer (UI/UX) for banking, wealth, and consumer products.">
   <meta property="og:type" content="website">
-  <link rel="icon" type="image/svg+xml" href="/fav.svg">
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="stylesheet" href="https://api.fontshare.com/css?f[]=general-sans@400,500,600,700&display=swap">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=8">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:        #08081a;
-      --surface:   #0f0f26;
-      --surface-2: #161638;
-      --border:    rgba(255,255,255,0.07);
-      --text:      #eeeef8;
-      --muted:     #7878a0;
-
-      --yellow:  #ffe000;
-      --pink:    #ff2d6b;
-      --cyan:    #00d4ff;
-      --orange:  #ff6b35;
-      --purple:  #b06cff;
-
-      --glow-y: 0 0 24px rgba(255,224,0,.45);
-      --glow-p: 0 0 24px rgba(255,45,107,.45);
-      --glow-c: 0 0 24px rgba(0,212,255,.45);
-      --glow-o: 0 0 24px rgba(255,107,53,.45);
-
-      --radius: 10px;
-      --font-px: 'Press Start 2P', monospace;
-      --font:    'Space Grotesk', sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 16px;
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-
-    /* ─── dot-grid playfield ─── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
-      background-size: 30px 30px;
-      pointer-events: none;
-    }
-
-    /* ─── scanlines ─── */
-    body::after {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 3px,
-        rgba(0,0,0,.07) 3px,
-        rgba(0,0,0,.07) 4px
-      );
-      pointer-events: none;
-    }
-
-    /* ─── shared layout ─── */
-    section { position: relative; z-index: 1; }
-
-    .container {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
-    /* ─────────────────────────────────────────
-       NAV
-    ───────────────────────────────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 48px;
-      background: rgba(8,8,26,.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: var(--font-px);
-      font-size: 10px;
-      color: var(--yellow);
-      text-shadow: var(--glow-y);
-      letter-spacing: 1px;
-    }
-
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: .4px;
-      transition: color .18s;
-    }
-    .nav-links a:hover { color: var(--yellow); }
-
-
-    /* ─────────────────────────────────────────
-       HERO
-    ───────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 60px;
-      padding: 140px 48px 100px;
-      max-width: 1160px;
-      margin: 0 auto;
-    }
-
-    /* ambient glow */
-    .hero-left::before {
-      content: '';
-      position: absolute;
-      width: 600px; height: 600px;
-      left: -100px; top: 50%;
-      transform: translateY(-50%);
-      background: radial-gradient(ellipse, rgba(255,224,0,.06) 0%, transparent 65%);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .hero-left { position: relative; }
-
-    .hero-status {
-      display: flex; align-items: center; gap: 10px;
-      font-family: var(--font-px);
-      font-size: 7px;
-      color: var(--muted);
-      letter-spacing: 3px;
-      margin-bottom: 30px;
-    }
-
-    .status-pip {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: #39ff14;
-      box-shadow: 0 0 10px rgba(57,255,20,.9);
-      animation: pip 2s ease-in-out infinite;
-    }
-    @keyframes pip { 0%,100%{opacity:1} 50%{opacity:.3} }
-
-    .hero-eyebrow {
-      font-family: var(--font-px);
-      font-size: 8px;
-      color: var(--cyan);
-      text-shadow: var(--glow-c);
-      letter-spacing: 5px;
-      margin-bottom: 18px;
-    }
-
-    .hero-name {
-      font-size: clamp(54px, 7.5vw, 88px);
-      font-weight: 700;
-      letter-spacing: -2.5px;
-      line-height: .96;
-      margin-bottom: 22px;
-    }
-    .hero-name em {
-      font-style: normal;
-      color: var(--yellow);
-      text-shadow: var(--glow-y);
-    }
-
-    .hero-bio {
-      font-size: 17px;
-      color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 48px;
-      line-height: 1.75;
-    }
-
-    .hero-scores {
-      display: flex; gap: 20px; flex-wrap: wrap;
-      margin-bottom: 48px;
-    }
-
-    .score-chip {
-      border: 1px solid var(--border);
-      background: var(--surface);
-      border-radius: 6px;
-      padding: 14px 20px;
-      position: relative;
-    }
-    .score-chip::before {
-      content: '';
-      position: absolute; top: -1px; left: 14px;
-      width: 40px; height: 2px;
-      background: var(--yellow);
-      box-shadow: var(--glow-y);
-    }
-
-    .score-num {
-      display: block;
-      font-family: var(--font-px);
-      font-size: 16px;
-      color: var(--yellow);
-      text-shadow: var(--glow-y);
-      margin-bottom: 5px;
-    }
-    .score-lbl {
-      font-size: 10px;
-      color: var(--muted);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-
-    .btn {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 13px 26px;
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: .3px;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all .2s;
-    }
-    .btn-primary {
-      background: var(--yellow);
-      color: #08081a;
-    }
-    .btn-primary:hover {
-      box-shadow: var(--glow-y), 0 6px 18px rgba(0,0,0,.4);
-      transform: translateY(-2px);
-    }
-    .btn-ghost {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-ghost:hover {
-      border-color: rgba(0,212,255,.5);
-      color: var(--cyan);
-      box-shadow: 0 0 14px rgba(0,212,255,.15);
-    }
-
-    /* ─── bumper panel ─── */
-    .bumper-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      align-items: center;
-      padding: 24px 0;
-    }
-
-    .bumper {
-      width: 88px; height: 88px;
-      border-radius: 50%;
-      border: 2px solid;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      font-family: var(--font-px);
-      font-size: 6px;
-      line-height: 1.6;
-      text-align: center;
-      cursor: pointer;
-      transition: transform .12s, box-shadow .12s;
-      user-select: none;
-      position: relative;
-    }
-    .bumper::after {
-      content: '';
-      position: absolute; inset: 5px;
-      border-radius: 50%;
-      border: 1px solid;
-      border-color: inherit;
-      opacity: .3;
-    }
-    .bumper:hover { transform: scale(1.1); }
-    .bumper:active { transform: scale(.93); }
-
-    .b-y { border-color: var(--yellow); color: var(--yellow);
-           box-shadow: 0 0 22px rgba(255,224,0,.18), inset 0 0 18px rgba(255,224,0,.05);
-           animation: bglw 3.2s ease-in-out infinite; }
-    .b-p { border-color: var(--pink);   color: var(--pink);
-           box-shadow: 0 0 22px rgba(255,45,107,.18), inset 0 0 18px rgba(255,45,107,.05);
-           animation: bglw 3.2s ease-in-out infinite .9s; }
-    .b-c { border-color: var(--cyan);   color: var(--cyan);
-           box-shadow: 0 0 22px rgba(0,212,255,.18),  inset 0 0 18px rgba(0,212,255,.05);
-           animation: bglw 3.2s ease-in-out infinite 1.8s; }
-    .b-o { border-color: var(--orange); color: var(--orange);
-           box-shadow: 0 0 22px rgba(255,107,53,.18), inset 0 0 18px rgba(255,107,53,.05);
-           animation: bglw 3.2s ease-in-out infinite 2.6s; }
-
-    @keyframes bglw {
-      0%,100%{ opacity:.55; }
-      50%{ opacity:1; }
-    }
-
-    .bumper.flash {
-      animation: bump-flash .25s ease-out !important;
-    }
-    @keyframes bump-flash {
-      0%   { transform: scale(1);    filter: brightness(1); }
-      40%  { transform: scale(1.28); filter: brightness(2.5); }
-      100% { transform: scale(1);    filter: brightness(1); }
-    }
-
-    /* ─── hero track lines ─── */
-    .track-line {
-      position: absolute;
-      pointer-events: none;
-      opacity: .12;
-    }
-
-    /* ─────────────────────────────────────────
-       SECTION CHROME
-    ───────────────────────────────────────── */
-    .sec-head {
-      display: flex; align-items: center; gap: 18px;
-      margin-bottom: 52px;
-    }
-    .sec-tag {
-      font-family: var(--font-px);
-      font-size: 7px;
-      letter-spacing: 3.5px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .sec-rule { flex: 1; height: 1px; }
-
-    .sec-title {
-      font-size: clamp(30px, 3.5vw, 44px);
-      font-weight: 700;
-      letter-spacing: -1px;
-      line-height: 1.1;
-    }
-
-    /* ─────────────────────────────────────────
-       ABOUT
-    ───────────────────────────────────────── */
-    .about { padding: 110px 0; }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .about-body {
-      font-size: 16.5px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-    .about-body p + p { margin-top: 18px; }
-
-    .sidebar-label {
-      font-family: var(--font-px);
-      font-size: 6.5px;
-      color: var(--muted);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .skills-wrap {
-      display: flex; flex-wrap: wrap; gap: 9px;
-      margin-bottom: 36px;
-    }
-
-    .skill {
-      padding: 5px 13px;
-      font-size: 12px;
-      font-weight: 500;
-      border-radius: 100px;
-      border: 1px solid;
-      transition: box-shadow .2s;
-    }
-    .skill:hover { box-shadow: 0 0 12px currentColor; }
-    .sk-y { border-color: rgba(255,224,0,.38); color:var(--yellow); background:rgba(255,224,0,.05); }
-    .sk-c { border-color: rgba(0,212,255,.38);  color:var(--cyan);   background:rgba(0,212,255,.05); }
-    .sk-p { border-color: rgba(255,45,107,.38); color:var(--pink);   background:rgba(255,45,107,.05); }
-    .sk-o { border-color: rgba(255,107,53,.38); color:var(--orange); background:rgba(255,107,53,.05); }
-
-    .company-stack { display: flex; flex-direction: column; gap: 8px; }
-
-    .company-row {
-      display: flex; align-items: center; gap: 12px;
-      padding: 11px 16px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      transition: border-color .2s;
-    }
-    .company-row:hover { border-color: rgba(255,255,255,.14); }
-
-    .c-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .c-name { font-weight: 600; font-size: 14px; }
-    .c-yrs { margin-left: auto; font-size: 11px; color: var(--muted); }
-
-    /* ─────────────────────────────────────────
-       WORK
-    ───────────────────────────────────────── */
-    .work {
-      padding: 110px 0;
-      background: linear-gradient(180deg, transparent, rgba(255,224,0,.018) 50%, transparent);
-    }
-
-    .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 44px; }
-
-    .filt {
-      padding: 7px 17px;
-      font-family: var(--font);
-      font-size: 12px; font-weight: 500;
-      letter-spacing: .3px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
-      border-radius: 100px;
-      cursor: pointer;
-      transition: all .18s;
-    }
-    .filt:hover, .filt.on {
-      border-color: var(--yellow);
-      color: var(--yellow);
-      background: rgba(255,224,0,.06);
-    }
-
-    .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 30px;
-      position: relative;
-      overflow: hidden;
-      transition: transform .25s, border-color .25s, box-shadow .25s;
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-    }
-    .card::before {
-      content: '';
-      position: absolute; inset: 0; border-radius: var(--radius);
-      opacity: 0; transition: opacity .3s;
-      background: radial-gradient(ellipse 70% 60% at 20% 20%, rgba(255,224,0,.045) 0%, transparent 70%);
-    }
-    .card:hover { transform: translateY(-5px); border-color: rgba(255,224,0,.25); box-shadow: 0 12px 40px rgba(0,0,0,.35); }
-    .card:hover::before { opacity: 1; }
-    .card-arrow {
-      position: absolute; bottom: 20px; right: 24px;
-      font-family: var(--font-px); font-size: 8px;
-      color: var(--muted); letter-spacing: 1px;
-      opacity: 0; transition: opacity .25s, color .25s;
-    }
-    .card:hover .card-arrow { opacity: 1; color: var(--yellow); }
-
-    /* flipper corner accent */
-    .card::after {
-      content: '';
-      position: absolute; bottom: 0; right: 0;
-      width: 52px; height: 52px;
-      border-top: 1px solid var(--border);
-      border-left: 1px solid var(--border);
-      border-radius: 100% 0 0 0;
-    }
-
-    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
-
-    .card-client {
-      font-family: var(--font-px);
-      font-size: 6.5px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--cyan);
-      text-shadow: 0 0 8px rgba(0,212,255,.45);
-    }
-
-    .card-year {
-      font-family: var(--font-px);
-      font-size: 8px;
-      color: var(--muted);
-    }
-
-    .card-title {
-      font-size: 21px;
-      font-weight: 700;
-      letter-spacing: -.4px;
-      line-height: 1.22;
-      margin-bottom: 11px;
-      color: var(--text);
-    }
-
-    .card-desc {
-      font-size: 13.5px;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 22px;
-    }
-
-    .card-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-
-    .tag {
-      padding: 3px 9px;
-      font-size: 10.5px;
-      font-weight: 500;
-      border-radius: 4px;
-    }
-    .t-mob  { background: rgba(176,108,255,.14); color: var(--purple); }
-    .t-dsk  { background: rgba(0,212,255,.1);    color: var(--cyan); }
-    .t-uxd  { background: rgba(255,224,0,.1);    color: var(--yellow); }
-    .t-uxr  { background: rgba(255,107,53,.1);   color: var(--orange); }
-    .t-ui   { background: rgba(255,45,107,.1);   color: var(--pink); }
-    .t-gen  { background: rgba(255,255,255,.07); color: var(--muted); }
-
-    /* ─────────────────────────────────────────
-       OTHERS
-    ───────────────────────────────────────── */
-    .others { padding: 70px 0 110px; }
-
-    .others-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-
-    .other-card {
-      display: block;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 22px;
-      transition: border-color .2s, transform .2s;
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-    }
-    .other-card:hover { border-color: rgba(0,212,255,.28); transform: translateY(-3px); }
-
-    .other-title { font-size: 15px; font-weight: 600; margin-bottom: 14px; }
-
-    .other-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .ot { padding: 3px 9px; font-size: 10px; border-radius: 3px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
-    .ot-ai { padding: 3px 9px; font-size: 10px; border-radius: 3px; background: rgba(255,224,0,.12); color: var(--yellow); border: 1px solid rgba(255,224,0,.3); font-weight: 600; text-shadow: 0 0 8px rgba(255,224,0,.4); }
-
-    /* ─────────────────────────────────────────
-       EXPERIENCE
-    ───────────────────────────────────────── */
-    .experience {
-      padding: 110px 0;
-      background: linear-gradient(180deg, transparent, rgba(0,212,255,.016) 50%, transparent);
-    }
-
-    .exp-list { display: flex; flex-direction: column; }
-
-    .exp-item {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 36px;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border);
-      align-items: start;
-      transition: padding-left .18s;
-    }
-    .exp-item:last-child { border-bottom: none; }
-    .exp-item:hover { padding-left: 10px; }
-
-    .exp-period {
-      font-family: var(--font-px);
-      font-size: 7.5px;
-      line-height: 1.8;
-      color: var(--yellow);
-      text-shadow: 0 0 8px rgba(255,224,0,.3);
-      padding-top: 4px;
-    }
-
-    .exp-company { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-    .exp-company small { font-size: 14px; color: var(--muted); font-weight: 400; }
-
-    .exp-role { font-size: 13px; color: var(--cyan); margin-bottom: 10px; letter-spacing: .3px; }
-
-    .exp-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
-
-
-    /* ─── education ─── */
-    .edu-row {
-      display: flex; gap: 16px; flex-wrap: wrap;
-      margin-top: 52px;
-      padding-top: 44px;
-      border-top: 1px solid var(--border);
-    }
-
-    .edu-card {
-      flex: 1; min-width: 220px;
-      display: flex; align-items: flex-start; gap: 12px;
-      padding: 16px 20px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-    }
-    .edu-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
-    .edu-school { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
-    .edu-sub { font-size: 12px; color: var(--muted); }
-
-    /* ─────────────────────────────────────────
-       CONTACT
-    ───────────────────────────────────────── */
-    .contact {
-      padding: 80px 0;
-      text-align: center;
-      position: relative;
-    }
-
-    .contact-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-
-    /* ─────────────────────────────────────────
-       FOOTER
-    ───────────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 48px;
-      display: flex; justify-content: space-between; align-items: center;
-      position: relative; z-index: 1;
-    }
-    .footer-l, .footer-r {
-      font-family: var(--font-px);
-      font-size: 6.5px;
-      color: var(--muted);
-      letter-spacing: 2px;
-    }
-
-    /* ─────────────────────────────────────────
-       DIVIDER
-    ───────────────────────────────────────── */
-    .neon-divider {
-      display: flex; align-items: center; gap: 0;
-      padding: 0 48px; opacity: .25;
-      position: relative; z-index: 1;
-    }
-    .nd-line { flex: 1; height: 1px; background: var(--border); }
-    .nd-node {
-      width: 10px; height: 10px; border-radius: 50%;
-      border: 1px solid;
-      margin: 0 14px;
-      position: relative;
-    }
-    .nd-node::after {
-      content: ''; position: absolute; inset: 2px;
-      border-radius: 50%; background: currentColor;
-    }
-
-    /* ─────────────────────────────────────────
-       SCROLL-IN ANIMATION
-    ───────────────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity .55s ease, transform .55s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ─────────────────────────────────────────
-       RESPONSIVE
-    ───────────────────────────────────────── */
-    @media (max-width: 960px) {
-      nav { padding: 14px 24px; }
-      .hero { grid-template-columns: 1fr; padding: 110px 24px 80px; gap: 48px; }
-      .bumper-panel { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-      .container { padding: 0 24px; }
-      .about-grid { grid-template-columns: 1fr; gap: 44px; }
-      .cards { grid-template-columns: 1fr; }
-      .others-grid { grid-template-columns: 1fr 1fr; }
-      .exp-item { grid-template-columns: 90px 1fr; }
-      footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px; }
-    }
-    @media (max-width: 560px) {
-      .others-grid { grid-template-columns: 1fr; }
-      .hero-scores { gap: 12px; }
-      .score-chip { padding: 11px 15px; }
-    }
+    /* Other work — bento of sleek cards (mixes real covers + designed motifs) */
+    .owork-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:118px;gap:14px;
+      padding:34px 0 8px;max-width:840px;margin:0 auto}
+    .ocard{position:relative;display:block;overflow:hidden;border-radius:33px;color:inherit;
+      background:var(--card);border:1px solid var(--line);isolation:isolate;
+      box-shadow:0 1px 2px rgba(20,21,28,.04);will-change:transform;
+      transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s cubic-bezier(.2,.8,.2,1),border-color .3s}
+    .ocard--w8{grid-column:span 8}.ocard--w5{grid-column:span 5}
+    .ocard--w4{grid-column:span 4}.ocard--w3{grid-column:span 3}
+    .ocard-face{position:absolute;inset:0;overflow:hidden}
+    .ocard-face img{width:100%;height:100%;object-fit:cover;display:block;
+      transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+    .ocard-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
+      background:linear-gradient(to top,rgba(20,21,28,.82) 0%,rgba(20,21,28,.5) 20%,rgba(20,21,28,.12) 40%,transparent 56%)}
+    .ocard-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;
+      align-items:flex-end;justify-content:space-between;gap:10px;padding:10px 18px 10px}
+    .ocard-cap>span:first-child{display:flex;align-items:baseline;gap:8px;min-width:0}
+    .ocard-cap .oct{font-family:var(--disp);font-weight:600;letter-spacing:-.015em;line-height:1.05;
+      color:#fff;font-size:15px}
+    .ocard-cap .ocm{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:9.5px;white-space:nowrap;
+      text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.72)}
+    .ocard-arrow{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+      color:#fff;background:rgba(255,255,255,.18);backdrop-filter:blur(4px);font-size:12px;line-height:1;
+      opacity:0;transform:translateX(-6px);transition:opacity .4s,transform .4s}
+    /* hover: lift + face zoom + arrow slides in */
+    .ocard:hover{transform:translateY(-6px);border-color:transparent;z-index:2;
+      box-shadow:0 26px 46px -24px rgba(20,21,28,.5),0 4px 12px rgba(20,21,28,.12)}
+    /* hover: deepen the tint for stronger label legibility + feedback */
+    .ocard::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+      background:linear-gradient(to top,rgba(20,21,28,.52) 0%,rgba(20,21,28,.24) 45%,transparent 80%);
+      opacity:0;transition:opacity .4s}
+    .ocard:hover::after{opacity:1}
+    .ocard:hover .ocard-face img,.ocard:hover .ocard-motif{transform:scale(1.06)}
+    .ocard:hover .ocard-arrow{opacity:1;transform:translateX(0)}
+    /* designed-motif faces (Portfolio OS terminal, PBI dashboard) */
+    .ocard-motif{position:absolute;inset:0;transform-origin:center;
+      transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+    .pol-dash{display:flex;flex-direction:column;gap:6px;padding:12px 18px 50px;background:var(--card);height:100%}
+    .dash-top{display:flex;align-items:center;gap:6px;font-family:ui-monospace,'SF Mono',Menlo,monospace;
+      font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    .dash-top .dot{position:relative;width:6px;height:6px;border-radius:50%;background:var(--acc)}
+    .dash-top .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--acc);
+      animation:pulse 1.9s cubic-bezier(.2,.7,.3,1) infinite}
+    @keyframes pulse{0%{transform:scale(1);opacity:.55}70%{transform:scale(3.6);opacity:0}100%{opacity:0}}
+    .dash-grid{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+    .dstat{display:flex;flex-direction:column;justify-content:center;border-radius:8px;background:var(--surf);padding:6px 8px}
+    .dstat b{font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+    .dstat span{font-size:7.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+    .dstat.g b{color:#15a34a}.dstat.a b{color:#d97706}.dstat.r b{color:#dc2626}
+    .pol-term{display:flex;flex-direction:column;background:var(--ink);height:100%;
+      font-family:ui-monospace,'SF Mono',Menlo,monospace}
+    .term-bar{display:flex;gap:5px;padding:11px 24px;border-bottom:1px solid rgba(255,255,255,.09)}
+    .term-bar span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.24)}
+    .term-bar span:first-child{background:var(--acc)}
+    .term-body{flex:1;display:flex;flex-direction:column;justify-content:flex-start;gap:6px;padding:6px 22px 0;font-size:11.5px}
+    .term-body .tl{color:rgba(255,255,255,.5)}
+    .term-body .tc{color:#fff}
+    .term-body .cur{display:inline-block;width:7px;height:13px;background:var(--acc);
+      margin-left:3px;vertical-align:-2px;animation:blink 1.15s steps(1) infinite}
+    /* motif cards keep a scrim only over the caption band so title stays legible */
+    .ocard-motif+.ocard-scrim{background:linear-gradient(to top,rgba(20,21,28,.72) 0%,rgba(20,21,28,.28) 22%,transparent 44%)}
+    .ocard--term .ocard-scrim{background:linear-gradient(to top,rgba(0,0,0,.6) 0%,rgba(0,0,0,.2) 24%,transparent 46%)}
+    @keyframes blink{50%{opacity:0}}
+    @media (prefers-reduced-motion:reduce){.term-body .cur{animation:none}
+      .ocard,.ocard-face img,.ocard-motif{transition:none}
+      .ocard{transform:none}.ocard:hover .ocard-face img,.ocard:hover .ocard-motif{transform:none}}
+    @media (max-width:560px){.owork-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:102px;gap:12px;padding:24px 0 4px}
+      .ocard--w8{grid-column:span 6}.ocard--w5,.ocard--w4,.ocard--w3{grid-column:span 3}
+      .dash-grid{grid-template-columns:repeat(2,1fr)}}
+    /* subtle paper grain for warmth (very low, non-distracting) */
+    body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.03;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    .wrap{position:relative;z-index:2}
   </style>
 </head>
 <body>
+<div class="wrap">
 
-  <!-- ═══════════════════════════
-       NAV
-  ════════════════════════════ -->
-  <nav>
-    <a href="#" class="nav-logo"><img src="/fav.svg" width="40" height="40" alt="GS" style="display:block;"></a>
-    <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+  <nav class="nav">
+    <a class="brand" href="/index.html" aria-label="Golan Sarig, home"><img class="brand-logo" src="/images/gs-logo.webp" alt="Golan Sarig" width="32" height="32"></a>
+    <span class="nav-links"><a href="#work">Work</a><a href="#experience">Experience</a><a href="#contact">Contact</a></span>
   </nav>
 
-  <!-- ═══════════════════════════
-       HERO
-  ════════════════════════════ -->
-  <div style="position:relative;z-index:1;">
-    <div class="hero">
-      <div class="hero-left">
-        <div class="hero-status">
-          <span class="status-pip"></span>
-          SINGAPORE
-        </div>
-
-        <div class="hero-eyebrow">UI / UX DESIGNER</div>
-
-        <h1 class="hero-name">
-          Golan<br><em>Sarig</em>
-        </h1>
-
-        <p class="hero-bio">
-          Senior designer crafting digital products for banking,
-          wealth, and consumer markets. Currently at Aleph-Labs,
-          leading design for UOB — from internal platforms to
-          customer-facing mobile.
-        </p>
-
-        <div class="hero-scores">
-          <div class="score-chip">
-            <span class="score-num" data-target="7">0</span>
-            <span class="score-lbl">Yrs experience</span>
-          </div>
-          <div class="score-chip">
-            <span class="score-num" data-target="6">0</span>
-            <span class="score-lbl">Yrs @ UOB</span>
-          </div>
-          <div class="score-chip">
-            <span class="score-num" style="font-size:12px;letter-spacing:.5px;">B2B + B2C</span>
-            <span class="score-lbl">Domain focus</span>
-          </div>
-        </div>
-
-        <div class="hero-actions">
-          <a href="#work" class="btn btn-primary">View Work ↓</a>
-          <a href="mailto:golansarig@gmail.com" class="btn btn-ghost">Get in Touch</a>
-        </div>
-      </div>
-
-      <!-- Bumper cluster -->
-      <div class="bumper-panel">
-        <div class="bumper b-y" title="UX Design">UX<br>DESIGN</div>
-        <div class="bumper b-p" title="Mobile">MOBILE<br>FIRST</div>
-        <div class="bumper b-c" title="Research">UX<br>RESEARCH</div>
-        <div class="bumper b-o" title="Wealth">WEALTH<br>MGMT</div>
-      </div>
+  <header class="hero">
+    <h1>Golan Sarig<span class="d">.</span></h1>
+    <p class="lede">Senior product designer crafting digital products for banking, wealth, and consumer markets. Currently leading design for UOB.</p>
+    <div class="cta-row">
+      <a href="#work" class="btn">View work</a>
+      <a href="#contact" class="btn ghost">Get in touch</a>
     </div>
-  </div>
+  </header>
 
-  <!-- ═══════════════════════════
-       DIVIDER
-  ════════════════════════════ -->
-  <div class="neon-divider">
-    <div class="nd-line"></div>
-    <div class="nd-node" style="border-color:var(--yellow);color:var(--yellow)"></div>
-    <div class="nd-node" style="border-color:var(--cyan);color:var(--cyan)"></div>
-    <div class="nd-node" style="border-color:var(--pink);color:var(--pink)"></div>
-    <div class="nd-line"></div>
-  </div>
+  <section class="sec work" id="work" data-reveal>
+    <div class="sec-head"><span class="kick">Selected work</span><span class="count">2019 to 2026</span></div>
 
-  <!-- ═══════════════════════════
-       ABOUT
-  ════════════════════════════ -->
-  <section class="about" id="about">
-    <div class="container">
-      <div class="sec-head">
-        <span class="sec-tag" style="color:var(--pink);text-shadow:var(--glow-p)">BIO</span>
-        <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,45,107,.35),transparent)"></div>
-      </div>
+    <a class="row" href="/simple-invest.html">
+      <div><div class="title">Simple Invest</div><div class="rmeta">UOB<span class="sep">·</span>2024</div></div>
+      <span class="arrow">→</span>
+    </a>
+    <a class="row" href="/investment-transaction.html">
+      <div><div class="title">Investment Transaction Platform</div><div class="rmeta">UOB<span class="sep">·</span>2023</div></div>
+      <span class="arrow">→</span>
+    </a>
+    <a class="row" href="/lifestyle-rewards.html">
+      <div><div class="title">Lifestyle &amp; Rewards</div><div class="rmeta">UOB<span class="sep">·</span>2021</div></div>
+      <span class="arrow">→</span>
+    </a>
+    <a class="row" href="/genesis.html">
+      <div><div class="title">Genesis</div><div class="rmeta">DBS<span class="sep">·</span>2020</div></div>
+      <span class="arrow">→</span>
+    </a>
+    <a class="row" href="/converse-experience.html">
+      <div><div class="title">Converse Experience</div><div class="rmeta">Refinitiv<span class="sep">·</span>2019</div></div>
+      <span class="arrow">→</span>
+    </a>
+  </section>
 
-      <div class="about-grid">
-        <div>
-          <div class="about-body reveal">
-            <p>
-              Seven years designing for financial services across APAC — six of them at UOB.
-              The work has always been the same kind of challenge: regulated products,
-              compliance-heavy processes, customers who are nervous about getting it wrong.
-              The job is to make that feel manageable.
-            </p>
-            <p>
-              At Aleph-Labs, I lead design for UOB's regional digital banking platforms —
-              wealth journeys, onboarding flows, and internal RM tools across five markets.
-              Research to production, working alongside engineering, legal, and compliance.
-            </p>
-            <p>
-              Earlier: Myriad (consultancy, digital and service design), Assurant
-              (insurance, B2B marketing across APAC), Zalora (e-commerce, regional
-              campaign design and a 3-person team).
-            </p>
+  <section class="sec owork" data-reveal>
+    <div class="sec-head"><span class="kick">Other work</span><span class="count">Off the clock</span></div>
+    <div class="owork-grid">
+      <a class="ocard ocard--term ocard--w8" href="/portfolio-site.html">
+        <div class="ocard-motif pol-term">
+          <div class="term-bar"><span></span><span></span><span></span></div>
+          <div class="term-body"><span class="tl">~ / portfolio.os</span><span class="tc">$ npm run dev<span class="cur"></span></span></div>
+        </div>
+        <div class="ocard-scrim"></div>
+        <div class="ocard-cap">
+          <span><span class="oct">Portfolio OS</span><span class="ocm">Built with AI</span></span>
+          <span class="ocard-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+      <a class="ocard ocard--w4" href="/asap.html">
+        <div class="ocard-face"><img src="/images/asap-cover.webp" alt="ASAP After-Sales Portal" loading="lazy"></div>
+        <div class="ocard-scrim"></div>
+        <div class="ocard-cap">
+          <span><span class="oct">ASAP</span><span class="ocm">Concept</span></span>
+          <span class="ocard-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+      <a class="ocard ocard--w4" href="/print.html">
+        <div class="ocard-face"><img src="/images/print-cover.webp" alt="Print and editorial work" loading="lazy"></div>
+        <div class="ocard-scrim"></div>
+        <div class="ocard-cap">
+          <span><span class="oct">Print</span><span class="ocm">Editorial</span></span>
+          <span class="ocard-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+      <a class="ocard ocard--w5" href="/pbi/">
+        <div class="ocard-motif pol-dash">
+          <div class="dash-top"><span class="dot"></span>PBIx · Operations</div>
+          <div class="dash-grid">
+            <div class="dstat"><b>17</b><span>Cases</span></div>
+            <div class="dstat g"><b>7</b><span>Cleared</span></div>
+            <div class="dstat a"><b>6</b><span>Pending</span></div>
+            <div class="dstat r"><b>4</b><span>Issues</span></div>
           </div>
         </div>
+        <div class="ocard-scrim"></div>
+        <div class="ocard-cap">
+          <span><span class="oct">Banking CRM</span><span class="ocm">Dashboard · with AI</span></span>
+          <span class="ocard-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+      <a class="ocard ocard--w3" href="/logo-design.html">
+        <div class="ocard-face"><img src="/images/logo-design-cover.webp" alt="Logo design collection" loading="lazy"></div>
+        <div class="ocard-scrim"></div>
+        <div class="ocard-cap">
+          <span><span class="oct">Logo Design</span><span class="ocm">Identity</span></span>
+          <span class="ocard-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+    </div>
+  </section>
 
-        <div>
-          <div class="sidebar-label">SKILL SET</div>
-          <div class="skills-wrap reveal">
-            <span class="skill sk-y">Figma</span>
-            <span class="skill sk-c">UX Research</span>
-            <span class="skill sk-p">Design Systems</span>
-            <span class="skill sk-o">Prototyping</span>
-            <span class="skill sk-y">Usability Testing</span>
-            <span class="skill sk-c">Adobe CC</span>
-            <span class="skill sk-p">Component Libraries</span>
-            <span class="skill sk-o">Design Sprints</span>
-            <span class="skill sk-y">Jobs-to-be-Done</span>
-            <span class="skill sk-c">Hotjar / FullStory</span>
-            <span class="skill sk-p">WCAG 2.1 AA</span>
-            <span class="skill sk-o">AI Workflows</span>
-          </div>
-
-          <div class="sidebar-label">COMPANIES</div>
-          <div class="company-stack reveal">
-            <div class="company-row">
-              <div class="c-dot" style="background:var(--yellow)"></div>
-              <span class="c-name">Aleph-Labs / UOB</span>
-              <span class="c-yrs">2019 – Present</span>
-            </div>
-            <div class="company-row">
-              <div class="c-dot" style="background:var(--cyan)"></div>
-              <span class="c-name">Myriad Pte. Ltd</span>
-              <span class="c-yrs">2018 – 2019</span>
-            </div>
-            <div class="company-row">
-              <div class="c-dot" style="background:var(--pink)"></div>
-              <span class="c-name">Assurant Inc.</span>
-              <span class="c-yrs">2016 – 2018</span>
-            </div>
-            <div class="company-row">
-              <div class="c-dot" style="background:var(--orange)"></div>
-              <span class="c-name">Zalora Group</span>
-              <span class="c-yrs">2012 – 2016</span>
-            </div>
-          </div>
+  <section class="sec" id="about" data-reveal>
+    <div class="sec-head"><span class="kick">About</span></div>
+    <div class="about">
+      <div class="big">Seven years designing for financial services across APAC, six of them at UOB.</div>
+      <div>
+        <p>The work has always been the same kind of challenge: regulated products, compliance-heavy processes, customers who are nervous about getting it wrong. The job is to make that feel manageable.</p>
+        <p>Based in Singapore. I work across design and frontend code, so I ship what I draw.</p>
+        <div class="skills">
+          <span class="chip">Figma</span><span class="chip">UX Research</span><span class="chip">Design Systems</span><span class="chip">Prototyping</span><span class="chip">Usability Testing</span><span class="chip">Adobe CC</span><span class="chip">Component Libraries</span><span class="chip">Design Sprints</span><span class="chip">Jobs-to-be-Done</span><span class="chip">Hotjar / FullStory</span><span class="chip">WCAG 2.1 AA</span><span class="chip">AI Workflows</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════
-       DIVIDER
-  ════════════════════════════ -->
-  <div class="neon-divider">
-    <div class="nd-line"></div>
-    <div class="nd-node" style="border-color:var(--cyan);color:var(--cyan)"></div>
-    <div class="nd-node" style="border-color:var(--yellow);color:var(--yellow)"></div>
-    <div class="nd-line"></div>
-  </div>
-
-  <!-- ═══════════════════════════
-       CASE STUDIES
-  ════════════════════════════ -->
-  <section class="work" id="work">
-    <div class="container">
-      <div class="sec-head">
-        <span class="sec-tag" style="color:var(--yellow);text-shadow:var(--glow-y)">CASE STUDIES</span>
-        <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,224,0,.35),transparent)"></div>
-      </div>
-
-      <!-- filters -->
-      <div class="filter-bar">
-        <button class="filt on" data-filter="all">All</button>
-        <button class="filt" data-filter="mobile">Mobile</button>
-        <button class="filt" data-filter="desktop">Desktop</button>
-        <button class="filt" data-filter="ux-research">UX Research</button>
-        <button class="filt" data-filter="user-interface">User Interface</button>
-      </div>
-
-      <div class="cards">
-
-        <!-- Card 1 -->
-        <a href="converse-experience.html" class="card reveal" data-tags="mobile,ux-design,user-interface">
-          <div class="card-top">
-            <span class="card-client">Refinitiv</span>
-            <span class="card-year">2019</span>
-          </div>
-          <h3 class="card-title">Converse Experience: Audience Engagement in Real-Time</h3>
-          <p class="card-desc">Offline events management platform — reimagined for live audience engagement at Refinitiv conferences across APAC.</p>
-          <div class="card-tags">
-            <span class="tag t-mob">Mobile</span>
-            <span class="tag t-uxd">UX Design</span>
-            <span class="tag t-ui">User Interface</span>
-          </div>
-          <span class="card-arrow">VIEW →</span>
-        </a>
-
-        <!-- Card 2 -->
-        <a href="genesis.html" class="card reveal" data-tags="desktop,ux-design,user-interface" style="transition-delay:.1s">
-          <div class="card-top">
-            <span class="card-client">DBS</span>
-            <span class="card-year">2020</span>
-          </div>
-          <h3 class="card-title">Genesis: Streamlining HR and Project Management</h3>
-          <p class="card-desc">Internal management tool for DBS — redesigning HR and project workflows to reduce friction and surface what matters.</p>
-          <div class="card-tags">
-            <span class="tag t-dsk">Desktop</span>
-            <span class="tag t-uxd">UX Design</span>
-            <span class="tag t-ui">User Interface</span>
-          </div>
-          <span class="card-arrow">VIEW →</span>
-        </a>
-
-        <!-- Card 3 -->
-        <a href="lifestyle-rewards.html" class="card reveal" data-tags="mobile,ux-design,ux-research" style="transition-delay:.2s">
-          <div class="card-top">
-            <span class="card-client">UOB</span>
-            <span class="card-year">2021</span>
-          </div>
-          <h3 class="card-title">Lifestyle & Rewards: UOB TMRW</h3>
-          <p class="card-desc">Rewards and loyalty programme for UOB's TMRW mobile banking app — research-led, engagement-first.</p>
-          <div class="card-tags">
-            <span class="tag t-mob">Mobile</span>
-            <span class="tag t-uxd">UX Design</span>
-            <span class="tag t-uxr">UX Research</span>
-          </div>
-          <span class="card-arrow">VIEW →</span>
-        </a>
-
-        <!-- Card 4 -->
-        <a href="investment-transaction.html" class="card reveal" data-tags="desktop,ux-design,user-interface" style="transition-delay:.3s">
-          <div class="card-top">
-            <span class="card-client">UOB</span>
-            <span class="card-year">2023</span>
-          </div>
-          <h3 class="card-title">Investment Transaction Platform: Redesigning for Multiple Products</h3>
-          <p class="card-desc">Platform-level redesign of an internal banking tool — expanding from Unit Trusts to a multi-product investment transaction system.</p>
-          <div class="card-tags">
-            <span class="tag t-dsk">Desktop</span>
-            <span class="tag t-uxd">UX Design</span>
-            <span class="tag t-ui">User Interface</span>
-          </div>
-          <span class="card-arrow">VIEW →</span>
-        </a>
-
-        <!-- Card 5 -->
-        <a href="simple-invest.html" class="card reveal" data-tags="mobile,ux-design,ux-research,user-interface" style="transition-delay:.4s">
-          <div class="card-top">
-            <span class="card-client">UOB</span>
-            <span class="card-year">2024</span>
-          </div>
-          <h3 class="card-title">Simple Invest: Self-Serve Capabilities to Regional Markets</h3>
-          <p class="card-desc">Expanding UOB's wealth management platform to regional markets — making self-serve investment intuitive at scale.</p>
-          <div class="card-tags">
-            <span class="tag t-mob">Mobile</span>
-            <span class="tag t-uxd">UX Design</span>
-            <span class="tag t-uxr">UX Research</span>
-            <span class="tag t-ui">User Interface</span>
-          </div>
-          <span class="card-arrow">VIEW →</span>
-        </a>
-
-      </div>
-    </div>
+  <section class="sec exp" id="experience" data-reveal>
+    <div class="sec-head"><span class="kick">Experience</span></div>
+    <div class="xrow"><div><div class="xr-role">Senior UX Designer</div><div class="xr-co">Aleph-Labs → UOB</div></div><div class="xr-yr">2019–Present</div></div>
+    <div class="xrow"><div><div class="xr-role">Experience Designer</div><div class="xr-co">Myriad Pte. Ltd</div></div><div class="xr-yr">2018–2019</div></div>
+    <div class="xrow"><div><div class="xr-role">Marketing &amp; Design, APAC</div><div class="xr-co">Assurant Inc.</div></div><div class="xr-yr">2016–2018</div></div>
+    <div class="xrow"><div><div class="xr-role">Regional Marketing Graphics Lead</div><div class="xr-co">Zalora Group</div></div><div class="xr-yr">2012–2016</div></div>
+    <div class="xrow"><div><div class="xr-role">Sales &amp; Operations / In-house Designer</div><div class="xr-co">Vardi &amp; Migdal</div></div><div class="xr-yr">2008–2012</div></div>
   </section>
 
-  <!-- ═══════════════════════════
-       OTHERS
-  ════════════════════════════ -->
-  <section class="others">
-    <div class="container">
-      <div class="sec-head">
-        <span class="sec-tag" style="color:var(--orange);text-shadow:var(--glow-o)">OTHER WORK</span>
-        <div class="sec-rule" style="background:linear-gradient(to right,rgba(255,107,53,.35),transparent)"></div>
-      </div>
-
-      <div class="others-grid">
-        <a href="portfolio-site.html" class="other-card reveal">
-          <div class="other-title">Portfolio OS — Built with AI</div>
-          <div class="other-tags">
-            <span class="ot-ai">AI-Built</span>
-            <span class="ot">Full-Stack</span>
-            <span class="ot">9h 41m</span>
-          </div>
-        </a>
-        <a href="asap.html" class="other-card reveal" style="transition-delay:.1s">
-          <div class="other-title">"ASAP" – Warranty Management App</div>
-          <div class="other-tags">
-            <span class="ot">Branding</span>
-            <span class="ot">Logo</span>
-            <span class="ot">Mobile</span>
-            <span class="ot">Research</span>
-            <span class="ot">UIUX</span>
-          </div>
-        </a>
-        <a href="logo-design.html" class="other-card reveal" style="transition-delay:.2s">
-          <div class="other-title">Logo Design</div>
-          <div class="other-tags">
-            <span class="ot">Branding</span>
-            <span class="ot">Graphic Design</span>
-            <span class="ot">Logo</span>
-          </div>
-        </a>
-        <a href="print.html" class="other-card reveal" style="transition-delay:.3s">
-          <div class="other-title">Print</div>
-          <div class="other-tags">
-            <span class="ot">Graphic Design</span>
-            <span class="ot">Print</span>
-          </div>
-        </a>
-      </div>
+  <footer class="foot" id="contact" data-reveal>
+    <div class="big">Get in touch<span class="d">.</span></div>
+    <a class="email" href="mailto:golansarig@gmail.com">golansarig@gmail.com →</a>
+    <div class="sub">
+      <a href="https://www.linkedin.com/in/golansarig" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/golansarig" target="_blank" rel="noopener">Instagram</a>
+      <span class="rt">© 2026 Golan Sarig · Singapore</span>
     </div>
-  </section>
-
-  <!-- ═══════════════════════════
-       DIVIDER
-  ════════════════════════════ -->
-  <div class="neon-divider">
-    <div class="nd-line"></div>
-    <div class="nd-node" style="border-color:var(--orange);color:var(--orange)"></div>
-    <div class="nd-node" style="border-color:var(--purple);color:var(--purple)"></div>
-    <div class="nd-node" style="border-color:var(--cyan);color:var(--cyan)"></div>
-    <div class="nd-line"></div>
-  </div>
-
-  <!-- ═══════════════════════════
-       EXPERIENCE
-  ════════════════════════════ -->
-  <section class="experience" id="experience">
-    <div class="container">
-      <div class="sec-head">
-        <span class="sec-tag" style="color:var(--cyan);text-shadow:var(--glow-c)">EXPERIENCE</span>
-        <div class="sec-rule" style="background:linear-gradient(to right,rgba(0,212,255,.35),transparent)"></div>
-      </div>
-
-      <div class="exp-list">
-
-        <div class="exp-item reveal">
-          <div class="exp-period">2019<br>PRESENT</div>
-          <div>
-            <div class="exp-company">Aleph-Labs <small>→ UOB</small></div>
-            <div class="exp-role">Senior UX Designer</div>
-            <div class="exp-desc">
-              Lead designer on UOB's regional digital banking platforms — wealth management,
-              payments, and internal RM tools. Research to production, working across product,
-              engineering, compliance, and legal across five APAC markets.
-            </div>
-          </div>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-period">2018<br>2019</div>
-          <div>
-            <div class="exp-company">Myriad Pte. Ltd</div>
-            <div class="exp-role">Experience Designer</div>
-            <div class="exp-desc">
-              Strategy and design at a small consultancy. Mapped journeys and shipped
-              prototypes across 6 client projects — from the first workshop brief
-              through to handover.
-            </div>
-          </div>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-period">2016<br>2018</div>
-          <div>
-            <div class="exp-company">Assurant Inc.</div>
-            <div class="exp-role">Marketing & Design, APAC</div>
-            <div class="exp-desc">
-              Marketing design across five APAC markets. The core challenge was making
-              dense insurance products readable — in presentations, digital, and print.
-            </div>
-          </div>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-period">2012<br>2016</div>
-          <div>
-            <div class="exp-company">Zalora Group</div>
-            <div class="exp-role">Regional Marketing Graphics Lead</div>
-            <div class="exp-desc">
-              Led a 3-person team covering campaign and product visuals for 6 APAC markets.
-              Ran the visual execution for the Zalora website redesign and new
-              private label packaging.
-            </div>
-          </div>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-period">2008<br>2012</div>
-          <div>
-            <div class="exp-company">Vardi & Migdal</div>
-            <div class="exp-role">Sales & Operations Manager / In-house Designer</div>
-            <div class="exp-desc">
-              Ran operations and in-house design during the company's first years in
-              Singapore — building the brand from scratch while managing the sales
-              team and 3 retail outlets.
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Education -->
-      <div class="edu-row">
-        <div class="edu-card reveal">
-          <div class="edu-dot" style="background:var(--yellow)"></div>
-          <div>
-            <div class="edu-school">General Assembly</div>
-            <div class="edu-sub">User Experience Design · 2018</div>
-          </div>
-        </div>
-        <div class="edu-card reveal" style="transition-delay:.1s">
-          <div class="edu-dot" style="background:var(--cyan)"></div>
-          <div>
-            <div class="edu-school">Hadassah College Jerusalem</div>
-            <div class="edu-sub">Graphic Design & Print Production · 2006–2008</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════
-       CONTACT
-  ════════════════════════════ -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="contact-links">
-        <a href="mailto:golansarig@gmail.com" class="btn btn-primary">golansarig@gmail.com ↗</a>
-        <a href="https://www.linkedin.com/in/golansa" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
-        <a href="https://www.instagram.com/golansarig" target="_blank" rel="noopener" class="btn btn-ghost">Instagram</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════
-       FOOTER
-  ════════════════════════════ -->
-  <footer>
-    <div class="footer-l">© 2025 GOLAN SARIG</div>
-    <div class="footer-r">SINGAPORE · UX DESIGNER · EST. 2012</div>
   </footer>
 
-  <!-- ═══════════════════════════
-       JS
-  ════════════════════════════ -->
-  <script>
-    // ── Bumper click flash ──
-    document.querySelectorAll('.bumper').forEach(b => {
-      b.addEventListener('click', () => {
-        b.classList.add('flash');
-        b.addEventListener('animationend', () => b.classList.remove('flash'), {once:true});
-      });
-    });
-
-    // ── Filter buttons ──
-    const filts = document.querySelectorAll('.filt');
-    const cardEls = document.querySelectorAll('.card');
-
-    filts.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filts.forEach(f => f.classList.remove('on'));
-        btn.classList.add('on');
-        const filter = btn.dataset.filter;
-        cardEls.forEach(card => {
-          if (filter === 'all' || card.dataset.tags.includes(filter)) {
-            card.style.display = '';
-            card.style.opacity = '1';
-          } else {
-            card.style.opacity = '0';
-            card.style.pointerEvents = 'none';
-            setTimeout(() => {
-              if (!card.dataset.tags.includes(btn.dataset.filter) && btn.dataset.filter !== 'all') {
-                card.style.display = 'none';
-              }
-            }, 250);
-          }
-        });
-        // re-show all on 'all'
-        if (filter === 'all') {
-          cardEls.forEach(card => {
-            card.style.display = '';
-            card.style.opacity = '1';
-            card.style.pointerEvents = '';
-          });
-        }
-      });
-    });
-
-    // ── Scroll-in reveals ──
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
-    // ── Score counter ──
-    const counters = document.querySelectorAll('.score-num[data-target]');
-    const counterObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const el = e.target;
-        const target = +el.dataset.target;
-        let current = 0;
-        const step = Math.ceil(target / 20);
-        const ticker = setInterval(() => {
-          current = Math.min(current + step, target);
-          el.textContent = current + '+';
-          if (current >= target) clearInterval(ticker);
-        }, 60);
-        counterObs.unobserve(el);
-      });
-    }, { threshold: 0.5 });
-
-    counters.forEach(c => counterObs.observe(c));
-
-    // ── Active nav link ──
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const sects = document.querySelectorAll('section[id]');
-    const navObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          navLinks.forEach(a => a.style.color = '');
-          const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-          if (link) link.style.color = 'var(--yellow)';
-        }
-      });
-    }, { rootMargin: '-40% 0px -40% 0px' });
-    sects.forEach(s => navObs.observe(s));
-
-    // ── TILT easter egg: Konami code ──
-    const code = [38,38,40,40,37,39,37,39,66,65];
-    let idx = 0;
-    document.addEventListener('keydown', e => {
-      if (e.keyCode === code[idx]) {
-        idx++;
-        if (idx === code.length) {
-          idx = 0;
-          document.body.style.animation = 'tilt .5s ease';
-          const msg = document.createElement('div');
-          msg.textContent = '⚡ TILT! BONUS POINTS ⚡';
-          Object.assign(msg.style, {
-            position:'fixed', top:'50%', left:'50%',
-            transform:'translate(-50%,-50%)',
-            fontFamily:'var(--font-px)', fontSize:'20px',
-            color:'var(--yellow)', textShadow:'0 0 30px var(--yellow)',
-            zIndex:'9999', pointerEvents:'none',
-            animation:'fadeMsg 1.8s ease forwards'
-          });
-          document.body.appendChild(msg);
-          setTimeout(() => msg.remove(), 1800);
-        }
-      } else { idx = 0; }
-    });
-  </script>
-  <style>
-    @keyframes tilt {
-      0%,100%{transform:rotate(0)}
-      25%{transform:rotate(-2deg)}
-      75%{transform:rotate(2deg)}
-    }
-    @keyframes fadeMsg {
-      0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}
-      20%{opacity:1;transform:translate(-50%,-50%) scale(1.05)}
-      80%{opacity:1;}
-      100%{opacity:0;transform:translate(-50%,-50%) scale(1)}
-    }
-  </style>
-  <script src="/lightbox.js"></script>
+</div>
+<script>
+  /* CRM cover: live "Cases" tick — the dashboard's moving element (like the terminal cursor) */
+  (function () {
+    if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    var el = document.querySelector('.pol-dash .dstat b');
+    if (!el) return;
+    var vals = [17, 18, 19, 18], i = 0;
+    el.style.transition = 'opacity .3s ease';
+    setInterval(function () {
+      i = (i + 1) % vals.length;
+      el.style.opacity = '0';
+      setTimeout(function () { el.textContent = vals[i]; el.style.opacity = '1'; }, 300);
+    }, 2800);
+  })();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="/motion.js?v=5"></script>
 </body>
 </html>
