@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 9% 96%;
+    --foreground: 228 17% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 228 17% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 228 17% 9%;
+    --primary: 228 17% 9%;
+    --primary-foreground: 60 9% 96%;
+    --secondary: 40 8% 92%;
+    --secondary-foreground: 228 17% 9%;
+    --muted: 40 8% 92%;
+    --muted-foreground: 218 5% 44%;
+    --accent: 40 8% 92%;
+    --accent-foreground: 228 17% 9%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 228 12% 88%;
+    --input: 228 12% 88%;
+    --ring: 231 99% 62%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  ::selection {
+    background-color: #3d5afe;
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .num {
+    @apply font-mono tabular-nums;
+  }
+}
+
+/* Concepts marquee: slow auto-scroll, pause on hover */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 80s linear infinite; }
+.marquee-wrap:hover .animate-marquee { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none; }
+}
+
+/* custom circle cursor — matches the rest of the site (fine-pointer only) */
+.cursor{position:fixed;top:0;left:0;width:16px;height:16px;border:1.5px solid #3d5afe;
+  border-radius:50%;pointer-events:none;z-index:9999;opacity:0;will-change:transform;
+  transition:width .25s ease,height .25s ease,background-color .25s ease,opacity .3s}
+.cursor.on{opacity:1}
+.cursor.hover{width:28px;height:28px;background:rgba(61,90,254,.10)}
+.cursor.down{width:12px;height:12px;background:rgba(61,90,254,.18)}
+@media (hover:hover) and (pointer:fine){html.cursor-on,html.cursor-on *{cursor:none}}
+@media (hover:none),(pointer:coarse){.cursor{display:none!important}}
