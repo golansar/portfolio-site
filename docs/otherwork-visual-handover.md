@@ -4,10 +4,31 @@
 **Do not touch `main` / production golansarig.com.** Work only on `v2-preview` (Vercel preview).
 
 ## Status in one line
-The v2 site is built and deployed; PBI is now the 5th "Other Work" project. We spent this
-session iterating the **Other Work section's visual treatment** and just pivoted direction:
-**3D objects are parked; going to modern/sleek cards instead.** Next session picks the card
-direction and builds it.
+The v2 site is built and deployed; PBI is now the 5th "Other Work" project. 3D parked;
+Golan picked **direction A (bento image cards)** and it is now **built** into
+`v2/index.html` (replacing the polaroid pile). Verified structurally; **not yet pushed** to
+`v2-preview` and not yet eyeballed in a real browser.
+
+## Built this session — bento cards (direction A)
+Other Work is now a 4-col bento grid (`.owork-grid` / `.ocard`):
+- **Feature** = ASAP real cover, 2x2 (421px). Logo + Print real covers as 204px squares.
+- **Portfolio OS** (terminal) + **PBI** (dashboard) reuse the old motifs as full-bleed
+  card faces — same `.pol-term` / `.pol-dash` styles, now `.ocard-motif` (inset:0 fill).
+  This unifies real covers + designed motifs under one card system so the mix reads intentional.
+- Every card: 16px radius, hairline `--line` border, bottom scrim + white Bricolage title +
+  mono kicker overlay, circular arrow revealed on hover.
+- Refined hover: card lifts 6px, face zooms scale(1.06), arrow slides in, shadow deepens.
+- Responsive: 4-col → 2-col @900 (feature 16/9 full-width) → 1-col @560 (all 4/3).
+- Removed the polaroid jitter script (no longer needed).
+- Left the 3D prototype parked (still local-only, uncommitted) per the plan.
+
+**Verify status:** DOM geometry exact (feature 421², four 204² squares), all CSS applied
+(radius/scrim/motif bg/arrow), covers return HTTP 200. Browser pane could NOT produce pixels
+(the documented 0-width/blank flake) — **confirm visuals in a real browser** at
+`http://localhost:8091/v2/index.html` before pushing.
+
+## Next action
+Eyeball at localhost:8091, then push to `v2-preview`. (Was: pick A/B/C — done, A.)
 
 ## What's live on v2-preview (pushed)
 Last commits: `118c8ed` (3D spec), `3866c29` (PBI added), `9e71cbd` (polaroid jitter).
@@ -77,7 +98,3 @@ Portfolio OS `/v2/portfolio-site.html` · Banking CRM (PBI) `/pbi/`.
 - Lots of pre-existing dirty root files (old live site) + untracked docs/CLAUDE.md/mocks —
   leave them; only commit intended work.
 
-## Next action
-Ask Golan A/B/C for the sleek-card direction, then build it into `v2/index.html`'s Other Work
-section (replacing the polaroid pile), mixing real covers + the two designed-motif covers,
-with one refined hover/motion. Then push to `v2-preview`.
