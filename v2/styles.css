@@ -30,12 +30,12 @@ p,li,figcaption,.bd,.rmeta,.pcm{text-wrap:pretty}
 h1,h2,h3,.title,.big,.lede,.c-title,.c-lede,.say,.oct{text-wrap:balance}
 
 /* custom circle cursor — a ring that trails the pointer (fine-pointer only) */
-.cursor{position:fixed;top:0;left:0;width:24px;height:24px;border:1.5px solid var(--acc);
+.cursor{position:fixed;top:0;left:0;width:16px;height:16px;border:1.5px solid var(--acc);
   border-radius:50%;pointer-events:none;z-index:9999;opacity:0;will-change:transform;
   transition:width .25s var(--ease),height .25s var(--ease),background-color .25s var(--ease),opacity .3s}
 .cursor.on{opacity:1}
-.cursor.hover{width:40px;height:40px;background:rgba(61,90,254,.10)}
-.cursor.down{width:18px;height:18px;background:rgba(61,90,254,.18)}
+.cursor.hover{width:28px;height:28px;background:rgba(61,90,254,.10)}
+.cursor.down{width:12px;height:12px;background:rgba(61,90,254,.18)}
 @media (hover:hover) and (pointer:fine){html.cursor-on,html.cursor-on *{cursor:none}}
 @media (hover:none),(pointer:coarse){.cursor{display:none!important}}
 
