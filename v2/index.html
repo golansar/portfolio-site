@@ -25,12 +25,12 @@
     .ocard{position:relative;display:block;overflow:hidden;border-radius:33px;color:inherit;
       background:var(--card);border:1px solid var(--line);isolation:isolate;
       box-shadow:0 1px 2px rgba(20,21,28,.04);will-change:transform;
-      transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s cubic-bezier(.2,.8,.2,1),border-color .4s}
+      transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s cubic-bezier(.2,.8,.2,1),border-color .3s}
     .ocard--w8{grid-column:span 8}.ocard--w5{grid-column:span 5}
     .ocard--w4{grid-column:span 4}.ocard--w3{grid-column:span 3}
     .ocard-face{position:absolute;inset:0;overflow:hidden}
     .ocard-face img{width:100%;height:100%;object-fit:cover;display:block;
-      transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+      transition:transform .5s cubic-bezier(.2,.8,.2,1)}
     .ocard-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
       background:linear-gradient(to top,rgba(20,21,28,.82) 0%,rgba(20,21,28,.5) 20%,rgba(20,21,28,.12) 40%,transparent 56%)}
     .ocard-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;
@@ -55,7 +55,7 @@
     .ocard:hover .ocard-arrow{opacity:1;transform:translateX(0)}
     /* designed-motif faces (Portfolio OS terminal, PBI dashboard) */
     .ocard-motif{position:absolute;inset:0;transform-origin:center;
-      transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+      transition:transform .5s cubic-bezier(.2,.8,.2,1)}
     .pol-dash{display:flex;flex-direction:column;gap:6px;padding:12px 18px 50px;background:var(--card);height:100%}
     .dash-top{display:flex;align-items:center;gap:6px;font-family:ui-monospace,'SF Mono',Menlo,monospace;
       font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
