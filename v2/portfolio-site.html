@@ -13,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/v2/styles.css?v=5">
-  <link rel="stylesheet" href="/v2/case-study.css?v=4">
+  <link rel="stylesheet" href="/v2/styles.css?v=6">
+  <link rel="stylesheet" href="/v2/case-study.css?v=5">
   <style>
     :root{ --mono:'JetBrains Mono',ui-monospace,monospace }
 
@@ -58,6 +58,16 @@
     .layer.key{border-color:rgba(61,90,254,.35)}
     @media(max-width:560px){.layer .lr{display:none}}
     @media(prefers-reduced-motion:reduce){.layer{transition:none}}
+
+    /* custom circle cursor (fine-pointer only) — a Portfolio OS flourish */
+    .cursor{position:fixed;top:0;left:0;width:32px;height:32px;border:1.5px solid var(--acc);
+      border-radius:50%;pointer-events:none;z-index:9999;opacity:0;will-change:transform;
+      transition:width .25s var(--ease),height .25s var(--ease),background-color .25s var(--ease),opacity .3s}
+    .cursor.on{opacity:1}
+    .cursor.hover{width:54px;height:54px;background:rgba(61,90,254,.10)}
+    .cursor.down{width:24px;height:24px;background:rgba(61,90,254,.18)}
+    @media (hover:hover) and (pointer:fine){html.cursor-on,html.cursor-on *{cursor:none}}
+    @media (hover:none),(pointer:coarse){.cursor{display:none!important}}
   </style>
 </head>
 <body>
@@ -127,10 +137,35 @@
   <footer class="foot" data-reveal>
     <div class="big">Get in touch<span class="d">.</span></div>
     <a class="email" href="mailto:golansarig@gmail.com">golansarig@gmail.com →</a>
-    <div class="nav2"><a href="/v2/index.html">All work</a></div>
+    <div class="nav2"><a href="/v2/asap.html">Next: ASAP →</a><a href="/v2/index.html">All work</a></div>
   </footer>
 
 </div>
+<script>
+  /* Portfolio OS: custom circle cursor that trails the pointer */
+  (function () {
+    if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    var ring = document.createElement('div');
+    ring.className = 'cursor';
+    document.body.appendChild(ring);
+    document.documentElement.classList.add('cursor-on');
+    var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
+    addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; ring.classList.add('on'); });
+    document.addEventListener('mouseleave', function () { ring.classList.remove('on'); });
+    document.addEventListener('mousedown', function () { ring.classList.add('down'); });
+    document.addEventListener('mouseup', function () { ring.classList.remove('down'); });
+    var sel = 'a,button,.layer,[role=button]';
+    document.addEventListener('mouseover', function (e) { if (e.target.closest(sel)) ring.classList.add('hover'); });
+    document.addEventListener('mouseout', function (e) { if (e.target.closest(sel)) ring.classList.remove('hover'); });
+    (function loop() {
+      var k = reduce ? 1 : 0.2;
+      rx += (mx - rx) * k; ry += (my - ry) * k;
+      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+      requestAnimationFrame(loop);
+    })();
+  })();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="/v2/motion.js?v=4"></script>
 </body>

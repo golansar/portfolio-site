@@ -24,6 +24,11 @@ img,video{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--acc);color:#fff}
 
+/* prevent typographic orphans (single word stranded on the last line);
+   balance short display lines */
+p,li,figcaption,.bd,.rmeta,.pcm{text-wrap:pretty}
+h1,h2,h3,.title,.big,.lede,.c-title,.c-lede,.say,.oct{text-wrap:balance}
+
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
 
 /* ---- reveal motion base (additive; content visible by default) ---- */

@@ -93,6 +93,10 @@
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
 .gallery .fig{margin-top:0}
 
+/* ---- wireflow stack: wide detailed diagrams, span full width + legible ---- */
+.wf{grid-column:1/-1;display:flex;flex-direction:column;gap:24px;margin-top:10px}
+.wf .fig{margin-top:0}
+
 /* ---- summary / contributions ---- */
 .contrib{list-style:none;margin-top:6px}
 .contrib li{padding:14px 0;border-top:1px solid var(--line);font-size:15px}
