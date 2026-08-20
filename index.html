@@ -56,18 +56,28 @@
     /* designed-motif faces (Portfolio OS terminal, PBI dashboard) */
     .ocard-motif{position:absolute;inset:0;transform-origin:center;
       transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-    .pol-dash{display:flex;flex-direction:column;gap:6px;padding:12px 18px 50px;background:var(--card);height:100%}
-    .dash-top{display:flex;align-items:center;gap:6px;font-family:ui-monospace,'SF Mono',Menlo,monospace;
-      font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-    .dash-top .dot{position:relative;width:6px;height:6px;border-radius:50%;background:var(--acc)}
-    .dash-top .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--acc);
+    .pol-dash{display:flex;flex-direction:column;justify-content:center;gap:13px;padding:0 26px 44px;background:var(--card);height:100%}
+    .dash-head{display:flex;align-items:center;justify-content:space-between;font-family:ui-monospace,'SF Mono',Menlo,monospace;
+      font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+    .dash-head .dt{display:flex;align-items:center;gap:7px}
+    .dash-head .dot{position:relative;width:6px;height:6px;border-radius:50%;background:var(--acc)}
+    .dash-head .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--acc);
       animation:pulse 1.9s cubic-bezier(.2,.7,.3,1) infinite}
-    @keyframes pulse{0%{transform:scale(1);opacity:.55}70%{transform:scale(3.6);opacity:0}100%{opacity:0}}
-    .dash-grid{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
-    .dstat{display:flex;flex-direction:column;justify-content:center;border-radius:8px;background:var(--surf);padding:6px 8px}
-    .dstat b{font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:-.02em;line-height:1;color:var(--ink)}
-    .dstat span{font-size:7.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+    .dash-head .live{color:#15a34a;letter-spacing:.09em}
+    /* flat stats — no box-in-box */
+    .dash-stats{display:flex;align-items:baseline;gap:22px;flex-wrap:wrap}
+    .dstat{font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
+    .dstat b{font-family:var(--disp);font-weight:700;font-size:23px;letter-spacing:-.02em;line-height:1;color:var(--ink);margin-right:6px}
     .dstat.g b{color:#15a34a}.dstat.a b{color:#d97706}.dstat.r b{color:#dc2626}
+    /* animated stacked status bar (fills the width; distribution of the 17 cases) */
+    .dash-bar{position:relative;display:flex;height:9px;border-radius:6px;overflow:hidden;background:var(--surf)}
+    .dash-bar .seg{height:100%}
+    .dash-bar .seg.g{background:#15a34a}.dash-bar .seg.a{background:#d97706}.dash-bar .seg.r{background:#dc2626}
+    .dash-bar::after{content:"";position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);
+      transform:translateX(-100%);animation:barSweep 3.4s ease-in-out infinite}
+    @keyframes barSweep{0%{transform:translateX(-100%)}55%,100%{transform:translateX(220%)}}
+    @keyframes pulse{0%{transform:scale(1);opacity:.55}70%{transform:scale(3.6);opacity:0}100%{opacity:0}}
     .pol-term{display:flex;flex-direction:column;background:var(--ink);height:100%;
       font-family:ui-monospace,'SF Mono',Menlo,monospace}
     .term-bar{display:flex;gap:5px;padding:11px 24px;border-bottom:1px solid rgba(255,255,255,.09)}
@@ -84,10 +94,11 @@
     @keyframes blink{50%{opacity:0}}
     @media (prefers-reduced-motion:reduce){.term-body .cur{animation:none}
       .ocard,.ocard-face img,.ocard-motif{transition:none}
-      .ocard{transform:none}.ocard:hover .ocard-face img,.ocard:hover .ocard-motif{transform:none}}
+      .ocard{transform:none}.ocard:hover .ocard-face img,.ocard:hover .ocard-motif{transform:none}
+      .dash-bar .seg,.dash-bar::after,.dash-head .dot::after{animation:none}.dash-bar .seg{transform:none}}
     @media (max-width:560px){.owork-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:102px;gap:12px;padding:24px 0 4px}
       .ocard--w8{grid-column:span 6}.ocard--w5,.ocard--w4,.ocard--w3{grid-column:span 3}
-      .dash-grid{grid-template-columns:repeat(2,1fr)}}
+      .pol-dash{gap:9px;padding:0 18px 38px}.dash-stats{gap:14px}.dstat b{font-size:18px}}
     /* subtle paper grain for warmth (very low, non-distracting) */
     body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.03;
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -141,12 +152,20 @@
     <div class="owork-grid">
       <a class="ocard ocard--w8" href="/pbi/">
         <div class="ocard-motif pol-dash">
-          <div class="dash-top"><span class="dot"></span>PBIx · Operations</div>
-          <div class="dash-grid">
-            <div class="dstat"><b>17</b><span>Cases</span></div>
-            <div class="dstat g"><b>7</b><span>Cleared</span></div>
-            <div class="dstat a"><b>6</b><span>Pending</span></div>
-            <div class="dstat r"><b>4</b><span>Issues</span></div>
+          <div class="dash-head">
+            <span class="dt"><span class="dot"></span>PBIx · Operations</span>
+            <span class="live">Live</span>
+          </div>
+          <div class="dash-stats">
+            <span class="dstat"><b>17</b>Cases</span>
+            <span class="dstat g"><b>7</b>Cleared</span>
+            <span class="dstat a"><b>6</b>Pending</span>
+            <span class="dstat r"><b>4</b>Issues</span>
+          </div>
+          <div class="dash-bar">
+            <span class="seg g" style="width:41%"></span>
+            <span class="seg a" style="width:35%"></span>
+            <span class="seg r" style="width:24%"></span>
           </div>
         </div>
         <div class="ocard-scrim"></div>
