@@ -8,7 +8,7 @@ const phases = [
     name: "Discovery",
     icon: Search,
     points: [
-      "End-to-end BRD extraction, no product owner available to interpret it",
+      "End-to-end requirements extraction, no product owner available to interpret them",
       "Roles and permissions mapped per screen: editable vs. read-only, by role",
       "UX risks flagged early: no self-service, no PO, waterfall timelines",
     ],
@@ -40,7 +40,7 @@ const phases = [
     points: [
       "~85 high-fidelity screens with specs, built for a waterfall handoff",
       "Step-by-step design QA carried through UAT, not a handoff and a wait",
-      "A full content dictionary and navigation model, the BRD alone couldn't carry it",
+      "A full content dictionary and navigation model, the requirements documents alone couldn't carry it",
     ],
   },
 ];

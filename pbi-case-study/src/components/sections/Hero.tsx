@@ -15,10 +15,10 @@ export function Hero() {
         >
           <div className="mb-8 flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
             <Circle className="h-2 w-2 fill-signal text-signal" strokeWidth={0} />
-            Private Banking &middot; CRM Discovery
+            Banking CRM &middot; Discovery
           </div>
           <h1 className="text-balance font-display text-4xl font-semibold leading-[1.05] tracking-tighter text-foreground md:text-6xl">
-            A system built on spreadsheet logic, asked to run a private bank.
+            A system built on spreadsheet logic, asked to run a bank.
           </h1>
           <p className="mt-8 max-w-[52ch] text-balance text-lg leading-relaxed text-muted-foreground">
             Client onboarding with no clear starting point. Approval states

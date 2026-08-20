@@ -12,7 +12,7 @@ export function Framework() {
           index="04"
           eyebrow="The Framework"
           title="Three layers, stacked. Not one clever prompt"
-          description="What actually travels to the next project isn't PBI itself. It's knowing where, inside an existing system of governance and rhythm, an AI module can be inserted without the rest of the system losing its rigor."
+          description="What actually travels to the next project isn't the banking CRM itself. It's knowing where, inside an existing system of governance and rhythm, an AI module can be inserted without the rest of the system losing its rigor."
         />
 
         <div className="mx-auto mt-16 flex max-w-[880px] flex-col items-center">
@@ -59,7 +59,7 @@ export function Framework() {
           {/* Tier 3 */}
           <TierCard
             icon={Cpu}
-            tag="Piloted on PBI"
+            tag="Piloted on the banking CRM"
             name="AI Acceleration Module"
             title="Source-of-Truth AI Discovery"
             description="AI runs the first-pass synthesis from a raw source document. The guardrail keeps its output honest about its own certainty, until a human closes the loop."

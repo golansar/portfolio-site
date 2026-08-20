@@ -18,7 +18,7 @@ export function Close() {
           </h2>
           <div className="mt-12 grid grid-cols-1 gap-10 border-t border-zinc-800 pt-12 md:grid-cols-2">
             <p className="text-balance text-lg leading-relaxed text-zinc-400">
-              PBI didn't ship. No screens live, no metric moved.
+              The banking CRM didn't ship. No screens live, no metric moved.
               What it produced: a decision-governance framework applied across
               three platforms, a delivery rhythm designed for the team to plan
               against, AI-generated concepts to validate the direction, and a

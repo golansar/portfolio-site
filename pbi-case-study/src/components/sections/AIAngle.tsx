@@ -10,17 +10,17 @@ const promptSpec = [
   },
   {
     field: "TASK",
-    value: "Derive a high-level onboarding journey directly from the raw BRD",
+    value: "Derive a high-level onboarding journey directly from the raw requirements documents",
   },
   {
     field: "SOURCE OF TRUTH",
     value:
-      "Base everything strictly on the BRD. Treat missing information as unknown, not a gap to fill. Never invent steps, roles, or system behaviour.",
+      "Base everything strictly on the requirements documents. Treat missing information as unknown, not a gap to fill. Never invent steps, roles, or system behaviour.",
     highlight: true,
   },
   {
     field: "SELF-CHECK",
-    value: "Is every stage traceable to the BRD? Have inferred items been flagged as uncertain?",
+    value: "Is every stage traceable to the requirements? Have inferred items been flagged as uncertain?",
   },
 ];
 
@@ -38,7 +38,7 @@ export function AIAngle() {
         <SectionHeading
           index="03"
           eyebrow="The AI Angle"
-          title="AI read the raw BRD. It didn't clean up a synthesis. It produced one."
+          title="AI read the raw requirements documents. It didn't clean up a synthesis. It produced one."
           description="Not a loose prompt for a first draft. An engineered instruction, with a guardrail built into it before a single output came back."
         />
 
@@ -105,7 +105,7 @@ export function AIAngle() {
             <div className="rounded-2xl bg-secondary px-6 py-5">
               <p className="text-sm leading-relaxed text-muted-foreground">
                 Normally the output of a senior researcher spending days with
-                a BRD. Here it was a first pass, from the raw document, before
+                requirements documents. Here it was a first pass, from the raw document, before
                 a human had read a single page.
               </p>
             </div>
