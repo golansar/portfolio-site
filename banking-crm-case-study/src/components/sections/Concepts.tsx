@@ -25,6 +25,7 @@ const screens: Screen[] = [
   { file: "ongoing-6", label: "Ongoing case · 6", highlight: true },
   { file: "ongoing-7", label: "Ongoing case · 7" },
   { file: "ongoing-8", label: "Ongoing case · 8" },
+  { file: "ongoing-9", label: "Ongoing case · 9" },
 ];
 
 const highlights = screens.filter((s) => s.highlight);
