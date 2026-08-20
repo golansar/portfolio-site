@@ -120,7 +120,7 @@ export function Principles() {
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-10 2xl:grid-cols-2">
                   <div>
                     <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                       What discovery found
@@ -129,7 +129,7 @@ export function Principles() {
                       {active.finding}
                     </p>
                   </div>
-                  <div className="border-t border-border pt-8 md:border-l md:border-t-0 md:pl-10 md:pt-0">
+                  <div className="border-t border-border pt-8 2xl:border-l 2xl:border-t-0 2xl:pl-10 2xl:pt-0">
                     <div className="text-xs font-semibold uppercase tracking-wide text-signal">
                       The principle
                     </div>
