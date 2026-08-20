@@ -17,7 +17,7 @@ overlapping.
 | 2 | Logo Design | `/v2/logo-design.html` |
 | 3 | Print | `/v2/print.html` |
 | 4 | Portfolio OS | `/v2/portfolio-site.html` |
-| 5 | Banking CRM (PBI) | `/pbi/` |
+| 5 | Banking CRM (Banking CRM) | `/banking-crm/` |
 
 ## Visual
 - **No cards.** Objects float directly on the paper background.

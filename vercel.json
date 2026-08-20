@@ -1,6 +1,10 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/pbi", "destination": "/banking-crm", "permanent": true },
+    { "source": "/pbi/:path*", "destination": "/banking-crm/:path*", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",

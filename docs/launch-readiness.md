@@ -8,7 +8,7 @@ promote it to production as the new golansarig.com.
 ## Pages in scope (10)
 Home `v2/index.html` · Simple Invest · Investment Transaction · Lifestyle & Rewards · Genesis ·
 Converse Experience · ASAP · Logo Design · Print · Portfolio OS.
-(PBI case study ships separately at `/pbi/`.)
+(Banking CRM case study ships separately at `/banking-crm/`.)
 
 ## Phase 0 — Cleanup (remove non-shipping files)
 - [ ] Root temp mocks: `_typespec.html`, `_lightmock.html`, `_homemock.html`

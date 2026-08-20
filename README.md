@@ -15,7 +15,7 @@ styles.css              Global tokens, nav, footer, home
 case-study.css          Case-study section kit
 motion.js               Reveal-on-scroll, lightbox, custom cursor
 images/                 Covers + screenshots (WebP, 1600px)
-pbi/                    Banking CRM case study — built output of a React app
+banking-crm/            Banking CRM case study — built output of a React app
 vercel.json             cleanUrls, security headers
 ```
 
@@ -24,10 +24,10 @@ vercel.json             cleanUrls, security headers
 - **`legacy`** — the previous long-form site, kept for reference and iteration.
   Served at its own Vercel URL with `X-Robots-Tag: noindex`.
 
-## PBI case study
-`/pbi/` is the built output of a separate React/Vite app. Source lives in
-`pbi-case-study/` (see that folder's README) — rebuild with
-`npx vite build --base=/pbi/` then copy `dist/` to `/pbi/`.
+## Banking CRM case study
+`/banking-crm/` is the built output of a separate React/Vite app. Source lives in
+`banking-crm-case-study/` (see that folder's README) — rebuild with
+`npx vite build --base=/banking-crm/` then copy `dist/` to `/banking-crm/`.
 
 ## Local dev
 Static — serve the root with any static server, e.g. `python3 -m http.server`.

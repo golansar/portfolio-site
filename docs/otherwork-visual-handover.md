@@ -4,7 +4,7 @@
 **Do not touch `main` / production golansarig.com.** Work only on `v2-preview` (Vercel preview).
 
 ## Status in one line
-The v2 site is built and deployed; PBI is now the 5th "Other Work" project. 3D parked;
+The v2 site is built and deployed; Banking CRM is now the 5th "Other Work" project. 3D parked;
 Golan picked **direction A (bento image cards)** and it is now **built** into
 `v2/index.html` (replacing the polaroid pile). Verified structurally; **not yet pushed** to
 `v2-preview` and not yet eyeballed in a real browser.
@@ -12,7 +12,7 @@ Golan picked **direction A (bento image cards)** and it is now **built** into
 ## Built this session — bento cards (direction A)
 Other Work is now a 4-col bento grid (`.owork-grid` / `.ocard`):
 - **Feature** = ASAP real cover, 2x2 (421px). Logo + Print real covers as 204px squares.
-- **Portfolio OS** (terminal) + **PBI** (dashboard) reuse the old motifs as full-bleed
+- **Portfolio OS** (terminal) + **Banking CRM** (dashboard) reuse the old motifs as full-bleed
   card faces — same `.pol-term` / `.pol-dash` styles, now `.ocard-motif` (inset:0 fill).
   This unifies real covers + designed motifs under one card system so the mix reads intentional.
 - Every card: 16px radius, hairline `--line` border, bottom scrim + white Bricolage title +
@@ -31,15 +31,15 @@ Other Work is now a 4-col bento grid (`.owork-grid` / `.ocard`):
 Eyeball at localhost:8091, then push to `v2-preview`. (Was: pick A/B/C — done, A.)
 
 ## What's live on v2-preview (pushed)
-Last commits: `118c8ed` (3D spec), `3866c29` (PBI added), `9e71cbd` (polaroid jitter).
+Last commits: `118c8ed` (3D spec), `3866c29` (Banking CRM added), `9e71cbd` (polaroid jitter).
 - Homepage `v2/index.html` Other Work = a **polaroid pile** of 5 cards with a rest-cluster →
   hover-spread → click interaction + per-load jitter. Cards: ASAP, Logo Design, Print,
-  Portfolio OS (dark terminal motif), PBI (dashboard motif, real KPI numbers).
-- **PBI case study** shipped at `/pbi/` — a rethemed React build (portfolio nav/footer,
+  Portfolio OS (dark terminal motif), Banking CRM (dashboard motif, real KPI numbers).
+- **Banking CRM case study** shipped at `/banking-crm/` — a rethemed React build (portfolio nav/footer,
   paper/ink/cobalt, Bricolage/General Sans) with the Concepts section (auto-scroll strip +
   "view all" grid of 18 AI-generated concept screens, honest "AI-generated in Figma Make"
-  labelling). Source in `pbi-case-study/` (its **own git repo**, NOT vendored into the
-  portfolio repo; only the built `/pbi/` folder is committed for deploy).
+  labelling). Source in `banking-crm-case-study/` (its **own git repo**, NOT vendored into the
+  portfolio repo; only the built `/banking-crm/` folder is committed for deploy).
 
 ## The decision to carry forward
 Other Work cards read as "boring." We tried replacing them with **procedural three.js 3D
@@ -59,7 +59,7 @@ not polaroid.**
 Then: add one strong hover/motion idea so it's not static (no gimmicky pile).
 
 **Constraint any card system must solve:** ASAP / Logo / Print have real cover images;
-**Portfolio OS and PBI have no photo** (they're the terminal + dashboard motifs). Mix real
+**Portfolio OS and Banking CRM have no photo** (they're the terminal + dashboard motifs). Mix real
 covers with designed-motif covers so it looks intentional.
 
 ## Parked (local only, NOT committed) — the 3D prototype
@@ -80,12 +80,12 @@ word-highlighting, closing CTA "Get in touch."
 
 ## Projects (5) + hrefs (for the card build)
 ASAP `/v2/asap.html` · Logo Design `/v2/logo-design.html` · Print `/v2/print.html` ·
-Portfolio OS `/v2/portfolio-site.html` · Banking CRM (PBI) `/pbi/`.
+Portfolio OS `/v2/portfolio-site.html` · Banking CRM (Banking CRM) `/banking-crm/`.
 
 ## Local dev / verify
 - `preview_start name:pf26` → serves the repo at `http://localhost:8091`. Homepage:
-  `/v2/index.html`. PBI: `/pbi/index.html`. (Rebuild PBI after editing its source:
-  `cd pbi-case-study && npx vite build --base=/pbi/` then `rm -rf ../pbi && cp -R dist ../pbi`.)
+  `/v2/index.html`. Banking CRM: `/banking-crm/index.html`. (Rebuild Banking CRM after editing its source:
+  `cd banking-crm-case-study && npx vite build --base=/banking-crm/` then `rm -rf ../banking-crm && cp -R dist ../banking-crm`.)
 - **Browser pane is flaky** — frequently reports a 0-width viewport (blank/timeout
   screenshots, degenerate layout). Verify via DOM checks; use `resize_window` to a real size
   before screenshots; confirm final visuals in a real browser.
