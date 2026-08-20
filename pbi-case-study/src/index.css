@@ -84,6 +84,12 @@
 }
 .animate-marquee { animation: marquee 80s linear infinite; }
 .marquee-wrap:hover .animate-marquee { animation-play-state: paused; }
+/* swipeable on touch: hide scrollbar, momentum, and stop the auto-scroll so drag wins */
+.marquee-wrap { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.marquee-wrap::-webkit-scrollbar { display: none; }
+@media (hover: none) and (pointer: coarse) {
+  .animate-marquee { animation: none; }
+}
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee { animation: none; }
 }

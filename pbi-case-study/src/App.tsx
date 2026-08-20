@@ -135,8 +135,8 @@ function App() {
               golansarig@gmail.com →
             </a>
             <div className="mt-8 flex flex-wrap gap-5 text-sm font-medium text-muted-foreground">
-              <a href="/logo-design.html" className="transition-colors hover:text-foreground">
-                Next: Logo Design →
+              <a href="/asap.html" className="transition-colors hover:text-foreground">
+                Next: ASAP →
               </a>
               <a href="/index.html" className="transition-colors hover:text-foreground">
                 All work

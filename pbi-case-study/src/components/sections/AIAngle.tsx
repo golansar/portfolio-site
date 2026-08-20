@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ShieldCheck, Sparkles, CircleAlert } from "lucide-react";
+import { Sparkles, CircleAlert } from "lucide-react";
 import { SectionHeading } from "./Principles";
 import { Concepts } from "./Concepts";
 
@@ -112,37 +112,21 @@ export function AIAngle() {
           </motion.div>
         </div>
 
-        {/* Honest caveat */}
+        {/* Honest caveat — kept deliberately small */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-6 rounded-3xl border border-dashed border-zinc-300 p-8 md:p-10"
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-6 flex items-start gap-2.5 text-xs leading-relaxed text-muted-foreground"
         >
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-[auto_1fr]">
-            <CircleAlert className="h-5 w-5 shrink-0 text-zinc-400" strokeWidth={1.75} />
-            <div>
-              <div className="text-sm font-semibold text-foreground">
-                Held at first-pass status, on purpose
-              </div>
-              <p className="mt-2 max-w-[70ch] text-balance leading-relaxed text-muted-foreground">
-                The process was designed so AI output never became
-                source-of-truth on its own. Every finding was scoped
-                to route back to business and engineering before being
-                treated as confirmed, not final. That loop hadn't closed
-                before the engagement moved on. What's shown here is the
-                first-pass synthesis, held explicitly at that status,
-                not a validated outcome.
-              </p>
-            </div>
-          </div>
+          <CircleAlert className="mt-0.5 h-3.5 w-3.5 shrink-0 text-zinc-400" strokeWidth={1.75} />
+          <p className="max-w-[74ch]">
+            First-pass synthesis, held deliberately as not-yet-validated. Findings were scoped to
+            route back to business and engineering before being treated as confirmed; that loop
+            hadn&apos;t closed when the engagement moved on. The guardrail sits inside the prompt, by design.
+          </p>
         </motion.div>
-
-        <div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground">
-          <ShieldCheck className="h-3.5 w-3.5" strokeWidth={1.75} />
-          Guardrail by design, not by afterthought. The constraint sits inside the instruction itself.
-        </div>
 
         <Concepts />
       </div>

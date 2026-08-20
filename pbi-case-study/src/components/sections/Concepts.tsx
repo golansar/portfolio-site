@@ -60,14 +60,14 @@ export function Concepts() {
         </button>
       </div>
 
-      <div className="marquee-wrap relative -mx-6 overflow-hidden lg:mx-0">
-        <div className="animate-marquee flex w-max">
+      <div className="marquee-wrap relative -mx-6 snap-x overflow-x-auto overflow-y-hidden lg:mx-0 lg:overflow-hidden">
+        <div className="animate-marquee flex w-max px-6 lg:px-0">
           {strip.map((s, i) => (
             <button
               key={i}
               onClick={() => setActive(screens.indexOf(s))}
               aria-label={`Enlarge ${s.label}`}
-              className="group/th relative mr-5 h-[240px] w-[360px] shrink-0 overflow-hidden rounded-2xl border border-border bg-card"
+              className="group/th relative mr-5 h-[240px] w-[360px] max-w-[82vw] shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-card"
             >
               <img
                 src={`${base}concepts/${s.file}.jpg`}
